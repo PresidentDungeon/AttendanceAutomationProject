@@ -17,6 +17,7 @@ and open the template in the editor.
 {
     -fx-background-image: url("https://i.imgur.com/gvDeIv3.png");
     -fx-background-repeat: no-repeat;
+    -fx-background-size: stretch;
 }
 
 .middlebackground
