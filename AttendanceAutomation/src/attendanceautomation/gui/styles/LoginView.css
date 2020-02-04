@@ -8,9 +8,19 @@ and open the template in the editor.
     Author     : ander
 */
 
+@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+
 .login-button
 {
     -fx-background-color: #009fe3;
+
+
+    
+}
+.login-button:hover
+{
+    -fx-background-color: #ff0000;
+    
 }
 
 .background
@@ -23,4 +33,9 @@ and open the template in the editor.
 .middlebackground
 {
     -fx-background-color: rgba(0,0,0,0.2);
+}
+
+.label
+{
+        -fx-font-family: 'Oswald', sans-serif;
 }
