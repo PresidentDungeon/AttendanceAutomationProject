@@ -1,0 +1,33 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 4. feb. 2020, 13.20.18
+    Author     : Peter
+*/
+
+.menu-bar{
+  -fx-background-color: #f3f3f3;
+  -fx-border-color:  #f3f3f3;
+ -fx-border-width: 2
+
+}
+
+.menu-bar .label {
+    -fx-font-size: 12 pt;
+    -fx-font-family: "System";
+
+}
+
+
+.menu:hover {
+    -fx-background-color: #bc784e;
+}
+
+.menu-item .label{
+     -fx-font-size: 12 pt;
+    -fx-label-line-length: 8;
+      -fx-background-color: #cc66ff;
+}

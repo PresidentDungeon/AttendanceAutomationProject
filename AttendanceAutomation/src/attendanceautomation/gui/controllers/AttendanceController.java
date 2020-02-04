@@ -16,8 +16,6 @@ import javafx.scene.control.TableView;
 public class AttendanceController {
 
     @FXML
-    private TableView<?> overviewTable;
-    @FXML
     private ComboBox<?> comboSort;
     
 }
