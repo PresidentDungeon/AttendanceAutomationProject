@@ -51,7 +51,7 @@
       </Button>
       <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="107.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/correct.png" />
+            <Image url="@../images/correct2.png" />
          </image>
       </ImageView>
       <ComboBox fx:id="comboSort" layoutX="543.0" layoutY="98.0" prefHeight="31.0" prefWidth="147.0" promptText="Search by Date" stylesheets="@../styles/Combobox.css" />
