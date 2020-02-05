@@ -15,19 +15,7 @@ and open the template in the editor.
 
 }
 
-.menu-bar .label {
-    -fx-font-size: 12 pt;
-    -fx-font-family: "System";
-
-}
-
-
 .menu:hover {
-    -fx-background-color: #bc784e;
+
 }
 
-.menu-item .label{
-     -fx-font-size: 12 pt;
-    -fx-label-line-length: 8;
-      -fx-background-color: #cc66ff;
-}
