@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -37,17 +36,9 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Button layoutX="32.0" layoutY="147.0" mnemonicParsing="false" stylesheets="@../styles/buttonCss.css" text="Attend" textFill="WHITE">
-         <font>
-            <Font size="15.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
       <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="107.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/correct2.png" />
+            <Image url="@../images/correct.png" />
          </image>
       </ImageView>
       <ComboBox fx:id="comboSort" layoutX="307.0" layoutY="147.0" prefHeight="31.0" prefWidth="147.0" promptText="Search by Date" stylesheets="@../styles/Combobox.css" />
@@ -106,7 +97,12 @@
                </font></Label>
          </children>
       </VBox>
-      <HBox fx:id="paneArea" layoutX="487.0" layoutY="226.0" prefHeight="200.0" prefWidth="200.0" />
+      <HBox fx:id="paneArea" layoutX="454.0" layoutY="185.0" prefHeight="239.0" prefWidth="249.0" stylesheets="@../styles/ChartPie.css" />
+      <JFXButton layoutX="33.0" layoutY="147.0" prefHeight="0.0" prefWidth="65.0" stylesheets="@../styles/buttonCss.css" text="Attend" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXButton>
     </children>
    <effect>
       <DropShadow />

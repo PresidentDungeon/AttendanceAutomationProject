@@ -110,7 +110,7 @@ public class AttendanceController implements Initializable {
                 );
 
         PieChart pieChart = new PieChart(pieChartData);
-        pieChart.setTitle("School Attendance");
+        //pieChart.setTitle("School Attendance");
         pieChart.setClockwise(true);
         pieChart.setLabelLineLength(20);
         pieChart.setLabelsVisible(true);
