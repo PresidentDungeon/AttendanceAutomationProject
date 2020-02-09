@@ -1,31 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="attendanceautomation.gui.controllers.StatisticsTeacherViewController">
-   <children>
-      <MenuBar layoutX="-10.0" layoutY="-1.0" prefHeight="29.0" prefWidth="716.0" stylesheets="@../styles/Menubar.css">
-         <menus>
-            <Menu mnemonicParsing="false" text="File">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Close" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Edit">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Delete" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Help">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="About" />
-               </items>
-            </Menu>
-         </menus>
+<AnchorPane id="AnchorPane" prefHeight="722.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendanceautomation.gui.controllers.AttendanceController">
+    <children>
+      <Label fx:id="name" layoutX="116.0" layoutY="40.0" text="Peter Pedersen" />
+      <Label fx:id="email" layoutX="116.0" layoutY="66.0" text="pete9275@easv365.dk" />
+      <Label layoutX="116.0" layoutY="91.0" text="Monday, 27 January 2020, 1:30 PM" />
+      <Label layoutX="32.0" layoutY="91.0" text="Last access:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="32.0" layoutY="66.0" text="Email:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="32.0" layoutY="42.0" text="Name:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="comboSort" layoutX="32.0" layoutY="145.0" prefHeight="31.0" prefWidth="145.0" promptText="Search by Date" stylesheets="@../styles/Combobox.css" />
+      <TableView fx:id="attendanceTable" layoutX="32.0" layoutY="215.0" prefHeight="426.0" prefWidth="422.0" stylesheets="@../styles/Tableview.css">
+        <columns>
+          <TableColumn fx:id="dateColumn" prefWidth="111.5999526977539" text="Date" />
+          <TableColumn fx:id="statusColumn" prefWidth="103.5999755859375" text="Stauts" />
+            <TableColumn fx:id="descColumn" prefWidth="205.60000610351562" text="Description" />
+        </columns>
+      </TableView>
+      <MenuBar layoutX="-10.0" prefHeight="29.0" prefWidth="716.0" stylesheets="@../styles/Menubar.css">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
       </MenuBar>
-   </children>
+      <ImageView fitHeight="137.0" fitWidth="147.0" layoutX="519.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/53701968_10215779436072156_3929622289582129152_n.jpg" />
+         </image>
+         <effect>
+            <DropShadow color="#404040" />
+         </effect>
+      </ImageView>
+      <VBox layoutX="27.0" layoutY="641.0" prefHeight="56.0" prefWidth="156.0" spacing="2.0">
+         <children>
+            <Label fx:id="lectureLabel" text="Taken Lectures:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Label fx:id="absentLabel" text="Classes Absent:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Label fx:id="percentageLabel" text="Absent Percentage:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+         </children>
+      </VBox>
+      <HBox fx:id="paneArea" layoutX="462.0" layoutY="215.0" prefHeight="239.0" prefWidth="249.0" style="-fx-background-color: black;" stylesheets="@../styles/ChartPie.css" />
+      <ComboBox fx:id="comboSort1" layoutX="193.0" layoutY="145.0" prefHeight="31.0" prefWidth="145.0" promptText="Search by Lecture" stylesheets="@../styles/Combobox.css" />
+      <HBox fx:id="paneArea1" layoutX="462.0" layoutY="472.0" prefHeight="239.0" prefWidth="249.0" style="-fx-background-color: black;" stylesheets="@../styles/ChartPie.css" />
+    </children>
+   <effect>
+      <DropShadow />
+   </effect>
 </AnchorPane>

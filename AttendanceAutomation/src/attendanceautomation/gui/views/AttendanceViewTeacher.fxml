@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="553.0" prefWidth="715.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendanceautomation.gui.controllers.AttendanceController">
+<AnchorPane id="AnchorPane" prefHeight="553.0" prefWidth="574.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendanceautomation.gui.controllers.AttendanceController">
    <children>
-      <ImageView fitHeight="106.0" fitWidth="80.0" layoutX="605.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="106.0" fitWidth="80.0" layoutX="470.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/imageedit_1_3887033642.png" />
          </image>
@@ -38,14 +38,14 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <ComboBox fx:id="comboSort" layoutX="284.0" layoutY="145.0" prefHeight="31.0" prefWidth="149.0" promptText="Search by Date" stylesheets="@../styles/Combobox.css" />
-      <TableView layoutX="37.0" layoutY="216.0" prefHeight="298.0" prefWidth="639.0" stylesheets="@../styles/Tableview.css">
+      <ComboBox fx:id="comboSort" layoutX="199.0" layoutY="146.0" prefHeight="31.0" prefWidth="139.0" promptText="Select Class" stylesheets="@../styles/Combobox.css" />
+      <TableView layoutX="37.0" layoutY="216.0" prefHeight="298.0" prefWidth="502.0" stylesheets="@../styles/Tableview.css">
          <columns>
-            <TableColumn prefWidth="312.6666374206543" text="Date" />
-            <TableColumn minWidth="0.0" prefWidth="325.9999694824219" text="Description" />
+            <TableColumn prefWidth="261.5999641418457" text="Student" />
+            <TableColumn minWidth="0.0" prefWidth="238.79998779296875" text="Absent Percentage" />
          </columns>
       </TableView>
-      <MenuBar prefHeight="29.0" prefWidth="716.0" stylesheets="@../styles/Menubar.css">
+      <MenuBar prefHeight="29.0" prefWidth="574.0" stylesheets="@../styles/Menubar.css">
          <menus>
             <Menu mnemonicParsing="false" text="File">
                <items>
@@ -64,7 +64,6 @@
             </Menu>
          </menus>
       </MenuBar>
-      <TextField layoutX="37.0" layoutY="145.0" prefHeight="31.0" prefWidth="149.0" promptText="Search by Student" stylesheets="@../styles/textfield.css" />
-      <ComboBox fx:id="comboSort1" layoutX="529.0" layoutY="145.0" prefHeight="31.0" prefWidth="149.0" promptText="Search by Lecture" stylesheets="@../styles/Combobox.css" />
+      <TextField layoutX="37.0" layoutY="146.0" prefHeight="31.0" prefWidth="139.0" promptText="Search for Student" stylesheets="@../styles/textfield.css" />
    </children>
 </AnchorPane>
