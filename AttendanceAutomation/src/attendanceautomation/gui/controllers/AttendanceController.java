@@ -8,21 +8,34 @@ package attendanceautomation.gui.controllers;
 import attendanceautomation.be.Date;
 import attendanceautomation.be.Student;
 import attendanceautomation.gui.AppModel;
+import attendanceautomation.gui.AttendanceAutomation;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -55,6 +68,16 @@ public class AttendanceController implements Initializable {
     private Label absentLabel;
     @FXML
     private Label percentageLabel;
+    @FXML
+    private ComboBox<?> comboSort1;
+    @FXML
+    private MenuItem teacherViewMenu;
+    @FXML
+    private MenuItem MoodleMenu;
+    @FXML
+    private MenuItem statisticsViewMenu;
+    @FXML
+    private Menu logOutMenu;
 
     /**
      * Initializes the controller class.
@@ -124,4 +147,28 @@ public class AttendanceController implements Initializable {
 
     }
 
+
+    @FXML
+    private void goToMoodle(ActionEvent event) {
+        
+    }
+
+
+    @FXML
+    private void goToTeacherView(ActionEvent event) throws IOException {
+    }
+    
+    @FXML
+    private void goToStatisticsView(ActionEvent event) {
+    }
+
+    @FXML
+    private void logOut(ActionEvent event) throws IOException {
+    }
+    
 }
+    
+
+
+
+

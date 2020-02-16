@@ -56,21 +56,19 @@
       </TableView>
       <MenuBar layoutX="-10.0" prefHeight="29.0" prefWidth="716.0" stylesheets="@../styles/Menubar.css">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="Platform">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+                  <MenuItem fx:id="MoodleMenu" mnemonicParsing="false" onAction="#goToMoodle" text="Moodle" />
+              <MenuItem mnemonicParsing="false" text="Outlook" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
+          <Menu mnemonicParsing="false" text="Views (prototype)">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
+              <MenuItem fx:id="teacherViewMenu" mnemonicParsing="false" onAction="#goToTeacherView" text="Teacher View" />
+                  <MenuItem fx:id="statisticsViewMenu" mnemonicParsing="false" onAction="#goToStatisticsView" text="Statistics View" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
+            <Menu fx:id="logOutMenu" mnemonicParsing="false" onAction="#logOut" text="Log out" />
         </menus>
       </MenuBar>
       <ImageView fitHeight="137.0" fitWidth="147.0" layoutX="519.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">

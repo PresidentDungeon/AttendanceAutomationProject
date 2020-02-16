@@ -47,21 +47,19 @@
       </TableView>
       <MenuBar prefHeight="29.0" prefWidth="574.0" stylesheets="@../styles/Menubar.css">
          <menus>
-            <Menu mnemonicParsing="false" text="File">
+            <Menu mnemonicParsing="false" text="Platform">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Close" />
+                  <MenuItem mnemonicParsing="false" text="Moodle" />
+                  <MenuItem mnemonicParsing="false" text="Outlook" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Edit">
+            <Menu mnemonicParsing="false" text="Views (prototype)">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Delete" />
+                  <MenuItem mnemonicParsing="false" text="Student View" />
+                  <MenuItem mnemonicParsing="false" text="Statistics View" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Help">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="About" />
-               </items>
-            </Menu>
+            <Menu mnemonicParsing="false" text="Log out" />
          </menus>
       </MenuBar>
       <TextField layoutX="37.0" layoutY="146.0" prefHeight="31.0" prefWidth="139.0" promptText="Search for Student" stylesheets="@../styles/textfield.css" />
