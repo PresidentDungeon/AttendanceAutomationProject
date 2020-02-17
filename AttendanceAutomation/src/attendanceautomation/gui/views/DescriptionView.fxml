@@ -6,11 +6,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="267.0" prefWidth="446.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="attendanceautomation.gui.controllers.DescriptionViewController">
+<AnchorPane id="AnchorPane" prefHeight="267.0" prefWidth="446.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendanceautomation.gui.controllers.DescriptionViewController">
    <children>
       <JFXTextField focusColor="#f7d050" layoutX="52.0" layoutY="133.0" prefHeight="25.0" prefWidth="345.0" />
-      <Label layoutX="132.0" layoutY="60.0" text="Description of absentness:">
+      <Label layoutX="132.0" layoutY="60.0" text="Description of absence:">
          <font>
             <Font size="16.0" />
          </font>

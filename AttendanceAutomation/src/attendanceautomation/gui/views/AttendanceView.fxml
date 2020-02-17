@@ -91,7 +91,7 @@
             <Font size="15.0" />
          </font>
       </JFXButton>
-      <ComboBox fx:id="comboSort1" layoutX="260.0" layoutY="131.0" prefHeight="31.0" prefWidth="193.0" promptText="Search by Lecture" stylesheets="@../styles/Combobox.css" />
+      <ComboBox fx:id="comboSort1" layoutX="260.0" layoutY="131.0" prefHeight="31.0" prefWidth="193.0" promptText="Search by Class" stylesheets="@../styles/Combobox.css" />
       <JFXButton fx:id="absentButton" layoutX="122.0" layoutY="475.0" onMouseClicked="#openDescriptionView" prefHeight="31.0" prefWidth="73.0" stylesheets="@../styles/buttonCss.css" text="Absent" textFill="WHITE">
          <font>
             <Font size="15.0" />
