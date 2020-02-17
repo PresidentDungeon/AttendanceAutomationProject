@@ -82,7 +82,7 @@
          <children>
             <HBox fx:id="paneArea3" prefHeight="225.0" prefWidth="229.0" stylesheets="@../styles/ChartPie.css" />
          </children></HBox>
-      <ComboBox fx:id="comboSort1" layoutX="182.0" layoutY="145.0" prefHeight="31.0" prefWidth="141.0" promptText="Search by Lecture" stylesheets="@../styles/Combobox.css" />
+      <ComboBox fx:id="comboSort1" layoutX="182.0" layoutY="145.0" prefHeight="31.0" prefWidth="141.0" promptText="Search by Class" stylesheets="@../styles/Combobox.css" />
       <HBox fx:id="paneArea1" layoutX="482.0" layoutY="440.0" prefHeight="225.0" prefWidth="229.0" stylesheets="@../styles/ChartPie.css" />
       <MenuBar fx:id="menubar" layoutX="-1.0" prefHeight="29.0" prefWidth="1016.0" stylesheets="@../styles/Menubar.css">
         <menus>
