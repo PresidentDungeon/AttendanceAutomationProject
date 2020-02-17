@@ -9,9 +9,12 @@ import attendanceautomation.be.Date;
 import attendanceautomation.be.Student;
 import attendanceautomation.gui.AppModel;
 import attendanceautomation.gui.AttendanceAutomation;
+import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,6 +34,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
@@ -78,6 +82,8 @@ public class AttendanceController implements Initializable {
     private MenuItem statisticsViewMenu;
     @FXML
     private Menu logOutMenu;
+    @FXML
+    private JFXButton absentButton;
 
     /**
      * Initializes the controller class.
@@ -165,10 +171,10 @@ public class AttendanceController implements Initializable {
     @FXML
     private void logOut(ActionEvent event) throws IOException {
     }
+
+    @FXML
+    private void openDescriptionView(MouseEvent event) throws IOException {
     
 }
+}
     
-
-
-
-

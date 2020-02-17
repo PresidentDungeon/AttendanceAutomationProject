@@ -7,6 +7,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -17,8 +18,8 @@
 
 <AnchorPane id="AnchorPane" prefHeight="722.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendanceautomation.gui.controllers.AttendanceController">
     <children>
-      <Label fx:id="name" layoutX="116.0" layoutY="40.0" text="Peter Pedersen" />
-      <Label fx:id="email" layoutX="116.0" layoutY="66.0" text="pete9275@easv365.dk" />
+      <Label fx:id="name" layoutX="116.0" layoutY="40.0" text="Peter Stegger" />
+      <Label fx:id="email" layoutX="116.0" layoutY="66.0" text="Stegger@easv365.dk" />
       <Label layoutX="116.0" layoutY="91.0" text="Monday, 27 January 2020, 1:30 PM" />
       <Label layoutX="32.0" layoutY="91.0" text="Last access:">
          <font>
@@ -35,17 +36,17 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <ComboBox fx:id="comboSort" layoutX="32.0" layoutY="145.0" prefHeight="31.0" prefWidth="145.0" promptText="Search by Date" stylesheets="@../styles/Combobox.css" />
-      <TableView fx:id="attendanceTable" layoutX="32.0" layoutY="215.0" prefHeight="404.0" prefWidth="422.0" stylesheets="@../styles/Tableview.css">
+      <ComboBox fx:id="comboSort" layoutX="32.0" layoutY="145.0" prefHeight="31.0" prefWidth="141.0" promptText="Search by Date" stylesheets="@../styles/Combobox.css" />
+      <TableView fx:id="attendanceTable" layoutX="32.0" layoutY="215.0" prefHeight="404.0" prefWidth="445.0" stylesheets="@../styles/Tableview.css">
         <columns>
           <TableColumn fx:id="dateColumn" prefWidth="111.5999526977539" text="Date" />
           <TableColumn fx:id="statusColumn" prefWidth="103.5999755859375" text="Stauts" />
-            <TableColumn fx:id="descColumn" prefWidth="205.60000610351562" text="Description" />
+            <TableColumn fx:id="descColumn" prefWidth="228.000005086263" text="Description" />
         </columns>
       </TableView>
-      <ImageView fitHeight="137.0" fitWidth="147.0" layoutX="519.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="132.0" fitWidth="156.0" layoutX="542.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/53701968_10215779436072156_3929622289582129152_n.jpg" />
+            <Image url="@../images/pexels-photo-415829.jpeg" />
          </image>
          <effect>
             <DropShadow color="#404040" />
@@ -67,9 +68,9 @@
                </font></Label>
          </children>
       </VBox>
-      <HBox fx:id="paneArea" layoutX="462.0" layoutY="215.0" prefHeight="239.0" prefWidth="249.0" style="-fx-background-color: black;" stylesheets="@../styles/ChartPie.css" />
-      <ComboBox fx:id="comboSort1" layoutX="193.0" layoutY="145.0" prefHeight="31.0" prefWidth="145.0" promptText="Search by Lecture" stylesheets="@../styles/Combobox.css" />
-      <HBox fx:id="paneArea1" layoutX="462.0" layoutY="472.0" prefHeight="239.0" prefWidth="249.0" style="-fx-background-color: black;" stylesheets="@../styles/ChartPie.css" />
+      <HBox fx:id="paneArea" layoutX="482.0" layoutY="215.0" prefHeight="225.0" prefWidth="229.0" stylesheets="@../styles/ChartPie.css" />
+      <ComboBox fx:id="comboSort1" layoutX="182.0" layoutY="145.0" prefHeight="31.0" prefWidth="141.0" promptText="Search by Lecture" stylesheets="@../styles/Combobox.css" />
+      <HBox fx:id="paneArea1" layoutX="482.0" layoutY="472.0" prefHeight="225.0" prefWidth="229.0" stylesheets="@../styles/ChartPie.css" />
       <MenuBar layoutX="-2.0" layoutY="2.0" prefHeight="25.0" prefWidth="738.0" stylesheets="@../styles/Menubar.css">
         <menus>
           <Menu mnemonicParsing="false" text="Platform">
@@ -91,6 +92,7 @@
           </Menu>
         </menus>
       </MenuBar>
+      <TextField layoutX="336.0" layoutY="145.0" prefHeight="31.0" prefWidth="141.0" promptText="Search by Student" stylesheets="@../styles/textfield.css" />
     </children>
    <effect>
       <DropShadow />

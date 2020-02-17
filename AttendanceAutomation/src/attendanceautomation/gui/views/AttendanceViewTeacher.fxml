@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,11 +16,6 @@
 
 <AnchorPane id="AnchorPane" prefHeight="553.0" prefWidth="574.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendanceautomation.gui.controllers.AttendanceController">
    <children>
-      <ImageView fitHeight="106.0" fitWidth="80.0" layoutX="470.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/imageedit_1_3887033642.png" />
-         </image>
-      </ImageView>
       <Label layoutX="121.0" layoutY="40.0" text="Peter Stegger" />
       <Label layoutX="121.0" layoutY="66.0" text="Stegger@easv365.dk" />
       <Label layoutX="121.0" layoutY="91.0" text="Monday, 27 January 2020, 1:30 PM" />
@@ -38,7 +34,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <ComboBox fx:id="comboSort" layoutX="199.0" layoutY="146.0" prefHeight="31.0" prefWidth="139.0" promptText="Select Class" stylesheets="@../styles/Combobox.css" />
+      <ComboBox fx:id="comboSort" layoutX="220.0" layoutY="161.0" prefHeight="31.0" prefWidth="133.0" promptText="Select Class" stylesheets="@../styles/Combobox.css" />
       <TableView layoutX="37.0" layoutY="216.0" prefHeight="298.0" prefWidth="502.0" stylesheets="@../styles/Tableview.css">
          <columns>
             <TableColumn prefWidth="261.5999641418457" text="Student" />
@@ -62,6 +58,20 @@
             <Menu mnemonicParsing="false" text="Log out" />
          </menus>
       </MenuBar>
-      <TextField layoutX="37.0" layoutY="146.0" prefHeight="31.0" prefWidth="139.0" promptText="Search for Student" stylesheets="@../styles/textfield.css" />
+      <TextField layoutX="37.0" layoutY="161.0" prefHeight="31.0" prefWidth="133.0" promptText="Search for Student" stylesheets="@../styles/textfield.css" />
+      <Label layoutX="42.0" layoutY="514.0" text="Show Statistics">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="100.0" fitWidth="111.0" layoutX="428.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/pexels-photo-415829.jpeg" />
+         </image>
+         <effect>
+            <DropShadow />
+         </effect>
+      </ImageView>
+      <ComboBox fx:id="comboSort1" layoutX="405.0" layoutY="161.0" prefHeight="31.0" prefWidth="133.0" promptText="Search by Date" stylesheets="@../styles/Combobox.css" />
    </children>
 </AnchorPane>
