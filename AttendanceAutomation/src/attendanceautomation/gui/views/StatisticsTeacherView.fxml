@@ -114,8 +114,8 @@
       </HBox>
       <TableView layoutX="32.0" layoutY="467.0" prefHeight="225.0" prefWidth="445.0" stylesheets="@../styles/Tableview.css">
         <columns>
-          <TableColumn prefWidth="232.0" text="Column1" />
-          <TableColumn prefWidth="212.0" text="Column2" />
+          <TableColumn prefWidth="320.0" text="Student" />
+          <TableColumn prefWidth="124.0" text="Class" />
         </columns>
       </TableView>
     </children>
