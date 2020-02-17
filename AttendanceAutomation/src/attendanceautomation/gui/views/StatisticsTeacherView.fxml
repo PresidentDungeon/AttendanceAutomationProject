@@ -37,7 +37,7 @@
          </font>
       </Label>
       <ComboBox fx:id="comboSort" layoutX="32.0" layoutY="145.0" prefHeight="31.0" prefWidth="141.0" promptText="Search by Date" stylesheets="@../styles/Combobox.css" />
-      <TableView fx:id="attendanceTable" layoutX="32.0" layoutY="215.0" prefHeight="472.0" prefWidth="445.0" stylesheets="@../styles/Tableview.css">
+      <TableView fx:id="attendanceTable" layoutX="32.0" layoutY="215.0" prefHeight="225.0" prefWidth="445.0" stylesheets="@../styles/Tableview.css">
         <columns>
           <TableColumn fx:id="dateColumn" prefWidth="111.5999526977539" text="Date" />
           <TableColumn fx:id="statusColumn" prefWidth="103.5999755859375" text="Stauts" />
@@ -112,6 +112,12 @@
             <HBox fx:id="paneArea31" prefHeight="225.0" prefWidth="229.0" stylesheets="@../styles/ChartPie.css" />
          </children>
       </HBox>
+      <TableView layoutX="32.0" layoutY="467.0" prefHeight="225.0" prefWidth="445.0" stylesheets="@../styles/Tableview.css">
+        <columns>
+          <TableColumn prefWidth="232.0" text="Column1" />
+          <TableColumn prefWidth="212.0" text="Column2" />
+        </columns>
+      </TableView>
     </children>
    <effect>
       <DropShadow />
