@@ -24,11 +24,11 @@ public class MockStudentManager {
         Student s2 = new Student("Henrik Christensen", "Henr147@easv365.dk");
         Student s3 = new Student("Martin Jørgensen", "Mart863@easv365.dk");
 
-        Date date1 = new Date(LocalDate.of(2020, 1, 1), true, "");
-        Date date2 = new Date(LocalDate.of(2020, 2, 1), false, "School project");
-        Date date3 = new Date(LocalDate.of(2020, 3, 1), true, "");
-        Date date4 = new Date(LocalDate.of(2020, 4, 1), true, "");
-        Date date5 = new Date(LocalDate.of(2020, 5, 1), true, "");
+        Date date1 = new Date(LocalDate.of(2020, 1, 6), true, "");
+        Date date2 = new Date(LocalDate.of(2020, 1, 7), false, "School project");
+        Date date3 = new Date(LocalDate.of(2020, 1, 8), true, "");
+        Date date4 = new Date(LocalDate.of(2020, 1, 9), true, "");
+        Date date5 = new Date(LocalDate.of(2020, 1, 10), true, "");
 
         s1.getDays().add(date1);
         s1.getDays().add(date2);
@@ -60,5 +60,5 @@ public class MockStudentManager {
     public Student readSpecificStudent(int number) {
         return students.get(number);
     }
-
+    
 }
