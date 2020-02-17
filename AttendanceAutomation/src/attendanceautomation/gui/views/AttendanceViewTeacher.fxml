@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="553.0" prefWidth="574.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendanceautomation.gui.controllers.AttendanceController">
+<AnchorPane id="AnchorPane" prefHeight="553.0" prefWidth="574.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendanceautomation.gui.controllers.AttendanceViewTeacherController">
    <children>
       <Label layoutX="121.0" layoutY="40.0" text="Peter Stegger" />
       <Label layoutX="121.0" layoutY="66.0" text="Stegger@easv365.dk" />
@@ -41,7 +41,7 @@
             <TableColumn minWidth="0.0" prefWidth="238.79998779296875" text="Absent Percentage" />
          </columns>
       </TableView>
-      <MenuBar prefHeight="29.0" prefWidth="574.0" stylesheets="@../styles/Menubar.css">
+      <MenuBar fx:id="menubar" prefHeight="29.0" prefWidth="574.0" stylesheets="@../styles/Menubar.css">
          <menus>
             <Menu mnemonicParsing="false" text="Platform">
                <items>
@@ -51,7 +51,7 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Views (prototype)">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Student View" />
+                  <MenuItem mnemonicParsing="false" onAction="#goToStudentView" text="Student View" />
                   <MenuItem mnemonicParsing="false" text="Statistics View" />
                </items>
             </Menu>
@@ -59,7 +59,7 @@
          </menus>
       </MenuBar>
       <TextField layoutX="37.0" layoutY="161.0" prefHeight="31.0" prefWidth="133.0" promptText="Search for Student" stylesheets="@../styles/textfield.css" />
-      <Label layoutX="42.0" layoutY="514.0" text="Show Statistics">
+      <Label layoutX="42.0" layoutY="514.0" onMouseClicked="#openStudentStatisticsView" text="Show Statistics">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

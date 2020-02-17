@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="722.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendanceautomation.gui.controllers.AttendanceController">
+<AnchorPane id="AnchorPane" prefHeight="722.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendanceautomation.gui.controllers.StatisticsTeacherViewController">
     <children>
       <Label fx:id="name" layoutX="116.0" layoutY="40.0" text="Peter Stegger" />
       <Label fx:id="email" layoutX="116.0" layoutY="66.0" text="Stegger@easv365.dk" />

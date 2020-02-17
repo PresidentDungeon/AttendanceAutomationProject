@@ -29,6 +29,7 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -76,6 +77,8 @@ public class AttendanceController implements Initializable {
     private ComboBox<?> comboSort1;
     @FXML
     private MenuItem teacherViewMenu;
+    @FXML
+    private MenuBar menubar;
     @FXML
     private MenuItem MoodleMenu;
     @FXML
@@ -153,28 +156,36 @@ public class AttendanceController implements Initializable {
 
     }
 
-
     @FXML
     private void goToMoodle(ActionEvent event) {
-        
-    }
 
+    }
 
     @FXML
     private void goToTeacherView(ActionEvent event) throws IOException {
+
+        //Loads the teacher view from the menubar. This should not be in the final project
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(AppModel.class.getResource("views/AttendanceViewTeacher.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+
+        Stage appStage = (Stage) menubar.getScene().getWindow();
+        appStage.setScene(scene);
+        appStage.show();
+
     }
-    
+
     @FXML
     private void goToStatisticsView(ActionEvent event) {
     }
 
     @FXML
-    private void logOut(ActionEvent event) throws IOException {
+    private void logOut(ActionEvent event) {
     }
 
     @FXML
-    private void openDescriptionView(MouseEvent event) throws IOException {
-    
+    private void openDescriptionView(MouseEvent event) {
+    }
+
+
 }
-}
-    

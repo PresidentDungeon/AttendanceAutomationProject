@@ -44,7 +44,7 @@
             <TableColumn fx:id="descColumn" prefWidth="205.60000610351562" text="Description" />
         </columns>
       </TableView>
-      <MenuBar layoutX="-10.0" prefHeight="29.0" prefWidth="716.0" stylesheets="@../styles/Menubar.css">
+      <MenuBar fx:id="menubar" layoutX="-10.0" prefHeight="29.0" prefWidth="716.0" stylesheets="@../styles/Menubar.css">
         <menus>
           <Menu mnemonicParsing="false" text="Platform">
             <items>
