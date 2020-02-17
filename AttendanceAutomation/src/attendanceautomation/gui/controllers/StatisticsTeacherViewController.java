@@ -7,6 +7,8 @@ package attendanceautomation.gui.controllers;
 
 import attendanceautomation.be.Date;
 import attendanceautomation.be.Student;
+import attendanceautomation.gui.AppModel;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
@@ -24,11 +28,13 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -37,6 +43,8 @@ import javafx.scene.layout.HBox;
  */
 public class StatisticsTeacherViewController implements Initializable {
 
+    AppModel appModel = new AppModel();
+    
     @FXML
     private Label name;
     @FXML
@@ -69,6 +77,19 @@ public class StatisticsTeacherViewController implements Initializable {
     private MenuItem studentViewMenu;
     @FXML
     private MenuItem teacherViewMenu;
+    @FXML
+    private Label percentageLabel1;
+    @FXML
+    private HBox paneArea3;
+    @FXML
+    private HBox paneArea5;
+    private HBox paneArea4;
+    @FXML
+    private HBox paneArea2;
+    @FXML
+    private HBox paneArea31;
+    @FXML
+    private MenuBar menubar;
 
     /**
      * Initializes the controller class.
@@ -134,6 +155,7 @@ public class StatisticsTeacherViewController implements Initializable {
         PieChart pieChart = new PieChart(pieChartData);
         //pieChart.setTitle("School Attendance");
         pieChart.setClockwise(true);
+        pieChart.setTitle("Absence Overall");
         pieChart.setLabelLineLength(20);
         pieChart.setLabelsVisible(true);
         pieChart.setStartAngle(180);
@@ -162,8 +184,8 @@ public class StatisticsTeacherViewController implements Initializable {
         series.getData().add(new XYChart.Data("Friday",absentDay[4]));
         
         barChart.getData().add(series);
-        
-        paneArea1.getChildren().add(barChart);
+        barChart.setTitle("Daily Absence");
+        paneArea5.getChildren().add(barChart);
 
     }
 
@@ -172,11 +194,30 @@ public class StatisticsTeacherViewController implements Initializable {
     }
 
     @FXML
-    private void goToStudentView(ActionEvent event) {
+    private void goToStudentView(ActionEvent event) throws IOException {
+        //Loads the student view from the menubar. This should not be in the final project
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(AppModel.class.getResource("views/AttendanceView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        AttendanceController controller = fxmlLoader.getController();
+        controller.setStudent(appModel.getSpecificStudent(0));
+
+        Stage appStage = (Stage) menubar.getScene().getWindow();
+        appStage.setScene(scene);
+        appStage.show();
     }
 
     @FXML
-    private void goToTeacherView(ActionEvent event) {
+    private void goToTeacherView(ActionEvent event) throws IOException {
+        //Loads the teacher view from the menubar. This should not be in the final project
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(AppModel.class.getResource("views/AttendanceViewTeacher.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        
+
+        Stage appStage = (Stage) menubar.getScene().getWindow();
+        appStage.setScene(scene);
+        appStage.show();
     }
 
 }

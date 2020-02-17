@@ -70,9 +70,11 @@ public class AttendanceViewTeacherController implements Initializable {
             StatisticsTeacherViewController controller = fxmlLoader.getController();
             controller.setStudent(appModel.getSpecificStudent(0));
             
-            Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            
+            Stage appStage = (Stage) menubar.getScene().getWindow();
             appStage.setScene(scene);
             appStage.show();
+            
         
     }
 

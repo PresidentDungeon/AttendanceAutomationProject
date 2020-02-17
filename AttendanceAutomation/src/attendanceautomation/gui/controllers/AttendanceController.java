@@ -176,7 +176,16 @@ public class AttendanceController implements Initializable {
     }
 
     @FXML
-    private void goToStatisticsView(ActionEvent event) {
+    private void goToStatisticsView(ActionEvent event) throws IOException {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(AppModel.class.getResource("views/StatisticsTeacherView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            StatisticsTeacherViewController controller = fxmlLoader.getController();
+            controller.setStudent(appModel.getSpecificStudent(0));
+            
+            Stage appStage = (Stage) menubar.getScene().getWindow();
+            appStage.setScene(scene);
+            appStage.show();
     }
 
     @FXML
