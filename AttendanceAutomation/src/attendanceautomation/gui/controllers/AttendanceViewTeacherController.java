@@ -5,10 +5,13 @@
  */
 package attendanceautomation.gui.controllers;
 
+import attendanceautomation.be.Date;
+import attendanceautomation.be.Student;
 import attendanceautomation.gui.AppModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +21,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -34,6 +40,12 @@ public class AttendanceViewTeacherController implements Initializable {
     private ComboBox<?> comboSort1;
     @FXML
     private MenuBar menubar;
+    @FXML
+    private TableView<Student> studentTable;
+    @FXML
+    private TableColumn<Student, String> studentColumn;
+    @FXML
+    private TableColumn<Student, String> absentColumn;
 
     AppModel appModel = new AppModel();
 
@@ -42,7 +54,31 @@ public class AttendanceViewTeacherController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+
+        studentColumn.setCellValueFactory((data) -> {
+            Student student = data.getValue();
+            return new SimpleStringProperty(student.getName());
+        });
+
+        //This is bad code, as it takes up a lot of resources and is repetead code
+        //In the future, the database should count the amount of days the student is gone
+        absentColumn.setCellValueFactory((data) -> {
+            double present = 0;
+            double absent = 0;
+
+            Student student = data.getValue();
+            for (Date d : student.getDays()) {
+                if (d.isAttendance()) {
+                    present++;
+                } else {
+                    absent++;
+                }
+            }
+            return new SimpleStringProperty(String.format("%.2f", (absent / (present + absent) * 100)) + "%");
+        });
+
+        studentTable.setItems(appModel.getStudentList());
+
     }
 
     @FXML
@@ -63,19 +99,21 @@ public class AttendanceViewTeacherController implements Initializable {
 
     @FXML
     private void openStudentStatisticsView(MouseEvent event) throws IOException {
-        
+
+        if (!studentTable.getSelectionModel().isEmpty()) {
+
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(AppModel.class.getResource("views/StatisticsTeacherView.fxml"));
+            fxmlLoader.setLocation(AppModel.class.getResource("views/AttendanceView.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
-            StatisticsTeacherViewController controller = fxmlLoader.getController();
-            controller.setStudent(appModel.getSpecificStudent(0));
-            
-            
-            Stage appStage = (Stage) menubar.getScene().getWindow();
-            appStage.setScene(scene);
-            appStage.show();
-            
-        
+            Stage stage = new Stage();
+
+            AttendanceController controller = fxmlLoader.getController();
+            controller.setStudent(studentTable.getSelectionModel().getSelectedItem());
+
+            stage.setScene(scene);
+            stage.show();
+
+        }
     }
 
 }

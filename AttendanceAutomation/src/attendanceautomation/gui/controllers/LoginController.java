@@ -30,7 +30,7 @@ public class LoginController {
             fxmlLoader.setLocation(AppModel.class.getResource("views/AttendanceView.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             AttendanceController controller = fxmlLoader.getController();
-            controller.setStudent(appModel.getSpecificStudent(0));
+            controller.setStudent(appModel.getSpecificStudent(2));
             
             Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             appStage.setScene(scene);

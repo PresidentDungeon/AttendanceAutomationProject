@@ -21,6 +21,7 @@ public class AppModel {
 
     public AppModel() {
         studentManager = new StudentManager();
+        fetchStudents();
     }
 
     /**

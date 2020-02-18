@@ -35,6 +35,11 @@ public class MockStudentManager {
         s1.getDays().add(date3);
         s1.getDays().add(date4);
         s1.getDays().add(date5);
+        
+        s2.getDays().add(date1);
+        s2.getDays().add(date3);
+        
+        s3.getDays().add(date2);
 
         students.add(s1);
         students.add(s2);

@@ -36,10 +36,10 @@
          </font>
       </Label>
       <ComboBox fx:id="comboSort" layoutX="220.0" layoutY="161.0" prefHeight="31.0" prefWidth="133.0" promptText="Select Class" stylesheets="@../styles/Combobox.css" />
-      <TableView layoutX="37.0" layoutY="216.0" prefHeight="298.0" prefWidth="502.0" stylesheets="@../styles/Tableview.css">
+      <TableView fx:id="studentTable" layoutX="37.0" layoutY="216.0" prefHeight="298.0" prefWidth="502.0" stylesheets="@../styles/Tableview.css">
          <columns>
-            <TableColumn prefWidth="261.5999641418457" text="Student" />
-            <TableColumn minWidth="0.0" prefWidth="238.79998779296875" text="Absent Percentage" />
+            <TableColumn fx:id="studentColumn" prefWidth="261.5999641418457" text="Student" />
+            <TableColumn fx:id="absentColumn" minWidth="0.0" prefWidth="238.79998779296875" text="Absent Percentage" />
          </columns>
       </TableView>
       <MenuBar fx:id="menubar" prefHeight="29.0" prefWidth="574.0" stylesheets="@../styles/Menubar.css">
