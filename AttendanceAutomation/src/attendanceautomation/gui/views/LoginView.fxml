@@ -41,12 +41,12 @@
         </rowConstraints>
          <children>
             <JFXCheckBox checkedColor="#fbbb2c" text="Remember Me" unCheckedColor="#858585bc" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField prefHeight="38.0" prefWidth="342.0" promptText="Username" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="usernameField" prefHeight="38.0" prefWidth="342.0" promptText="Username" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font size="17.0" />
                </font>
             </TextField>
-            <PasswordField prefHeight="38.0" prefWidth="342.0" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <PasswordField fx:id="passwordField" prefHeight="38.0" prefWidth="342.0" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="17.0" />
                </font>
