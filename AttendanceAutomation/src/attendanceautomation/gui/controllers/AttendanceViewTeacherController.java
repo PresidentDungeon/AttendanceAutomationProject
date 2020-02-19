@@ -121,13 +121,7 @@ public class AttendanceViewTeacherController implements Initializable {
 
     @FXML
     private void handleLogOut(ActionEvent event) throws IOException {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(AppModel.class.getResource("views/LoginView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
 
-        Stage appStage = (Stage) menubar.getScene().getWindow();
-        appStage.setScene(scene);
-        appStage.show();
     }
 
 }

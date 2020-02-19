@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -73,12 +74,18 @@
          <font>
             <Font size="15.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
       <ComboBox fx:id="comboSort1" layoutX="260.0" layoutY="131.0" prefHeight="31.0" prefWidth="193.0" promptText="Search by Class" stylesheets="@../styles/Combobox.css" />
       <JFXButton fx:id="absentButton" layoutX="118.0" layoutY="634.0" onMouseClicked="#openDescriptionView" prefHeight="31.0" prefWidth="73.0" stylesheets="@../styles/buttonCss.css" text="Absent" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
       <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="204.0" layoutY="635.0" pickOnBounds="true" preserveRatio="true">
          <image>
