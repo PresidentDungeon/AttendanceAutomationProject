@@ -19,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
@@ -48,6 +49,8 @@ public class AttendanceViewTeacherController implements Initializable {
     private TableColumn<Student, String> absentColumn;
 
     AppModel appModel = new AppModel();
+    @FXML
+    private Menu logOutMenu;
 
     /**
      * Initializes the controller class.
@@ -114,6 +117,17 @@ public class AttendanceViewTeacherController implements Initializable {
             stage.show();
 
         }
+    }
+
+    @FXML
+    private void handleLogOut(ActionEvent event) throws IOException {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(AppModel.class.getResource("views/LoginView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+
+        Stage appStage = (Stage) menubar.getScene().getWindow();
+        appStage.setScene(scene);
+        appStage.show();
     }
 
 }

@@ -17,20 +17,20 @@
 
 <AnchorPane id="AnchorPane" prefHeight="553.0" prefWidth="574.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendanceautomation.gui.controllers.AttendanceViewTeacherController">
    <children>
-      <Label layoutX="121.0" layoutY="40.0" text="Peter Stegger" />
-      <Label layoutX="121.0" layoutY="66.0" text="Stegger@easv365.dk" />
-      <Label layoutX="121.0" layoutY="91.0" text="Monday, 27 January 2020, 1:30 PM" />
-      <Label layoutX="37.0" layoutY="91.0" text="Last access:">
+      <Label layoutX="120.0" layoutY="57.0" text="Peter Stegger" />
+      <Label layoutX="120.0" layoutY="83.0" text="Stegger@easv365.dk" />
+      <Label layoutX="120.0" layoutY="108.0" text="Monday, 27 January 2020, 1:30 PM" />
+      <Label layoutX="36.0" layoutY="108.0" text="Last access:">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="37.0" layoutY="66.0" text="Email:">
+      <Label layoutX="36.0" layoutY="83.0" text="Email:">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="37.0" layoutY="42.0" text="Name:">
+      <Label layoutX="36.0" layoutY="59.0" text="Name:">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -53,10 +53,9 @@
             <Menu mnemonicParsing="false" text="Views (prototype)">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#goToStudentView" text="Student View" />
-                  <MenuItem mnemonicParsing="false" text="Statistics View" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Log out" />
+            <Menu fx:id="logOutMenu" mnemonicParsing="false" onAction="#handleLogOut" text="Log out" />
          </menus>
       </MenuBar>
       <TextField layoutX="37.0" layoutY="161.0" prefHeight="31.0" prefWidth="133.0" promptText="Search for Student" stylesheets="@../styles/textfield.css" />

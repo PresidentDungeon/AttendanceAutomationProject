@@ -44,7 +44,7 @@
             <TableColumn fx:id="descColumn" prefWidth="205.60000610351562" text="Description" />
         </columns>
       </TableView>
-      <MenuBar fx:id="menubar" layoutX="-10.0" prefHeight="29.0" prefWidth="716.0" stylesheets="@../styles/Menubar.css">
+      <MenuBar fx:id="menubar" layoutX="-10.0" prefHeight="29.0" prefWidth="894.0" stylesheets="@../styles/Menubar.css">
         <menus>
           <Menu mnemonicParsing="false" text="Platform">
             <items>
@@ -55,13 +55,12 @@
           <Menu mnemonicParsing="false" text="Views (prototype)">
             <items>
               <MenuItem fx:id="teacherViewMenu" mnemonicParsing="false" onAction="#goToTeacherView" text="Teacher View" />
-                  <MenuItem fx:id="statisticsViewMenu" mnemonicParsing="false" onAction="#goToStatisticsView" text="Statistics View" />
             </items>
           </Menu>
             <Menu fx:id="logOutMenu" mnemonicParsing="false" onAction="#logOut" text="Log out" />
         </menus>
       </MenuBar>
-      <ImageView fitHeight="144.0" fitWidth="178.0" layoutX="499.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="93.0" fitWidth="165.0" layoutX="499.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/pexels-photo-2078265.jpeg" />
          </image>
@@ -69,7 +68,7 @@
             <DropShadow color="#404040" />
          </effect>
       </ImageView>
-      <HBox fx:id="paneArea" layoutX="490.0" layoutY="185.0" prefHeight="239.0" prefWidth="249.0" stylesheets="@../styles/ChartPie.css" />
+      <HBox fx:id="paneArea" layoutX="545.0" layoutY="185.0" prefHeight="239.0" prefWidth="249.0" stylesheets="@../styles/ChartPie.css" />
       <JFXButton layoutX="32.0" layoutY="634.0" prefHeight="31.0" prefWidth="73.0" stylesheets="@../styles/buttonCss.css" text="Attend" textFill="WHITE">
          <font>
             <Font size="15.0" />
@@ -86,8 +85,8 @@
             <Image url="@../images/correct.png" />
          </image>
       </ImageView>
-      <HBox fx:id="paneArea1" layoutX="490.0" layoutY="438.0" prefHeight="239.0" prefWidth="249.0" stylesheets="@../styles/ChartPie.css" />
-      <VBox layoutX="684.0" layoutY="53.0" prefHeight="93.0" prefWidth="199.0" spacing="2.0">
+      <HBox fx:id="paneArea1" layoutX="545.0" layoutY="433.0" prefHeight="239.0" prefWidth="249.0" stylesheets="@../styles/ChartPie.css" />
+      <VBox layoutX="653.0" layoutY="45.0" prefHeight="93.0" prefWidth="199.0" spacing="2.0">
          <children>
             <Label fx:id="lectureLabel" text="Taken Lectures:">
                <font>
@@ -100,6 +99,11 @@
                </font>
             </Label>
             <Label fx:id="percentageLabel" text="Absent Percentage Semester:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="percentageLabel1" layoutX="10.0" layoutY="48.0" text="Absent Percentage Year:">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

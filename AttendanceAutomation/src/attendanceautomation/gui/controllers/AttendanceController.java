@@ -226,7 +226,13 @@ public class AttendanceController implements Initializable {
     }
 
     @FXML
-    private void openDescriptionView(MouseEvent event) {
+    private void openDescriptionView(MouseEvent event) throws IOException {
+    FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(AppModel.class.getResource("views/DescriptionView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
     }
 
 
