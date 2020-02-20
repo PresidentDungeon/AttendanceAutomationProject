@@ -143,10 +143,7 @@ public class AttendanceController implements Initializable {
                 present++;
             } else {
                 absent++;
-                
-                
                 absentDay[d.getDate().getDayOfWeek().getValue() - 1] = absentDay[d.getDate().getDayOfWeek().getValue() - 1] += 1;
-                System.out.println(d.getDate().getDayOfWeek().name());
 
             }
 
