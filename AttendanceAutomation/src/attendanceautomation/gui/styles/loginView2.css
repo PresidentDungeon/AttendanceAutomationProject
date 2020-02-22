@@ -1,0 +1,41 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 1. feb. 2020, 15.26.36
+    Author     : ander
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+
+.login-button
+{
+    -fx-background-color: #fabb2c;
+
+
+    
+}
+.login-button:hover
+{
+    -fx-background-color: #ffc854;
+    
+}
+
+.background
+{
+    -fx-background-image: url("https://i.imgur.com/CNkL5IZ.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: stretch;
+}
+
+.middlebackground
+{
+    -fx-background-color: rgba(255, 255, 255,0.4);
+}
+
+.label
+{
+        -fx-font-family: 'Oswald', sans-serif;
+}

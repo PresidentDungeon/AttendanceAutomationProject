@@ -7,7 +7,10 @@ package attendanceautomation.gui.controllers;
 
 import attendanceautomation.gui.AppModel;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.RequiredFieldValidator;
 import java.io.IOException;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -21,12 +24,12 @@ import javafx.stage.Stage;
  *
  * @author ander
  */
-public class LoginController {
+public class LoginView2Controller {
 
     AppModel appModel = new AppModel();
     
     @FXML
-    private TextField usernameField;
+    private JFXTextField usernameField;
     @FXML
     private JFXTextField passwordField;
     
@@ -34,6 +37,7 @@ public class LoginController {
     
     @FXML
     private void login(MouseEvent event) throws IOException, InterruptedException {
+        
         
             //Should later check if username and password is correct.
             String username = usernameField.getText();
@@ -54,5 +58,4 @@ public class LoginController {
         
         
     }
-    
 }
