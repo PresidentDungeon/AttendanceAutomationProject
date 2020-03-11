@@ -44,7 +44,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <ComboBox fx:id="comboSort" layoutX="563.0" layoutY="69.0" prefHeight="31.0" prefWidth="133.0" promptText="Select Class" stylesheets="@../styles/Combobox.css" />
+      <ComboBox fx:id="comboSort" layoutX="553.0" layoutY="69.0" prefHeight="41.0" prefWidth="154.0" promptText="Select Class" stylesheets="@../styles/Combobox.css" />
       <TableView fx:id="studentTable" layoutX="350.0" layoutY="132.0" prefHeight="615.0" prefWidth="559.0" stylesheets="@../styles/Tableview.css">
          <columns>
             <TableColumn fx:id="studentColumn" prefWidth="276.00006103515625" text="Student" />
@@ -67,7 +67,7 @@
             <Menu fx:id="logOutMenu" mnemonicParsing="false" onAction="#handleLogOut" text="Log out" />
          </menus>
       </MenuBar>
-      <TextField layoutX="350.0" layoutY="69.0" prefHeight="31.0" prefWidth="133.0" promptText="Search for Student" stylesheets="@../styles/textfield.css" />
+      <TextField layoutX="350.0" layoutY="69.0" prefHeight="41.0" prefWidth="154.0" promptText="Search for Student" stylesheets="@../styles/textfield.css" />
       <Label layoutX="59.0" layoutY="738.0" onMouseClicked="#openStudentStatisticsView" text="Show Statistics">
          <font>
             <Font name="System Bold" size="15.0" />
@@ -84,6 +84,11 @@
             <DropShadow />
          </effect>
       </ImageView>
-      <ComboBox fx:id="comboSort1" layoutX="775.0" layoutY="69.0" prefHeight="31.0" prefWidth="133.0" promptText="Search by Date" stylesheets="@../styles/Combobox.css" />
+      <ComboBox fx:id="comboSort1" layoutX="754.0" layoutY="69.0" prefHeight="41.0" prefWidth="154.0" promptText="Search by Date" stylesheets="@../styles/Combobox.css" />
+      <ImageView fitHeight="41.0" fitWidth="26.0" layoutX="174.0" layoutY="736.0" onMouseClicked="#openStudentStatisticsView1" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/business-and-finance%20(1).png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -124,4 +124,22 @@ public class AttendanceViewTeacherController implements Initializable {
 
     }
 
+    @FXML
+    private void openStudentStatisticsView1(MouseEvent event) throws IOException {
+        
+        if (!studentTable.getSelectionModel().isEmpty()) {
+
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(AppModel.class.getResource("views/AttendanceView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+
+            AttendanceController controller = fxmlLoader.getController();
+            controller.setStudent(studentTable.getSelectionModel().getSelectedItem());
+
+            stage.setScene(scene);
+            stage.show();
+    }
+    }
+
 }

@@ -46,11 +46,11 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <ComboBox fx:id="comboSort" layoutX="414.0" layoutY="112.0" prefHeight="31.0" prefWidth="193.0" promptText="Search by Date" stylesheets="@../styles/Combobox.css" />
+      <ComboBox fx:id="comboSort" layoutX="414.0" layoutY="101.0" prefHeight="42.0" prefWidth="193.0" promptText="Search by Date" stylesheets="@../styles/Combobox.css" />
       <TableView fx:id="attendanceTable" layoutX="32.0" layoutY="185.0" prefHeight="523.0" prefWidth="576.0" stylesheets="@../styles/Tableview.css">
         <columns>
           <TableColumn fx:id="dateColumn" prefWidth="184.66665267944336" text="Date" />
-          <TableColumn fx:id="statusColumn" prefWidth="146.0000457763672" text="Stauts" />
+          <TableColumn fx:id="statusColumn" prefWidth="146.0000457763672" text="Status" />
             <TableColumn fx:id="descColumn" prefWidth="243.33334350585938" text="Description" />
         </columns>
       </TableView>

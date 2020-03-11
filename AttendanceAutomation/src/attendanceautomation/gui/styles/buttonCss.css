@@ -14,7 +14,7 @@ and open the template in the editor.
 
 .button:hover {
     -fx-text-fill: white;
-    -fx-font-size: 15;
+    -fx-font-size: 19;
     -fx-background-color: #555555;
     
 }
