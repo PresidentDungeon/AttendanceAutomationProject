@@ -65,6 +65,15 @@ public class LoginViewController {
     
 //    public void login2(Person person) throws IOException
 //    {
+//        String username = usernameField.getText();
+//        String password = passwordField.getText();
+//        
+//        appModel.validateUser(username,password);
+//        
+//        
+//        
+//        
+//        
 //        FXMLLoader fxmlLoader = new FXMLLoader();
 //        Scene scene = null;
 //        

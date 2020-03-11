@@ -13,6 +13,7 @@ import java.time.LocalDate;
  */
 public class Date {
     
+    private int id;
     private LocalDate date;
     private boolean attendance;
     private String description;
@@ -45,6 +46,14 @@ public class Date {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     

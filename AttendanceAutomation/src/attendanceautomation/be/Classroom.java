@@ -12,12 +12,13 @@ import java.util.List;
  *
  * @author ander
  */
-public class Class {
+public class Classroom {
     
+    private int id;
     private List<Student> students = new ArrayList<>();
     private String className;
 
-    public Class(String className) {
+    public Classroom(String className) {
         this.className = className;
     }
 
@@ -35,6 +36,19 @@ public class Class {
 
     public void setClassName(String className) {
         this.className = className;
+    }
+
+    @Override
+    public String toString() {
+        return this.className;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     

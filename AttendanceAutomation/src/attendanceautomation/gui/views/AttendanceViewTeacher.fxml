@@ -17,15 +17,15 @@
 
 <AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="981.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendanceautomation.gui.controllers.AttendanceViewTeacherController">
    <children>
-      <Label layoutX="56.0" layoutY="285.0" text="Peter Stegger">
+      <Label fx:id="teacherName" layoutX="56.0" layoutY="285.0" text="Peter Stegger">
          <font>
             <Font size="15.0" />
          </font></Label>
-      <Label layoutX="58.0" layoutY="330.0" text="Stegger@easv365.dk">
+      <Label fx:id="teacherEmail" layoutX="58.0" layoutY="330.0" text="Stegger@easv365.dk">
          <font>
             <Font size="15.0" />
          </font></Label>
-      <Label layoutX="59.0" layoutY="378.0" text="Monday, 27 January 2020, 1:30 PM">
+      <Label fx:id="lastAccess" layoutX="59.0" layoutY="378.0" text="Monday, 27 January 2020, 1:30 PM">
          <font>
             <Font size="15.0" />
          </font></Label>
@@ -84,7 +84,7 @@
             <DropShadow />
          </effect>
       </ImageView>
-      <ComboBox fx:id="comboSort1" layoutX="754.0" layoutY="69.0" prefHeight="41.0" prefWidth="154.0" promptText="Search by Date" stylesheets="@../styles/Combobox.css" />
+      <ComboBox layoutX="754.0" layoutY="69.0" prefHeight="41.0" prefWidth="154.0" promptText="Search by Date" stylesheets="@../styles/Combobox.css" />
       <ImageView fitHeight="41.0" fitWidth="26.0" layoutX="174.0" layoutY="736.0" onMouseClicked="#openStudentStatisticsView1" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/business-and-finance%20(1).png" />

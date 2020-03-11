@@ -13,14 +13,36 @@ import java.util.List;
  *
  * @author ander
  */
-public class StudentManager {
+public class PersonManager {
 
     private MockStudentManager mockStudentManager;
 
-    public StudentManager() {
+    public PersonManager() {
         mockStudentManager = new MockStudentManager();
     }
 
+    public void validateUser(String username, String password)
+    {
+        
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public List<Student> getAllStudents() {
         List<Student> sortedList = mockStudentManager.readAllStudents();
         sortedList.sort((c1, c2) -> {

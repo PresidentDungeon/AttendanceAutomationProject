@@ -6,15 +6,15 @@
 package attendanceautomation.gui.controllers;
 
 import attendanceautomation.be.Date;
+import attendanceautomation.be.Person;
 import attendanceautomation.be.Student;
 import attendanceautomation.gui.AppModel;
-import attendanceautomation.gui.AttendanceAutomation;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,9 +22,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Side;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -39,13 +36,9 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -99,6 +92,8 @@ public class AttendanceController implements Initializable {
     @FXML
     private Label percentageLabel1;
 
+
+    
     /**
      * Initializes the controller class.
      */
@@ -232,5 +227,6 @@ public class AttendanceController implements Initializable {
             stage.show();
     }
 
+     
 
 }

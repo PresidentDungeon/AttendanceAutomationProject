@@ -7,25 +7,27 @@ package attendanceautomation.gui.controllers;
 
 import attendanceautomation.be.Date;
 import attendanceautomation.be.Student;
+import attendanceautomation.be.Teacher;
+import attendanceautomation.be.Classroom;
 import attendanceautomation.gui.AppModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -35,10 +37,11 @@ import javafx.stage.Stage;
  */
 public class AttendanceViewTeacherController implements Initializable {
 
+    private Teacher loggedTeacher;
+    private ObservableList<Student> students = FXCollections.observableArrayList();
+    
     @FXML
-    private ComboBox<?> comboSort;
-    @FXML
-    private ComboBox<?> comboSort1;
+    private ComboBox<Classroom> comboSort;
     @FXML
     private MenuBar menubar;
     @FXML
@@ -51,6 +54,12 @@ public class AttendanceViewTeacherController implements Initializable {
     AppModel appModel = new AppModel();
     @FXML
     private Menu logOutMenu;
+    @FXML
+    private Label teacherName;
+    @FXML
+    private Label teacherEmail;
+    @FXML
+    private Label lastAccess;
 
     /**
      * Initializes the controller class.
@@ -79,11 +88,41 @@ public class AttendanceViewTeacherController implements Initializable {
             }
             return new SimpleStringProperty(String.format("%.2f", (absent / (present + absent) * 100)) + "%");
         });
-
-        studentTable.setItems(appModel.getStudentList());
-
+        
+        studentTable.setItems(students);
     }
 
+    
+    public void setTeacher(Teacher teacher)
+    {
+        loggedTeacher = teacher;
+        teacherName.setText(teacher.getName());
+        teacherEmail.setText(teacher.getEmail());
+        lastAccess.setText(teacher.getLastAccess().toString());
+        comboSort.setItems(teacher.getClasses());
+        setStudents(teacher);
+
+    }
+    
+    public void setStudents(Teacher teacher)
+    {
+        for (Classroom c : teacher.getClasses()) {
+            
+            for (Student student : c.getStudents()) {
+                students.add(student);
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     @FXML
     private void goToStudentView(ActionEvent event) throws IOException {
 
@@ -125,21 +164,7 @@ public class AttendanceViewTeacherController implements Initializable {
     }
 
     @FXML
-    private void openStudentStatisticsView1(MouseEvent event) throws IOException {
-        
-        if (!studentTable.getSelectionModel().isEmpty()) {
-
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(AppModel.class.getResource("views/AttendanceView.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
-            Stage stage = new Stage();
-
-            AttendanceController controller = fxmlLoader.getController();
-            controller.setStudent(studentTable.getSelectionModel().getSelectedItem());
-
-            stage.setScene(scene);
-            stage.show();
-    }
+    private void openStudentStatisticsView1(MouseEvent event) {
     }
 
 }

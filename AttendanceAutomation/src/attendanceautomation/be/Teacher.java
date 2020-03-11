@@ -14,7 +14,7 @@ import javafx.collections.ObservableList;
  */
 public class Teacher extends Person {
 
-    private ObservableList<Class> classes = FXCollections.observableArrayList();
+    private ObservableList<Classroom> classes = FXCollections.observableArrayList();
 
     public Teacher(String name, String email) {
         super(name, email, Roles.TEACHER);
@@ -24,11 +24,11 @@ public class Teacher extends Person {
         super(Roles.TEACHER);
     }
 
-    public ObservableList<Class> getClasses() {
+    public ObservableList<Classroom> getClasses() {
         return classes;
     }
 
-    public void setClasses(ObservableList<Class> classes) {
+    public void setClasses(ObservableList<Classroom> classes) {
         this.classes = classes;
     }
 
