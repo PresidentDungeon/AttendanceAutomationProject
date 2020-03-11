@@ -5,6 +5,10 @@
  */
 package attendanceautomation.gui.controllers;
 
+import attendanceautomation.be.Person;
+import attendanceautomation.be.Roles;
+import attendanceautomation.be.Student;
+import attendanceautomation.be.Teacher;
 import attendanceautomation.gui.AppModel;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
@@ -58,4 +62,33 @@ public class LoginView2Controller {
         
         
     }
+    
+//    public void login2(Person person) throws IOException
+//    {
+//        FXMLLoader fxmlLoader = new FXMLLoader();
+//        Scene scene = null;
+//        
+//        if (person.getRole().equals(Roles.STUDENT))
+//        {
+//            fxmlLoader.setLocation(AppModel.class.getResource("views/AttendanceView.fxml"));
+//            scene = new Scene(fxmlLoader.load());
+//            AttendanceController controller = fxmlLoader.getController();
+//            controller.setStudent((Student) person);
+//        }
+//        else if (person.getRole().equals(Roles.TEACHER))
+//        {
+//            fxmlLoader.setLocation(AppModel.class.getResource("views/AttendanceViewTeacher.fxml"));
+//            scene = new Scene(fxmlLoader.load());
+//            AttendanceViewTeacherController controller = fxmlLoader.getController();
+//            controller.setTeacher((Teacher) person);
+//        }
+//        
+//        Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        appStage.setScene(scene);
+//        appStage.show();
+//         
+//        
+//    }
+    
+    
 }
