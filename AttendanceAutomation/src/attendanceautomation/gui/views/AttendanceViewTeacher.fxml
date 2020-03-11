@@ -15,31 +15,40 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="553.0" prefWidth="574.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendanceautomation.gui.controllers.AttendanceViewTeacherController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="981.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendanceautomation.gui.controllers.AttendanceViewTeacherController">
    <children>
-      <Label layoutX="120.0" layoutY="57.0" text="Peter Stegger" />
-      <Label layoutX="120.0" layoutY="83.0" text="Stegger@easv365.dk" />
-      <Label layoutX="120.0" layoutY="108.0" text="Monday, 27 January 2020, 1:30 PM" />
-      <Label layoutX="36.0" layoutY="108.0" text="Last access:">
+      <Label layoutX="56.0" layoutY="285.0" text="Peter Stegger">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font size="15.0" />
+         </font></Label>
+      <Label layoutX="58.0" layoutY="330.0" text="Stegger@easv365.dk">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Label layoutX="59.0" layoutY="378.0" text="Monday, 27 January 2020, 1:30 PM">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Label layoutX="59.0" layoutY="361.0" text="Last access:">
+         <font>
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="36.0" layoutY="83.0" text="Email:">
+      <Label layoutX="58.0" layoutY="313.0" text="Email:">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="36.0" layoutY="59.0" text="Name:">
+      <Label layoutX="55.0" layoutY="268.0" text="Name:">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <ComboBox fx:id="comboSort" layoutX="220.0" layoutY="161.0" prefHeight="31.0" prefWidth="133.0" promptText="Select Class" stylesheets="@../styles/Combobox.css" />
-      <TableView fx:id="studentTable" layoutX="37.0" layoutY="216.0" prefHeight="298.0" prefWidth="502.0" stylesheets="@../styles/Tableview.css">
+      <ComboBox fx:id="comboSort" layoutX="563.0" layoutY="69.0" prefHeight="31.0" prefWidth="133.0" promptText="Select Class" stylesheets="@../styles/Combobox.css" />
+      <TableView fx:id="studentTable" layoutX="350.0" layoutY="132.0" prefHeight="615.0" prefWidth="559.0" stylesheets="@../styles/Tableview.css">
          <columns>
-            <TableColumn fx:id="studentColumn" prefWidth="261.5999641418457" text="Student" />
-            <TableColumn fx:id="absentColumn" minWidth="0.0" prefWidth="238.79998779296875" text="Absent Percentage" />
+            <TableColumn fx:id="studentColumn" prefWidth="276.00006103515625" text="Student" />
+            <TableColumn fx:id="absentColumn" minWidth="0.0" prefWidth="282.0" text="Absent Percentage" />
          </columns>
       </TableView>
       <MenuBar fx:id="menubar" prefHeight="29.0" prefWidth="574.0" stylesheets="@../styles/Menubar.css">
@@ -58,16 +67,16 @@
             <Menu fx:id="logOutMenu" mnemonicParsing="false" onAction="#handleLogOut" text="Log out" />
          </menus>
       </MenuBar>
-      <TextField layoutX="37.0" layoutY="161.0" prefHeight="31.0" prefWidth="133.0" promptText="Search for Student" stylesheets="@../styles/textfield.css" />
-      <Label layoutX="42.0" layoutY="514.0" onMouseClicked="#openStudentStatisticsView" text="Show Statistics">
+      <TextField layoutX="350.0" layoutY="69.0" prefHeight="31.0" prefWidth="133.0" promptText="Search for Student" stylesheets="@../styles/textfield.css" />
+      <Label layoutX="59.0" layoutY="738.0" onMouseClicked="#openStudentStatisticsView" text="Show Statistics">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <ImageView fitHeight="100.0" fitWidth="111.0" layoutX="428.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="154.0" fitWidth="207.0" layoutX="52.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/pexels-photo-415829.jpeg" />
          </image>
@@ -75,6 +84,6 @@
             <DropShadow />
          </effect>
       </ImageView>
-      <ComboBox fx:id="comboSort1" layoutX="405.0" layoutY="161.0" prefHeight="31.0" prefWidth="133.0" promptText="Search by Date" stylesheets="@../styles/Combobox.css" />
+      <ComboBox fx:id="comboSort1" layoutX="775.0" layoutY="69.0" prefHeight="31.0" prefWidth="133.0" promptText="Search by Date" stylesheets="@../styles/Combobox.css" />
    </children>
 </AnchorPane>
