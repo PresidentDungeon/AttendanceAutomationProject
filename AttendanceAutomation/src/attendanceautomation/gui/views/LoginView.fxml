@@ -40,7 +40,7 @@
             <RowConstraints maxHeight="241.0" minHeight="0.0" prefHeight="23.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <JFXCheckBox checkedColor="#fbbb2c" text="Remember Me" unCheckedColor="#858585bc" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <JFXCheckBox fx:id="rememberMe" checkedColor="#fbbb2c" text="Remember Me" unCheckedColor="#858585bc" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <JFXButton alignment="CENTER" buttonType="RAISED" onMouseClicked="#login" prefHeight="45.0" prefWidth="209.0" styleClass="login-button" stylesheets="@../Dokumenter/GitHub/AttendanceAutomationProject/AttendanceAutomation/src/attendanceautomation/gui/styles/LoginView.css" text="LOGIN" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                <font>
                   <Font size="21.0" />
