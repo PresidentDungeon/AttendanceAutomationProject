@@ -30,11 +30,11 @@ public class Classroom {
         this.students = students;
     }
 
-    public String getClassName() {
+    public String getClassroomName() {
         return className;
     }
 
-    public void setClassName(String className) {
+    public void setClassroomName(String className) {
         this.className = className;
     }
 

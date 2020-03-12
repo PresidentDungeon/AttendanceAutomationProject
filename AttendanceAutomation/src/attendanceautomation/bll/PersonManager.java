@@ -5,8 +5,10 @@
  */
 package attendanceautomation.bll;
 
+import attendanceautomation.be.Person;
 import attendanceautomation.be.Student;
 import attendanceautomation.dal.MockStudentManager;
+import attendanceautomation.dal.dbmanagers.facades.DalFacade;
 import java.util.List;
 
 /**
@@ -16,33 +18,19 @@ import java.util.List;
 public class PersonManager {
 
     private MockStudentManager mockStudentManager;
+    private DalFacade dalFacade;
 
     public PersonManager() {
         mockStudentManager = new MockStudentManager();
+        dalFacade = new DalFacade();
     }
 
-    public void validateUser(String username, String password)
+    public Person validateUser(String username, String password)
     {
-        
-        
-        
-        
-        
+       return dalFacade.login(username, password);
+
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     public List<Student> getAllStudents() {
         List<Student> sortedList = mockStudentManager.readAllStudents();
         sortedList.sort((c1, c2) -> {

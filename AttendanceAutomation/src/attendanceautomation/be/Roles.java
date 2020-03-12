@@ -11,6 +11,21 @@ package attendanceautomation.be;
  */
 public enum Roles {
     
-    STUDENT(),TEACHER();
+
+    
+    STUDENT("student"),TEACHER("teacher");
+    
+    private String type;
+
+    private Roles(String type) {
+        this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return this.type; //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
     
 }

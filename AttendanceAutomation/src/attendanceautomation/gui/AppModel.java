@@ -5,6 +5,7 @@
  */
 package attendanceautomation.gui;
 
+import attendanceautomation.be.Person;
 import attendanceautomation.be.Student;
 import attendanceautomation.bll.PersonManager;
 import javafx.collections.FXCollections;
@@ -17,10 +18,10 @@ import javafx.collections.ObservableList;
 public class AppModel {
 
     private ObservableList<Student> students = FXCollections.observableArrayList();
-    private final PersonManager studentManager;
+    private final PersonManager personManager;
 
     public AppModel() {
-        studentManager = new PersonManager();
+        personManager = new PersonManager();
         fetchStudents();
     }
 
@@ -30,7 +31,7 @@ public class AppModel {
      */
     public void fetchStudents() {
         students.clear();
-        students.addAll(studentManager.getAllStudents());
+        students.addAll(personManager.getAllStudents());
     }
 
     /**
@@ -43,11 +44,11 @@ public class AppModel {
     }
 
     public Student getSpecificStudent(int number) {
-        return studentManager.getSpecificStudent(number);
+        return personManager.getSpecificStudent(number);
     }
     
-    public void validateUser(String username, String password)
+    public Person validateUser(String username, String password)
     {
-        
+       return personManager.validateUser(username, password);
     }
 }

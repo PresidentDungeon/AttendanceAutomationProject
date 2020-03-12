@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -54,11 +55,11 @@
                <font>
                   <Font size="18.0" />
                </font></JFXTextField>
-            <JFXTextField fx:id="passwordField" focusColor="#fabb2c" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <JFXPasswordField fx:id="passwordField" focusColor="#fabb2c" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="18.0" />
                </font>
-            </JFXTextField>
+            </JFXPasswordField>
          </children>
       </GridPane>
       <ImageView fitHeight="120.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">

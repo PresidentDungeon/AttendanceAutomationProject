@@ -99,14 +99,14 @@ public class AttendanceViewTeacherController implements Initializable {
         teacherName.setText(teacher.getName());
         teacherEmail.setText(teacher.getEmail());
         lastAccess.setText(teacher.getLastAccess().toString());
-        comboSort.setItems(teacher.getClasses());
+        comboSort.setItems(teacher.getClassrooms());
         setStudents(teacher);
 
     }
     
     public void setStudents(Teacher teacher)
     {
-        for (Classroom c : teacher.getClasses()) {
+        for (Classroom c : teacher.getClassrooms()) {
             
             for (Student student : c.getStudents()) {
                 students.add(student);

@@ -6,14 +6,11 @@
 package attendanceautomation.gui.controllers;
 
 import attendanceautomation.be.Date;
-import attendanceautomation.be.Person;
 import attendanceautomation.be.Student;
 import attendanceautomation.gui.AppModel;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
