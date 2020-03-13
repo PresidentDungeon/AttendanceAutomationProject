@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import privatemoviecollection.dal.DBAccess.DBSettings;
+import attendanceautomation.dal.dbaccess.DBSettings;
 
 /**
  *

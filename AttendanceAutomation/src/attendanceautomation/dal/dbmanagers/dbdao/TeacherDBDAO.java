@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import privatemoviecollection.dal.DBAccess.DBSettings;
+import attendanceautomation.dal.dbaccess.DBSettings;
 
 /**
  *
@@ -34,7 +34,7 @@ public class TeacherDBDAO {
         }
     }
 
-        public Teacher getTeacherById(int id) {
+    public Teacher getTeacherById(int id) {
 
         Teacher teacher = null;
         ObservableList<Classroom> classes = FXCollections.observableArrayList();
