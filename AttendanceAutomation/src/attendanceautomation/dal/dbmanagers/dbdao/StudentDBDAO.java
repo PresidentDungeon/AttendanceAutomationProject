@@ -35,10 +35,9 @@ public class StudentDBDAO {
 
         }
     }
-
+    
     public Student getStudentById(int id) {
         Student student = null;
-        ObservableList<Date> days = FXCollections.observableArrayList();
 
         try (Connection con = dbs.getConnection()) {
             String sql = "SELECT * FROM Person WHERE Person.ID = ?;";
@@ -53,26 +52,10 @@ public class StudentDBDAO {
                 String email = rs.getString("email");
                 LocalDate lastView = LocalDate.parse(rs.getString("lastAccess"));
 
-                sql = "SELECT * FROM Attending WHERE Attending.persID = ?;";
-                stmt = con.prepareStatement(sql);
-                stmt.setInt(1, id);
-                rs = stmt.executeQuery();
-
-                while (rs.next()) {
-                    int dateId = rs.getInt("ID");
-                    boolean isAttending = rs.getBoolean("isAttending");
-                    String description = rs.getString("description");
-                    LocalDate localDate = LocalDate.parse(rs.getString("date"));
-
-                    Date date = new Date(localDate, isAttending, description);
-                    date.setId(dateId);
-                    days.add(date);
-                }
-
                 student = new Student(name, email);
                 student.setId(id);
                 student.setLastAccess(lastView);
-                student.setDays(days);
+                student.setDays(getStudentDays(id));
 
             }
 
@@ -85,6 +68,37 @@ public class StudentDBDAO {
         }
 
         return student;
+    }
+    
+    public ObservableList<Date> getStudentDays(int studentID) {
+        ObservableList<Date> days = FXCollections.observableArrayList();
+        
+        try (Connection con = dbs.getConnection()) {
+            String sql = "SELECT * FROM Attending WHERE Attending.persID = ?;";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, studentID);
+            ResultSet rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                int dateId = rs.getInt("ID");
+                boolean isAttending = rs.getBoolean("isAttending");
+                String description = rs.getString("description");
+                LocalDate localDate = LocalDate.parse(rs.getString("date"));
+
+                Date date = new Date(localDate, isAttending, description);
+                date.setId(dateId);
+                days.add(date);
+            }
+            
+            return days;
+            
+        } catch (SQLServerException ex) {
+
+        } catch (SQLException ex) {
+
+        }
+        
+        return days;
     }
     
     public List<Student> getStudentsInClass(int ClassId) {

@@ -47,6 +47,7 @@ public class PersonDBDAO {
         } catch (SQLException ex) {
 
         }
+        
         return false;
 
     }
@@ -74,6 +75,7 @@ public class PersonDBDAO {
         } catch (SQLException ex) {
 
         }
+        
         return -1;
 
     }
@@ -104,6 +106,7 @@ public class PersonDBDAO {
         } catch (SQLException ex) {
 
         }
+        
         return null;
     }
 
