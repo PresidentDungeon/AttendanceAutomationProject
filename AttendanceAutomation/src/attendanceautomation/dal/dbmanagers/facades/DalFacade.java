@@ -28,7 +28,7 @@ public class DalFacade implements IDalFacade{
         
         if (personManager.isLoginCorrect(username, password)) {
             userId = personManager.getPersonId(username, password);
-            Roles role = personManager.returnRoleById(userId);
+            Roles role = personManager.getRoleById(userId);
             
             if (role == Roles.STUDENT) {
                 return studentManager.getStudentById(userId);
@@ -36,7 +36,6 @@ public class DalFacade implements IDalFacade{
                 Teacher teacher = teacherManager.getTeacherById(userId);
                 
                 for (Classroom c : teacher.getClassrooms()) {
-                    
                     c.setStudents(studentManager.getStudentsInClass(c.getId()));      
                 }
                 

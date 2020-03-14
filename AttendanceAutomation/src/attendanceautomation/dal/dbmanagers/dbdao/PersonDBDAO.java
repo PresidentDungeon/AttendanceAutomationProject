@@ -80,7 +80,7 @@ public class PersonDBDAO {
 
     }
 
-    public Roles returnRoleById(int id) {
+    public Roles getRoleById(int id) {
 
         try (Connection con = dbs.getConnection()) {
             String sql = "SELECT role FROM Person WHERE Person.ID = ?;";
