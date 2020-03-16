@@ -64,7 +64,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Views (prototype)">
             <items>
-              <MenuItem fx:id="teacherViewMenu" mnemonicParsing="false" onAction="#goToTeacherView" text="Teacher View" />
+              <MenuItem mnemonicParsing="false" text="Teacher View" />
             </items>
           </Menu>
             <Menu fx:id="logOutMenu" mnemonicParsing="false" onAction="#logOut" text="Log out" />

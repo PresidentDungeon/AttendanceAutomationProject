@@ -44,7 +44,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <ComboBox fx:id="comboSort" layoutX="553.0" layoutY="69.0" prefHeight="41.0" prefWidth="154.0" promptText="Select Class" stylesheets="@../styles/Combobox.css" />
+      <ComboBox fx:id="comboSort" layoutX="553.0" layoutY="69.0" onAction="#classroomSearch" prefHeight="41.0" prefWidth="154.0" promptText="Select Class" stylesheets="@../styles/Combobox.css" />
       <TableView fx:id="studentTable" layoutX="350.0" layoutY="132.0" prefHeight="615.0" prefWidth="559.0" stylesheets="@../styles/Tableview.css">
          <columns>
             <TableColumn fx:id="studentColumn" prefWidth="276.00006103515625" text="Student" />
@@ -61,13 +61,13 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Views (prototype)">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#goToStudentView" text="Student View" />
+                  <MenuItem mnemonicParsing="false" text="Student View" />
                </items>
             </Menu>
             <Menu fx:id="logOutMenu" mnemonicParsing="false" onAction="#handleLogOut" text="Log out" />
          </menus>
       </MenuBar>
-      <TextField layoutX="350.0" layoutY="69.0" prefHeight="41.0" prefWidth="154.0" promptText="Search for Student" stylesheets="@../styles/textfield.css" />
+      <TextField fx:id="studentSearch" layoutX="350.0" layoutY="69.0" onKeyTyped="#studentSearch" prefHeight="41.0" prefWidth="154.0" promptText="Search for Student" stylesheets="@../styles/textfield.css" />
       <Label layoutX="59.0" layoutY="738.0" onMouseClicked="#openStudentStatisticsView" text="Show Statistics">
          <font>
             <Font name="System Bold" size="15.0" />

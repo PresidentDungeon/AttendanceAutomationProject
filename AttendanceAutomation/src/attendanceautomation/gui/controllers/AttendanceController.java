@@ -192,20 +192,6 @@ public class AttendanceController implements Initializable {
     }
 
     @FXML
-    private void goToTeacherView(ActionEvent event) throws IOException {
-
-        //Loads the teacher view from the menubar. This should not be in the final project
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(AppModel.class.getResource("views/AttendanceViewTeacher.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-
-        Stage appStage = (Stage) menubar.getScene().getWindow();
-        appStage.setScene(scene);
-        appStage.show();
-
-    }
-
-    @FXML
     private void goToStatisticsView(ActionEvent event) throws IOException {
 
     }

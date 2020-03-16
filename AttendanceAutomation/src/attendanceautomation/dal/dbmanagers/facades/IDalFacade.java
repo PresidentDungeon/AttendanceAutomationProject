@@ -5,7 +5,11 @@
  */
 package attendanceautomation.dal.dbmanagers.facades;
 
+import attendanceautomation.be.Classroom;
 import attendanceautomation.be.Person;
+import attendanceautomation.be.Student;
+import attendanceautomation.be.Teacher;
+import java.util.List;
 
 /**
  *
@@ -14,5 +18,6 @@ import attendanceautomation.be.Person;
 public interface IDalFacade {
     
      public Person login(String username, String password);
+     public List<Student> searchStudent(Teacher teacher, String studentName, Classroom classRoom);
     
 }

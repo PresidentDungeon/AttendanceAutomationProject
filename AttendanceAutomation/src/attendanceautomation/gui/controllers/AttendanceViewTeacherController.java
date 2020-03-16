@@ -27,6 +27,8 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -39,7 +41,7 @@ public class AttendanceViewTeacherController implements Initializable {
 
     private Teacher loggedTeacher;
     private ObservableList<Student> students = FXCollections.observableArrayList();
-    
+
     @FXML
     private ComboBox<Classroom> comboSort;
     @FXML
@@ -60,6 +62,8 @@ public class AttendanceViewTeacherController implements Initializable {
     private Label teacherEmail;
     @FXML
     private Label lastAccess;
+    @FXML
+    private TextField studentSearch;
 
     /**
      * Initializes the controller class.
@@ -88,56 +92,46 @@ public class AttendanceViewTeacherController implements Initializable {
             }
             return new SimpleStringProperty(String.format("%.2f", (absent / (present + absent) * 100)) + "%");
         });
-        
+
         studentTable.setItems(students);
     }
 
-    
-    public void setTeacher(Teacher teacher)
-    {
+    public void setTeacher(Teacher teacher) {
         loggedTeacher = teacher;
         teacherName.setText(teacher.getName());
         teacherEmail.setText(teacher.getEmail());
         lastAccess.setText(teacher.getLastAccess().toString());
         comboSort.setItems(teacher.getClassrooms());
+        comboSort.getItems().add(0, new Classroom("All classrooms"));
+        comboSort.getSelectionModel().select(0);
         setStudents(teacher);
 
     }
-    
-    public void setStudents(Teacher teacher)
-    {
+
+    public void setStudents(Teacher teacher) {
         for (Classroom c : teacher.getClassrooms()) {
-            
+
             for (Student student : c.getStudents()) {
                 students.add(student);
             }
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     @FXML
-    private void goToStudentView(ActionEvent event) throws IOException {
-
-        //Loads the student view from the menubar. This should not be in the final project
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(AppModel.class.getResource("views/AttendanceView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        AttendanceController controller = fxmlLoader.getController();
-        controller.setStudent(appModel.getSpecificStudent(0));
-
-        Stage appStage = (Stage) menubar.getScene().getWindow();
-        appStage.setScene(scene);
-        appStage.show();
-
+    private void classroomSearch(ActionEvent event) {
+        search(loggedTeacher, studentSearch.getText(), comboSort.getSelectionModel().getSelectedItem());
     }
+
+    @FXML
+    private void studentSearch(KeyEvent event) {
+        search(loggedTeacher, studentSearch.getText(), comboSort.getSelectionModel().getSelectedItem());
+    }
+
+    public void search(Teacher teacher, String studentName, Classroom classroom) {
+        students.clear();
+        students.addAll(appModel.searchStudent(teacher, studentName, classroom));
+    }
+
 
     @FXML
     private void openStudentStatisticsView(MouseEvent event) throws IOException {

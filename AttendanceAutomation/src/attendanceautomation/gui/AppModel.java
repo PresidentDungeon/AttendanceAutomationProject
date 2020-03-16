@@ -5,11 +5,13 @@
  */
 package attendanceautomation.gui;
 
+import attendanceautomation.be.Classroom;
 import attendanceautomation.be.Person;
 import attendanceautomation.be.Student;
+import attendanceautomation.be.Teacher;
 import attendanceautomation.bll.PersonManager;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import attendanceautomation.bll.StudentManager;
+import java.util.List;
 
 /**
  *
@@ -17,38 +19,21 @@ import javafx.collections.ObservableList;
  */
 public class AppModel {
 
-    private ObservableList<Student> students = FXCollections.observableArrayList();
     private final PersonManager personManager;
+    private final StudentManager studentManager;
 
     public AppModel() {
         personManager = new PersonManager();
-        fetchStudents();
-    }
-
-    /**
-     * Fetches the students from the database and adds them to the
-     * ObservableList.
-     */
-    public void fetchStudents() {
-        students.clear();
-        students.addAll(personManager.getAllStudents());
-    }
-
-    /**
-     * Returns the Student observablelist.
-     *
-     * @return the Student observablelist
-     */
-    public ObservableList<Student> getStudentList() {
-        return students;
-    }
-
-    public Student getSpecificStudent(int number) {
-        return personManager.getSpecificStudent(number);
+        studentManager = new StudentManager();
     }
     
     public Person validateUser(String username, String password)
     {
        return personManager.validateUser(username, password);
+    }
+    
+    public List<Student> searchStudent(Teacher teacher, String studentName, Classroom classRoom)
+    {
+        return studentManager.searchStudent(teacher, studentName, classRoom);
     }
 }

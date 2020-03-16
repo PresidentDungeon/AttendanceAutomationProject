@@ -5,6 +5,7 @@
  */
 package attendanceautomation.dal.dbmanagers.dbdao;
 
+import attendanceautomation.be.Classroom;
 import attendanceautomation.be.Date;
 import attendanceautomation.be.Student;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
@@ -35,7 +36,7 @@ public class StudentDBDAO {
 
         }
     }
-    
+
     public Student getStudentById(int id) {
         Student student = null;
 
@@ -69,16 +70,16 @@ public class StudentDBDAO {
 
         return student;
     }
-    
+
     public ObservableList<Date> getStudentDays(int studentID) {
         ObservableList<Date> days = FXCollections.observableArrayList();
-        
+
         try (Connection con = dbs.getConnection()) {
             String sql = "SELECT * FROM Attending WHERE Attending.persID = ?;";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, studentID);
             ResultSet rs = stmt.executeQuery();
-            
+
             while (rs.next()) {
                 int dateId = rs.getInt("ID");
                 boolean isAttending = rs.getBoolean("isAttending");
@@ -89,18 +90,18 @@ public class StudentDBDAO {
                 date.setId(dateId);
                 days.add(date);
             }
-            
+
             return days;
-            
+
         } catch (SQLServerException ex) {
 
         } catch (SQLException ex) {
 
         }
-        
+
         return days;
     }
-    
+
     public List<Student> getStudentsInClass(int ClassId) {
         List<Student> studentsInClass = new ArrayList<>();
 
@@ -126,6 +127,45 @@ public class StudentDBDAO {
         }
         return studentsInClass;
 
+    }
+
+    public ObservableList<Student> searchStudent(String studentName, Classroom classroom) {
+        ObservableList<Student> searchedStudents = FXCollections.observableArrayList();
+
+
+        try (Connection con = dbs.getConnection()) {
+            
+            String sql = "SELECT StudentClass.PersID FROM StudentClass JOIN Person on StudentClass.persID = Person.ID WHERE Person.name LIKE ? AND StudentClass.classID = ?;";
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            stmt.setString(1, "%" + studentName + "%");
+            stmt.setInt(2, classroom.getId());
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int studentId = rs.getInt("persID");
+                searchedStudents.add(getStudentById(studentId));
+            }
+
+            return searchedStudents;
+
+        } catch (SQLServerException ex) {
+
+        } catch (SQLException ex) {
+
+        }
+        return searchedStudents;
+
+    }
+
+    public static void main(String[] args) {
+        StudentDBDAO d = new StudentDBDAO();
+        Classroom c = new Classroom("t");
+        c.setId(1);
+        
+        for (Student s : d.searchStudent("as", c)) {
+            System.out.println(s.getName());
+        }
     }
     
 }
