@@ -119,17 +119,28 @@ public class AttendanceViewTeacherController implements Initializable {
 
     @FXML
     private void classroomSearch(ActionEvent event) {
-        search(loggedTeacher, studentSearch.getText(), comboSort.getSelectionModel().getSelectedItem());
+        search2(loggedTeacher, studentSearch.getText(), comboSort.getSelectionModel().getSelectedItem());
     }
 
     @FXML
     private void studentSearch(KeyEvent event) {
-        search(loggedTeacher, studentSearch.getText(), comboSort.getSelectionModel().getSelectedItem());
+        search2(loggedTeacher, studentSearch.getText(), comboSort.getSelectionModel().getSelectedItem());
     }
 
     public void search(Teacher teacher, String studentName, Classroom classroom) {
         students.clear();
         students.addAll(appModel.searchStudent(teacher, studentName, classroom));
+    }
+    
+    public void search2(Teacher teacher, String studentName, Classroom classroom)
+    {
+        if (studentName.equalsIgnoreCase("") && classroom.getId() == 0){
+            studentTable.setItems(students);
+        } 
+        else
+        {
+            studentTable.setItems(appModel.searchStudent2(teacher, studentName, classroom, students));
+        }
     }
 
 

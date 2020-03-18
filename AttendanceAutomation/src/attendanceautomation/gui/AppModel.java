@@ -12,6 +12,7 @@ import attendanceautomation.be.Teacher;
 import attendanceautomation.bll.PersonManager;
 import attendanceautomation.bll.StudentManager;
 import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -35,5 +36,10 @@ public class AppModel {
     public List<Student> searchStudent(Teacher teacher, String studentName, Classroom classRoom)
     {
         return studentManager.searchStudent(teacher, studentName, classRoom);
+    }
+    
+        public ObservableList<Student> searchStudent2(Teacher teacher, String studentName, Classroom classRoom, ObservableList<Student> studentList)
+    {
+        return studentManager.searchStudent2(teacher, studentName, classRoom, studentList);
     }
 }

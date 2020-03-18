@@ -102,20 +102,22 @@ public class StudentDBDAO {
         return days;
     }
 
-    public List<Student> getStudentsInClass(int ClassId) {
+    public List<Student> getStudentsInClass(Classroom classroom) {
         List<Student> studentsInClass = new ArrayList<>();
 
         try (Connection con = dbs.getConnection()) {
             String sql = "SELECT * FROM StudentClass WHERE classID = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
 
-            stmt.setInt(1, ClassId);
+            stmt.setInt(1, classroom.getId());
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
 
                 int studentId = rs.getInt("persID");
-                studentsInClass.add(getStudentById(studentId));
+                Student student = getStudentById(studentId);
+                student.getClassRoom().add(classroom);
+                studentsInClass.add(student);
             }
 
             return studentsInClass;

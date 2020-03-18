@@ -12,7 +12,7 @@ import java.time.LocalDate;
  * @author ander
  */
 public abstract class Person {
-    
+
     private int id;
     private Roles role;
     private String name;
@@ -24,9 +24,8 @@ public abstract class Person {
         this.email = email;
         this.role = role;
     }
-    
-    public Person(Roles role)
-    {
+
+    public Person(Roles role) {
         this.role = role;
     }
 
@@ -69,17 +68,25 @@ public abstract class Person {
     public void setRole(Roles role) {
         this.role = role;
     }
- 
-        public boolean equals(Student obj)
-    {
-        if (obj.getId() == this.getId())
-        {
+
+    public boolean equals(Student obj) {
+        if (obj.getId() == this.getId()) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
-    
+
+    @Override
+    public boolean equals(Object obj) {
+
+        Person person = (Person) obj;
+
+        if (person.getId() == this.getId()) {
+            return true;
+        }
+        return false;
+
+    }
+
 }

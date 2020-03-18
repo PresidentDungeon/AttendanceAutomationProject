@@ -40,7 +40,7 @@ public class DalFacade implements IDalFacade {
                 Teacher teacher = teacherManager.getTeacherById(userId);
 
                 for (Classroom c : teacher.getClassrooms()) {
-                    c.setStudents(studentManager.getStudentsInClass(c.getId()));
+                    c.setStudents(studentManager.getStudentsInClass(c));
                 }
 
                 return teacher;

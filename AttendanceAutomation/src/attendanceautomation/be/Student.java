@@ -6,6 +6,8 @@
 package attendanceautomation.be;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -16,10 +18,10 @@ import javafx.collections.ObservableList;
 public class Student extends Person {
     
     private ObservableList<Date> days = FXCollections.observableArrayList();
+    private List<Classroom> classRoom = new ArrayList<>();
     
     public Student(String name, String email) {        
-        super(name, email, Roles.STUDENT);
-        
+        super(name, email, Roles.STUDENT);    
     }
     
     public Student() {
@@ -32,6 +34,14 @@ public class Student extends Person {
     
     public void setDays(ObservableList<Date> days) {
         this.days = days;
+    }
+
+    public List<Classroom> getClassRoom() {
+        return classRoom;
+    }
+
+    public void setClassRoom(List<Classroom> classRoom) {
+        this.classRoom = classRoom;
     }
     
 }
