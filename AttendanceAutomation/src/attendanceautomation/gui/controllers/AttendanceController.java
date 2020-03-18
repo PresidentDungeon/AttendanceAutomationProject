@@ -196,9 +196,19 @@ public class AttendanceController implements Initializable {
 
     }
 
-    @FXML
-    private void logOut(ActionEvent event) {
+        @FXML
+    private void handleLogOut(ActionEvent event) throws Exception {
+
+        
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(AppModel.class.getResource("views/LoginView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage appStage = (Stage) menubar.getScene().getWindow();
+        appStage.setScene(scene);   
+        
+
     }
+    
 
     @FXML
     private void openDescriptionView(MouseEvent event) throws IOException {

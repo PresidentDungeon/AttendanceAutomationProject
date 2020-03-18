@@ -20,6 +20,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -164,12 +165,16 @@ public class AttendanceViewTeacherController implements Initializable {
     }
 
     @FXML
-    private void handleLogOut(ActionEvent event) throws IOException {
+    private void handleLogOut(ActionEvent event){
 
-    }
-
-    @FXML
-    private void openStudentStatisticsView1(MouseEvent event) {
+        try{
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(AppModel.class.getResource("views/LoginView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage appStage = (Stage) menubar.getScene().getWindow();
+        appStage.setScene(scene);   
+        }
+        catch(Exception ex){}
     }
 
 }

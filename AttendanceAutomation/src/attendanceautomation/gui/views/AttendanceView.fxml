@@ -67,7 +67,10 @@
               <MenuItem mnemonicParsing="false" text="Teacher View" />
             </items>
           </Menu>
-            <Menu fx:id="logOutMenu" mnemonicParsing="false" onAction="#logOut" text="Log out" />
+            <Menu fx:id="logOutMenu" mnemonicParsing="false" text="Log out">
+               <items>
+                  <MenuItem fx:id="handleLogOut" mnemonicParsing="false" onAction="#handleLogOut" text="Log Out" />
+               </items></Menu>
         </menus>
       </MenuBar>
       <ImageView fitHeight="112.0" fitWidth="173.0" layoutX="707.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
