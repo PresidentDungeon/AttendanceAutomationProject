@@ -20,6 +20,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import attendanceautomation.dal.dbaccess.DBSettings;
+import java.sql.Statement;
 
 /**
  *
@@ -128,7 +129,56 @@ public class StudentDBDAO {
 
         }
         return studentsInClass;
-
+        
+    }
+    
+    public boolean saveDate(Student student, Date date) {
+        if(date.getId() == 0) {
+            return createAbsence(student, date);
+        } else {
+            return updateAbsence(date);
+        }
+    }
+    
+    public boolean createAbsence(Student student, Date date) {
+        try (Connection con = dbs.getConnection()) {
+            
+            String sql = "INSERT INTO Attending (persID, isAttending, description, date) VALUES (?,?,?,?)";
+            PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            
+            stmt.setInt(1, student.getId());
+            stmt.setBoolean(2, date.isAttendance());
+            stmt.setString(3, date.getDescription());
+            stmt.setString(4, date.getDate().toString());
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            return true;
+        } catch (SQLServerException ex) {
+            return false;
+        } catch (SQLException ex) {
+            return false;
+        }
+    }
+    
+    public boolean updateAbsence(Date date) {
+        try (Connection con = dbs.getConnection()) {
+            
+            String sql = "UPDATE Attending SET isAttending = ?, description = ? WHERE ID";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            
+            stmt.setBoolean(1, date.isAttendance());
+            stmt.setString(2, date.getDescription());
+            stmt.setInt(3, date.getId());
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            return true;
+        } catch (SQLServerException ex) {
+            return false;
+        } catch (SQLException ex) {
+            return false;
+        }
     }
 
     public ObservableList<Student> searchStudent(String studentName, Classroom classroom) {
