@@ -70,21 +70,17 @@ public class DalFacade implements IDalFacade {
     @Override
     public void toBeAttending(Student student, Date date) {
         
-        Date d = studentManager.checkIfExistingDate(student);
+        Date d = studentManager.getDate(student);
         
-        if (d == null)
-        {
+        if (d == null) {
             studentManager.attendance(student, date);
-        }
-        else
-        {
+        } else {
             date.setId(d.getId());
             studentManager.updateAbsence(date);
         }
     }
 
-     public ObservableList<Date> getStudentDays(Student student)
-    {
+    public ObservableList<Date> getStudentDays(Student student) {
         return studentManager.getStudentDays(student.getId());
     }
     

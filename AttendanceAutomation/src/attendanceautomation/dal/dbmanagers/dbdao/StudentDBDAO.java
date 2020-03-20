@@ -114,7 +114,6 @@ public class StudentDBDAO {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-
                 int studentId = rs.getInt("persID");
                 Student student = getStudentById(studentId);
                 student.getClassRoom().add(classroom);
@@ -173,11 +172,10 @@ public class StudentDBDAO {
         }
     }
     
-    public Date checkIfExistingDate(Student student)
-    {
+    public Date getDate(Student student) {
         Date date = null;
         
-     try (Connection con = dbs.getConnection()) {
+        try (Connection con = dbs.getConnection()) {
             
             String sql = "SELECT * FROM Attending WHERE PersID = ? AND date = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -186,8 +184,7 @@ public class StudentDBDAO {
             stmt.setString(2, LocalDate.now().toString());
        
             ResultSet rs = stmt.executeQuery();
-            while(rs.next())
-            {
+            while(rs.next()) {
                 int Id = rs.getInt("ID");
                 boolean isAttending = rs.getBoolean("isAttending");
                 String description = rs.getString("description");
