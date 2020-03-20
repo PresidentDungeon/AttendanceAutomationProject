@@ -6,6 +6,7 @@
 package attendanceautomation.dal.dbmanagers.facades;
 
 import attendanceautomation.be.Classroom;
+import attendanceautomation.be.Date;
 import attendanceautomation.be.Person;
 import attendanceautomation.be.Roles;
 import attendanceautomation.be.Student;
@@ -66,4 +67,25 @@ public class DalFacade implements IDalFacade {
         return searchedStudents;
     }
 
+    @Override
+    public void toBeAttending(Student student, Date date) {
+        
+        Date d = studentManager.checkIfExistingDate(student);
+        
+        if (d == null)
+        {
+            studentManager.attendance(student, date);
+        }
+        else
+        {
+            date.setId(d.getId());
+            studentManager.updateAbsence(date);
+        }
+    }
+
+     public ObservableList<Date> getStudentDays(Student student)
+    {
+        return studentManager.getStudentDays(student.getId());
+    }
+    
 }

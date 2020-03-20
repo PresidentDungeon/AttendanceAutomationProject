@@ -6,6 +6,7 @@
 package attendanceautomation.gui;
 
 import attendanceautomation.be.Classroom;
+import attendanceautomation.be.Date;
 import attendanceautomation.be.Person;
 import attendanceautomation.be.Student;
 import attendanceautomation.be.Teacher;
@@ -27,19 +28,25 @@ public class AppModel {
         personManager = new PersonManager();
         studentManager = new StudentManager();
     }
-    
-    public Person validateUser(String username, String password)
-    {
-       return personManager.validateUser(username, password);
+
+    public Person validateUser(String username, String password) {
+        return personManager.validateUser(username, password);
     }
-    
-    public List<Student> searchStudent(Teacher teacher, String studentName, Classroom classRoom)
-    {
+
+    public List<Student> searchStudent(Teacher teacher, String studentName, Classroom classRoom) {
         return studentManager.searchStudent(teacher, studentName, classRoom);
     }
-    
-        public ObservableList<Student> searchStudent2(Teacher teacher, String studentName, Classroom classRoom, ObservableList<Student> studentList)
-    {
+
+    public ObservableList<Student> searchStudent2(Teacher teacher, String studentName, Classroom classRoom, ObservableList<Student> studentList) {
         return studentManager.searchStudent2(teacher, studentName, classRoom, studentList);
+    }
+
+    public void toBeAttending(Student student, Date date) {
+        studentManager.toBeAttending(student, date);
+    }
+    
+    public ObservableList<Date> getStudentDays(Student student)
+    {
+        return studentManager.getStudentDays(student);
     }
 }

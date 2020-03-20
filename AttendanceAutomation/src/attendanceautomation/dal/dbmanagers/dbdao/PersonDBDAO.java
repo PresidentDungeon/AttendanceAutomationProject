@@ -83,7 +83,7 @@ public class PersonDBDAO {
     public Roles getRoleById(int id) {
 
         try (Connection con = dbs.getConnection()) {
-            String sql = "SELECT role FROM Person WHERE Person.ID = ?;";
+            String sql = "SELECT isStudent FROM Person WHERE Person.ID = ?;";
             PreparedStatement stmt = con.prepareStatement(sql);
 
             stmt.setInt(1, id);
@@ -92,7 +92,7 @@ public class PersonDBDAO {
 
             while (rs.next()) {
 
-                boolean isStudent = rs.getBoolean("role");
+                boolean isStudent = rs.getBoolean("isStudent");
 
                 if (isStudent == true) {
                     return Roles.STUDENT;

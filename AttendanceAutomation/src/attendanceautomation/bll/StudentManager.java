@@ -6,6 +6,7 @@
 package attendanceautomation.bll;
 
 import attendanceautomation.be.Classroom;
+import attendanceautomation.be.Date;
 import attendanceautomation.be.Student;
 import attendanceautomation.be.Teacher;
 import attendanceautomation.dal.dbmanagers.facades.DalFacade;
@@ -54,6 +55,16 @@ public class StudentManager {
             }
         }
         return searchStudentList;
+    }
+    
+    public void toBeAttending (Student student, Date date)
+    {
+        dalFacade.toBeAttending(student, date);
+    }
+    
+     public ObservableList<Date> getStudentDays(Student student)
+    {
+        return dalFacade.getStudentDays(student);
     }
 
 }

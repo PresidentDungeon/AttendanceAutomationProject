@@ -11,6 +11,7 @@ import attendanceautomation.gui.AppModel;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -45,6 +46,7 @@ import javafx.stage.Stage;
 public class AttendanceController implements Initializable {
 
     AppModel appModel = new AppModel();
+    Student loggedStudent;
 
     @FXML
     private ComboBox<?> comboSort;
@@ -69,15 +71,9 @@ public class AttendanceController implements Initializable {
     @FXML
     private Label percentageLabel;
     @FXML
-    private ComboBox<?> comboSort1;
-    @FXML
-    private MenuItem teacherViewMenu;
-    @FXML
     private MenuBar menubar;
     @FXML
     private MenuItem MoodleMenu;
-    @FXML
-    private MenuItem statisticsViewMenu;
     @FXML
     private Menu logOutMenu;
     @FXML
@@ -85,9 +81,9 @@ public class AttendanceController implements Initializable {
     @FXML
     private HBox paneArea1;
     @FXML
-    private Label percentageLabel11;
-    @FXML
     private Label percentageLabel1;
+    @FXML
+    private MenuItem handleLogOut;
 
 
     
@@ -121,6 +117,7 @@ public class AttendanceController implements Initializable {
         attendanceTable.setItems(student.getDays());
         name.setText(student.getName());
         email.setText(student.getEmail());
+        loggedStudent = student;
         loadStatistics(student);
     }
 
@@ -191,10 +188,6 @@ public class AttendanceController implements Initializable {
 
     }
 
-    @FXML
-    private void goToStatisticsView(ActionEvent event) throws IOException {
-
-    }
 
         @FXML
     private void handleLogOut(ActionEvent event) throws Exception {
@@ -216,10 +209,22 @@ public class AttendanceController implements Initializable {
             fxmlLoader.setLocation(AppModel.class.getResource("views/DescriptionView.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage();
+            
+            DescriptionViewController controller = fxmlLoader.getController();
+            controller.setStudent(loggedStudent, attendanceTable.getItems());
+            
             stage.setScene(scene);
             stage.show();
     }
 
-     
+    @FXML
+    private void toBeAttending(ActionEvent event) {
+        
+        Date date = new Date(LocalDate.now(), true, "");
+        appModel.toBeAttending(loggedStudent, date);
+        loggedStudent.setDays(appModel.getStudentDays(loggedStudent));
+        attendanceTable.setItems(loggedStudent.getDays());
+    }
+
 
 }

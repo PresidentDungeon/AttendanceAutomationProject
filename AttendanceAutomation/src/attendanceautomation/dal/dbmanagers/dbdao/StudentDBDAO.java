@@ -132,15 +132,7 @@ public class StudentDBDAO {
         
     }
     
-    public boolean saveDate(Student student, Date date) {
-        if(date.getId() == 0) {
-            return createAbsence(student, date);
-        } else {
-            return updateAbsence(date);
-        }
-    }
-    
-    public boolean createAbsence(Student student, Date date) {
+    public boolean attendance(Student student, Date date) {
         try (Connection con = dbs.getConnection()) {
             
             String sql = "INSERT INTO Attending (persID, isAttending, description, date) VALUES (?,?,?,?)";
@@ -164,7 +156,7 @@ public class StudentDBDAO {
     public boolean updateAbsence(Date date) {
         try (Connection con = dbs.getConnection()) {
             
-            String sql = "UPDATE Attending SET isAttending = ?, description = ? WHERE ID";
+            String sql = "UPDATE Attending SET isAttending = ?, description = ? WHERE ID = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             
             stmt.setBoolean(1, date.isAttendance());
@@ -178,6 +170,37 @@ public class StudentDBDAO {
             return false;
         } catch (SQLException ex) {
             return false;
+        }
+    }
+    
+    public Date checkIfExistingDate(Student student)
+    {
+        Date date = null;
+        
+     try (Connection con = dbs.getConnection()) {
+            
+            String sql = "SELECT * FROM Attending WHERE PersID = ? AND date = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            
+            stmt.setInt(1, student.getId());
+            stmt.setString(2, LocalDate.now().toString());
+       
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next())
+            {
+                int Id = rs.getInt("ID");
+                boolean isAttending = rs.getBoolean("isAttending");
+                String description = rs.getString("description");
+             
+                date = new Date(LocalDate.now(), isAttending, description);
+                date.setId(Id);
+            }
+            
+            return date;
+        } catch (SQLServerException ex) {
+            return date;
+        } catch (SQLException ex) {
+            return date;
         }
     }
 
@@ -212,12 +235,9 @@ public class StudentDBDAO {
 
     public static void main(String[] args) {
         StudentDBDAO d = new StudentDBDAO();
-        Classroom c = new Classroom("t");
-        c.setId(1);
-        
-        for (Student s : d.searchStudent("as", c)) {
-            System.out.println(s.getName());
-        }
+     
+        Student s = new Student("Peter", "dadad");
+        s.setId(1);
     }
     
 }

@@ -6,6 +6,7 @@
 package attendanceautomation.dal.dbmanagers.facades;
 
 import attendanceautomation.be.Classroom;
+import attendanceautomation.be.Date;
 import attendanceautomation.be.Person;
 import attendanceautomation.be.Student;
 import attendanceautomation.be.Teacher;
@@ -19,5 +20,6 @@ public interface IDalFacade {
     
      public Person login(String username, String password);
      public List<Student> searchStudent(Teacher teacher, String studentName, Classroom classRoom);
+     public void toBeAttending (Student student, Date date);
     
 }
