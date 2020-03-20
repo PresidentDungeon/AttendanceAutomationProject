@@ -20,7 +20,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -156,7 +155,7 @@ public class AttendanceViewTeacherController implements Initializable {
             Stage stage = new Stage();
 
             AttendanceController controller = fxmlLoader.getController();
-            controller.setStudent(studentTable.getSelectionModel().getSelectedItem());
+            controller.setStudent(studentTable.getSelectionModel().getSelectedItem(), studentTable);
 
             stage.setScene(scene);
             stage.show();

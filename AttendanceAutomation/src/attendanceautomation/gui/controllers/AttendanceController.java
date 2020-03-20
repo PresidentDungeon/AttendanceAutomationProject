@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -47,6 +48,9 @@ public class AttendanceController implements Initializable {
 
     AppModel appModel = new AppModel();
     Student loggedStudent;
+    TableView<Student> students;
+    private PieChart pieChart; 
+    private BarChart <String,Number> barChart;
 
     @FXML
     private ComboBox<?> comboSort;
@@ -112,16 +116,18 @@ public class AttendanceController implements Initializable {
         descColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
     }
 
-    public void setStudent(Student student) {
+    public void setStudent(Student student, TableView<Student> students) {
 
         attendanceTable.setItems(student.getDays());
         name.setText(student.getName());
         email.setText(student.getEmail());
         loggedStudent = student;
+        this.students = students;
         loadStatistics(student);
+        setCharts();
     }
 
-    public void loadStatistics(Student student) {
+   public void loadStatistics(Student student) {
         double present = 0;
         double absent = 0;
         
@@ -146,19 +152,19 @@ public class AttendanceController implements Initializable {
                         new PieChart.Data("Absent", absent)
                 );
 
-        PieChart pieChart = new PieChart(pieChartData);
-        //pieChart.setTitle("School Attendance");
+        pieChart = new PieChart(pieChartData);
         pieChart.setClockwise(true);
         pieChart.setTitle("Absence Overall");
         pieChart.setLabelLineLength(20);
         pieChart.setLabelsVisible(true);
         pieChart.setStartAngle(180);
-        paneArea.getChildren().add(pieChart);
 
-        //sets the absent and present amounts
-        lectureLabel.setText("Lectures Taken: " + present + "/" + (present + absent));
-        absentLabel.setText("Classes Absent: " + absent + "/" + (present + absent));
-        percentageLabel.setText("Absent Percentage: " + absentPercentage + "%");
+        //sets the absent and present amount labels
+        
+       String lectureLabelText = "Lectures Taken: " + present + "/" + (present + absent);
+       String absentLabelText = "Classes Absent: " + absent + "/" + (present + absent);
+       String percentageLabelText = "Absent Percentage: " + absentPercentage + "%";
+
         
         //Creates the barchart
         
@@ -166,7 +172,7 @@ public class AttendanceController implements Initializable {
         final NumberAxis yAxis = new NumberAxis();
         xAxis.setLabel("Day of week");
         
-        final BarChart <String,Number> barChart = new BarChart<String,Number>(xAxis,yAxis);
+        barChart = new BarChart<String,Number>(xAxis,yAxis);
         XYChart.Series series = new XYChart.Series();
         
         //Populates the data
@@ -179,8 +185,18 @@ public class AttendanceController implements Initializable {
         
         barChart.getData().add(series);
         barChart.setTitle("Daily Absence");
+        
+        Platform.runLater(()->{
+        lectureLabel.setText(lectureLabelText);
+        absentLabel.setText(absentLabelText);
+        percentageLabel.setText(percentageLabelText);
+        });
+    }
+   
+    public void setCharts()
+    {
+        paneArea.getChildren().add(pieChart);
         paneArea1.getChildren().add(barChart);
-
     }
 
     @FXML
@@ -211,7 +227,7 @@ public class AttendanceController implements Initializable {
             Stage stage = new Stage();
             
             DescriptionViewController controller = fxmlLoader.getController();
-            controller.setStudent(loggedStudent, attendanceTable.getItems());
+            controller.setStudent(loggedStudent, attendanceTable.getItems(), updateStatisticsThread());
             
             stage.setScene(scene);
             stage.show();
@@ -224,7 +240,35 @@ public class AttendanceController implements Initializable {
         appModel.toBeAttending(loggedStudent, date);
         loggedStudent.setDays(appModel.getStudentDays(loggedStudent));
         attendanceTable.setItems(loggedStudent.getDays());
+        updateStatisticsThread().start();
     }
 
+    //This runs when updating or creating new dates
+    public Thread updateStatisticsThread()
+    {
+        Thread testThread = new Thread(()->{
+        
+            Platform.runLater(() -> {
+            paneArea.getChildren().clear();
+            paneArea1.getChildren().clear();
+        });
 
+        loadStatistics(loggedStudent);
+        
+        Platform.runLater(() -> {
+            setCharts();
+            
+            if(students != null)
+        {   
+            int placement = students.getItems().indexOf(loggedStudent);
+            students.getItems().remove(loggedStudent);
+            students.getItems().add(placement, loggedStudent);
+            students.refresh();
+        }
+        });
+        });
+        return testThread;
+    }
+    
+    
 }

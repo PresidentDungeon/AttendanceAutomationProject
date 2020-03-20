@@ -30,6 +30,7 @@ public class DescriptionViewController implements Initializable {
     AppModel appModel = new AppModel(); 
     Student activeStudent;
     ObservableList<Date> dates;
+    Thread thread;
     
     
     @FXML
@@ -57,7 +58,7 @@ public class DescriptionViewController implements Initializable {
         dates.clear();
         dates.addAll(activeStudent.getDays());
         
-        
+        thread.start();
         
         Stage stage = (Stage) saveButton.getScene().getWindow();
         stage.close();
@@ -70,10 +71,11 @@ public class DescriptionViewController implements Initializable {
         stage.close();
 }
     
-    public void setStudent(Student student, ObservableList<Date> dates) {
+    public void setStudent(Student student, ObservableList<Date> dates, Thread thread) {
 
         activeStudent = student;
         this.dates = dates;
+        this.thread = thread;
     }
     
 }

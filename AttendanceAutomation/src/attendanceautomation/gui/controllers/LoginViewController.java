@@ -88,7 +88,7 @@ public class LoginViewController implements Initializable {
                 fxmlLoader.setLocation(AppModel.class.getResource("views/AttendanceView.fxml"));
                 scene = new Scene(fxmlLoader.load());
                 AttendanceController controller = fxmlLoader.getController();
-                controller.setStudent((Student) personToValidate);
+                controller.setStudent((Student) personToValidate, null);
             } else if (personToValidate.getRole().equals(Roles.TEACHER)) {
                 fxmlLoader.setLocation(AppModel.class.getResource("views/AttendanceViewTeacher.fxml"));
                 scene = new Scene(fxmlLoader.load());
