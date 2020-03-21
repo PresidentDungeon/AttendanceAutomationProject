@@ -82,7 +82,7 @@
          </effect>
       </ImageView>
       <HBox fx:id="paneArea" layoutX="655.0" layoutY="185.0" prefHeight="259.0" prefWidth="497.0" stylesheets="@../styles/ChartPie.css" />
-      <JFXButton layoutX="152.0" layoutY="721.0" onAction="#toBeAttending" prefHeight="42.0" prefWidth="104.0" stylesheets="@../styles/buttonCss.css" text="Attend" textFill="WHITE">
+      <JFXButton fx:id="attendButton" layoutX="152.0" layoutY="721.0" onAction="#toBeAttending" prefHeight="42.0" prefWidth="104.0" stylesheets="@../styles/buttonCss.css" text="Attend" textFill="WHITE">
          <font>
             <Font size="19.0" />
          </font>
@@ -98,7 +98,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <ImageView fitHeight="42.0" fitWidth="45.0" layoutX="271.0" layoutY="721.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageMarker" fitHeight="42.0" fitWidth="45.0" layoutX="271.0" layoutY="721.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/correct.png" />
          </image>

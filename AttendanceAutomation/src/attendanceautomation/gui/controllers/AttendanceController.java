@@ -11,6 +11,7 @@ import attendanceautomation.gui.AppModel;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -35,6 +36,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -51,6 +54,8 @@ public class AttendanceController implements Initializable {
     TableView<Student> students;
     private PieChart pieChart; 
     private BarChart <String,Number> barChart;
+    private Image attend = new Image("attendanceautomation/gui/images/correct.png");
+    private Image absence = new Image("attendanceautomation/gui/images/quit.png");
 
     @FXML
     private ComboBox<?> comboSort;
@@ -88,6 +93,10 @@ public class AttendanceController implements Initializable {
     private Label percentageLabel1;
     @FXML
     private MenuItem handleLogOut;
+    @FXML
+    private ImageView imageMarker;
+    @FXML
+    private JFXButton attendButton;
 
 
     
@@ -114,6 +123,7 @@ public class AttendanceController implements Initializable {
         });
 
         descColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+
     }
 
     public void setStudent(Student student, TableView<Student> students) {
@@ -125,6 +135,7 @@ public class AttendanceController implements Initializable {
         this.students = students;
         loadStatistics(student);
         setCharts();
+                decideMarker();
     }
 
    public void loadStatistics(Student student) {
@@ -251,6 +262,10 @@ public class AttendanceController implements Initializable {
             Platform.runLater(() -> {
             paneArea.getChildren().clear();
             paneArea1.getChildren().clear();
+            
+            if (attendanceTable.getItems().get(attendanceTable.getItems().size() - 1).isAttendance())
+            {imageMarker.setImage(attend);}else{imageMarker.setImage(absence);}
+
         });
 
         loadStatistics(loggedStudent);
@@ -270,5 +285,21 @@ public class AttendanceController implements Initializable {
         return testThread;
     }
     
+    public void decideMarker()
+    {
+        if (LocalDate.now().getDayOfWeek() != DayOfWeek.SATURDAY && LocalDate.now().getDayOfWeek() != DayOfWeek.SUNDAY)
+        {
+            if (!attendanceTable.getItems().get(attendanceTable.getItems().size() - 1).isAttendance() || 
+                    !attendanceTable.getItems().get(attendanceTable.getItems().size() - 1).getDate().toString().equalsIgnoreCase(LocalDate.now().toString()))
+            {
+                imageMarker.setImage(absence);
+            }
+        }
+        else
+        {
+            absentButton.setDisable(true);
+            attendButton.setDisable(true);
+        }
+    }
     
 }
