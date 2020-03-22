@@ -90,7 +90,18 @@ public class AttendanceViewTeacherController implements Initializable {
                     absent++;
                 }
             }
+            
             return new SimpleStringProperty(String.format("%.2f", (absent / (present + absent) * 100)) + "%");
+        });
+
+        absentColumn.setComparator((absent1, absent2)->{
+
+            absent1 = absent1.replace(",", ".");
+            absent2 = absent2.replace(",", ".");
+
+            double absentPercentage1 = Double.valueOf(absent1.substring(0, absent1.length()-1));
+            double absentPercentage2 = Double.valueOf(absent2.substring(0, absent2.length()-1));
+            return Double.compare(absentPercentage1, absentPercentage2);  
         });
 
         studentTable.setItems(students);
