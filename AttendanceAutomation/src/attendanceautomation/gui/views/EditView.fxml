@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="358.0" prefWidth="586.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendanceautomation.gui.controllers.EditViewController">
+   <children>
+      <JFXTextField fx:id="absenceText" focusColor="#f7d050" layoutX="49.0" layoutY="114.0" prefHeight="42.0" prefWidth="488.0">
+         <font>
+            <Font size="19.0" />
+         </font></JFXTextField>
+      <Label layoutX="195.0" layoutY="25.0" text="Description of absence:">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="saveButton" layoutX="444.0" layoutY="273.0" onMouseClicked="#handleSaveButton" prefHeight="42.0" prefWidth="91.0" stylesheets="@../styles/buttonCss.css" text="Save" textFill="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="cancelButton" layoutX="330.0" layoutY="273.0" onMouseClicked="#handleCloseButton" prefHeight="42.0" prefWidth="91.0" stylesheets="@../styles/buttonCss.css" text="Cancel" textFill="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXRadioButton fx:id="attend" layoutX="214.0" layoutY="208.0" onAction="#doAttendance" text="Attend" />
+      <JFXRadioButton fx:id="absence" layoutX="300.0" layoutY="208.0" onAction="#doAbsence" text="Absence" />
+   </children>
+</AnchorPane>

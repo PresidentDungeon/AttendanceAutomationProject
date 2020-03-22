@@ -97,6 +97,8 @@ public class AttendanceController implements Initializable {
     private ImageView imageMarker;
     @FXML
     private JFXButton attendButton;
+    @FXML
+    private JFXButton editButton;
 
 
     
@@ -123,7 +125,7 @@ public class AttendanceController implements Initializable {
         });
 
         descColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-
+        
     }
 
     public void setStudent(Student student, TableView<Student> students) {
@@ -135,7 +137,12 @@ public class AttendanceController implements Initializable {
         this.students = students;
         loadStatistics(student);
         setCharts();
-                decideMarker();
+        decideMarker();
+        
+        if(students != null)
+        {
+            editButton.setVisible(true);
+        }
     }
 
    public void loadStatistics(Student student) {
@@ -232,16 +239,16 @@ public class AttendanceController implements Initializable {
 
     @FXML
     private void openDescriptionView(MouseEvent event) throws IOException {
-    FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(AppModel.class.getResource("views/DescriptionView.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
-            Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(AppModel.class.getResource("views/DescriptionView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
             
-            DescriptionViewController controller = fxmlLoader.getController();
-            controller.setStudent(loggedStudent, attendanceTable.getItems(), updateStatisticsThread());
+        DescriptionViewController controller = fxmlLoader.getController();
+        controller.setStudent(loggedStudent, attendanceTable.getItems(), updateStatisticsThread());
             
-            stage.setScene(scene);
-            stage.show();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -263,8 +270,7 @@ public class AttendanceController implements Initializable {
             paneArea.getChildren().clear();
             paneArea1.getChildren().clear();
             
-            if (attendanceTable.getItems().get(attendanceTable.getItems().size() - 1).isAttendance())
-            {imageMarker.setImage(attend);}else{imageMarker.setImage(absence);}
+            decideMarker();
 
         });
 
@@ -294,12 +300,32 @@ public class AttendanceController implements Initializable {
             {
                 imageMarker.setImage(absence);
             }
+            else
+            {
+            imageMarker.setImage(attend);
+            }
         }
+        
         else
         {
             absentButton.setDisable(true);
             attendButton.setDisable(true);
         }
+
+    }
+
+    @FXML
+    private void edit(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(AppModel.class.getResource("views/EditView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+            
+        EditViewController controller = fxmlLoader.getController();
+        controller.setStudent(loggedStudent, attendanceTable, updateStatisticsThread());
+            
+        stage.setScene(scene);
+        stage.show();
     }
     
 }

@@ -49,4 +49,9 @@ public class AppModel {
     {
         return studentManager.getStudentDays(student);
     }
+    
+    public void updateAttendance(Date date)
+    {
+        studentManager.updateAttendance(date);
+    }
 }

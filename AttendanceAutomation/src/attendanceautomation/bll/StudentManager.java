@@ -67,4 +67,8 @@ public class StudentManager {
         return dalFacade.getStudentDays(student);
     }
 
+     public void updateAttendance(Date date)
+     {
+         dalFacade.updateAttendance(date);
+     }
 }

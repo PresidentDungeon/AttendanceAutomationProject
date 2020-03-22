@@ -80,8 +80,14 @@ public class DalFacade implements IDalFacade {
         }
     }
 
+    @Override
     public ObservableList<Date> getStudentDays(Student student) {
         return studentManager.getStudentDays(student.getId());
     }
     
+    @Override
+    public void updateAttendance(Date date)
+    {
+        studentManager.updateAbsence(date);
+    }
 }
