@@ -16,7 +16,16 @@ import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.prefs.Preferences;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -44,63 +53,80 @@ public class LoginViewController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+
         preferences = Preferences.userRoot().node("AttendanceAutomation");
-        if (preferences != null)
-        {
+        if (preferences != null) {
             usernameField.setText(preferences.get("username", null));
             passwordField.setText(preferences.get("password", null));
             rememberMe.setSelected(preferences.getBoolean("rememberActivated", false));
         }
-        
-        
+
     }
 
     @FXML
-    private void login(MouseEvent event) throws IOException, InterruptedException {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
+    private void login(MouseEvent event) throws IOException, InterruptedException, ExecutionException {
+        loadPerson().start();
+    }
 
-        Person personToValidate = appModel.validateUser(username, password);
+    private Thread loadPerson() throws InterruptedException, ExecutionException, IOException {
 
-        if (personToValidate == null) {
-            // some kind of error message should show here?
+        Thread loginThread = new Thread(() -> {
 
-        } else {
+            String username = usernameField.getText();
+            String password = passwordField.getText();
 
-            if (rememberMe.isSelected())
-            {
-                preferences.put("username", usernameField.getText());
-                preferences.put("password", passwordField.getText());
-                preferences.putBoolean("rememberActivated", true);
+            Person personToValidate = appModel.validateUser(username, password);
+
+            if (personToValidate == null) {
+                // some kind of error message should show here?
+
+            } else {
+
+                if (rememberMe.isSelected()) {
+                    preferences.put("username", usernameField.getText());
+                    preferences.put("password", passwordField.getText());
+                    preferences.putBoolean("rememberActivated", true);
+                } else {
+                    preferences.put("username", "");
+                    preferences.put("password", "");
+                    preferences.putBoolean("rememberActivated", false);
+                }
+
+                Platform.runLater(() -> {
+
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    Scene scene = null;
+
+                    if (personToValidate.getRole().equals(Roles.STUDENT)) {
+                        fxmlLoader.setLocation(AppModel.class.getResource("views/AttendanceView.fxml"));
+                        try {
+                            scene = new Scene(fxmlLoader.load());
+                        } catch (IOException ex) {
+                            System.out.println("error");
+                        }
+                        AttendanceController controller = fxmlLoader.getController();
+                        controller.setStudent((Student) personToValidate, null);
+                    } else if (personToValidate.getRole().equals(Roles.TEACHER)) {
+                        fxmlLoader.setLocation(AppModel.class.getResource("views/AttendanceViewTeacher.fxml"));
+                        try {
+                            scene = new Scene(fxmlLoader.load());
+                        } catch (IOException ex) {
+                            System.out.println("error");
+                        }
+                        AttendanceViewTeacherController controller = fxmlLoader.getController();
+                        controller.setTeacher((Teacher) personToValidate);
+
+                    }
+                    Stage appStage = (Stage) (rememberMe.getScene().getWindow());
+                    appStage.setScene(scene);
+                    appStage.show();
+                });
+
             }
-            else
-            {
-                preferences.put("username", "");
-                preferences.put("password", "");
-                preferences.putBoolean("rememberActivated", false);
-            }
 
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            Scene scene = null;
+        });
 
-            if (personToValidate.getRole().equals(Roles.STUDENT)) {
-                fxmlLoader.setLocation(AppModel.class.getResource("views/AttendanceView.fxml"));
-                scene = new Scene(fxmlLoader.load());
-                AttendanceController controller = fxmlLoader.getController();
-                controller.setStudent((Student) personToValidate, null);
-            } else if (personToValidate.getRole().equals(Roles.TEACHER)) {
-                fxmlLoader.setLocation(AppModel.class.getResource("views/AttendanceViewTeacher.fxml"));
-                scene = new Scene(fxmlLoader.load());
-                AttendanceViewTeacherController controller = fxmlLoader.getController();
-                controller.setTeacher((Teacher) personToValidate);
-            }
-
-            Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            appStage.setScene(scene);
-            appStage.show();
-
-        }
+        return loginThread;
     }
 
 }
