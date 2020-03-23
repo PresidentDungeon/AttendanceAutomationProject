@@ -52,8 +52,8 @@ public class AttendanceController implements Initializable {
     AppModel appModel = new AppModel();
     Student loggedStudent;
     TableView<Student> students;
-    private PieChart pieChart; 
-    private BarChart <String,Number> barChart;
+    private PieChart pieChart;
+    private BarChart<String, Number> barChart;
     private Image attend = new Image("attendanceautomation/gui/images/correct.png");
     private Image absence = new Image("attendanceautomation/gui/images/quit.png");
 
@@ -100,8 +100,6 @@ public class AttendanceController implements Initializable {
     @FXML
     private JFXButton editButton;
 
-
-    
     /**
      * Initializes the controller class.
      */
@@ -125,7 +123,7 @@ public class AttendanceController implements Initializable {
         });
 
         descColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-        
+
     }
 
     public void setStudent(Student student, TableView<Student> students) {
@@ -138,17 +136,16 @@ public class AttendanceController implements Initializable {
         loadStatistics(student);
         setCharts();
         decideMarker();
-        
-        if(students != null)
-        {
+
+        if (students != null) {
             editButton.setVisible(true);
         }
     }
 
-   public void loadStatistics(Student student) {
+    public void loadStatistics(Student student) {
         double present = 0;
         double absent = 0;
-        
+
         int[] absentDay = {0, 0, 0, 0, 0};
 
         for (Date d : student.getDays()) {
@@ -178,41 +175,36 @@ public class AttendanceController implements Initializable {
         pieChart.setStartAngle(180);
 
         //sets the absent and present amount labels
-        
-       String lectureLabelText = "Lectures Taken: " + present + "/" + (present + absent);
-       String absentLabelText = "Classes Absent: " + absent + "/" + (present + absent);
-       String percentageLabelText = "Absent Percentage: " + absentPercentage + "%";
+        String lectureLabelText = "Lectures Taken: " + present + "/" + (present + absent);
+        String absentLabelText = "Classes Absent: " + absent + "/" + (present + absent);
+        String percentageLabelText = "Absent Percentage: " + absentPercentage + "%";
 
-        
         //Creates the barchart
-        
         final CategoryAxis xAxis = new CategoryAxis();
         final NumberAxis yAxis = new NumberAxis();
         xAxis.setLabel("Day of week");
-        
-        barChart = new BarChart<String,Number>(xAxis,yAxis);
+
+        barChart = new BarChart<String, Number>(xAxis, yAxis);
         XYChart.Series series = new XYChart.Series();
-        
+
         //Populates the data
-        
-        series.getData().add(new XYChart.Data("Monday",absentDay[0]));
-        series.getData().add(new XYChart.Data("Tuesday",absentDay[1]));
-        series.getData().add(new XYChart.Data("Wednesday",absentDay[2]));
-        series.getData().add(new XYChart.Data("Thursday",absentDay[3]));
-        series.getData().add(new XYChart.Data("Friday",absentDay[4]));
-        
+        series.getData().add(new XYChart.Data("Monday", absentDay[0]));
+        series.getData().add(new XYChart.Data("Tuesday", absentDay[1]));
+        series.getData().add(new XYChart.Data("Wednesday", absentDay[2]));
+        series.getData().add(new XYChart.Data("Thursday", absentDay[3]));
+        series.getData().add(new XYChart.Data("Friday", absentDay[4]));
+
         barChart.getData().add(series);
         barChart.setTitle("Daily Absence");
-        
-        Platform.runLater(()->{
-        lectureLabel.setText(lectureLabelText);
-        absentLabel.setText(absentLabelText);
-        percentageLabel.setText(percentageLabelText);
+
+        Platform.runLater(() -> {
+            lectureLabel.setText(lectureLabelText);
+            absentLabel.setText(absentLabelText);
+            percentageLabel.setText(percentageLabelText);
         });
     }
-   
-    public void setCharts()
-    {
+
+    public void setCharts() {
         paneArea.getChildren().add(pieChart);
         paneArea1.getChildren().add(barChart);
     }
@@ -222,20 +214,16 @@ public class AttendanceController implements Initializable {
 
     }
 
-
-        @FXML
+    @FXML
     private void handleLogOut(ActionEvent event) throws Exception {
 
-        
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(AppModel.class.getResource("views/LoginView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage appStage = (Stage) menubar.getScene().getWindow();
-        appStage.setScene(scene);   
-        
+        appStage.setScene(scene);
 
     }
-    
 
     @FXML
     private void openDescriptionView(MouseEvent event) throws IOException {
@@ -243,17 +231,17 @@ public class AttendanceController implements Initializable {
         fxmlLoader.setLocation(AppModel.class.getResource("views/DescriptionView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
-            
+
         DescriptionViewController controller = fxmlLoader.getController();
         controller.setStudent(loggedStudent, attendanceTable.getItems(), updateStatisticsThread());
-            
+
         stage.setScene(scene);
         stage.show();
     }
 
     @FXML
     private void toBeAttending(ActionEvent event) {
-        
+
         Date date = new Date(LocalDate.now(), true, "");
         appModel.toBeAttending(loggedStudent, date);
         loggedStudent.setDays(appModel.getStudentDays(loggedStudent));
@@ -262,52 +250,44 @@ public class AttendanceController implements Initializable {
     }
 
     //This runs when updating or creating new dates
-    public Thread updateStatisticsThread()
-    {
-        Thread testThread = new Thread(()->{
-        
+    public Thread updateStatisticsThread() {
+        Thread testThread = new Thread(() -> {
+
             Platform.runLater(() -> {
-            paneArea.getChildren().clear();
-            paneArea1.getChildren().clear();
-            
-            decideMarker();
+                paneArea.getChildren().clear();
+                paneArea1.getChildren().clear();
 
-        });
+                decideMarker();
 
-        loadStatistics(loggedStudent);
-        
-        Platform.runLater(() -> {
-            setCharts();
-            
-            if(students != null)
-        {   
-            int placement = students.getItems().indexOf(loggedStudent);
-            students.getItems().remove(loggedStudent);
-            students.getItems().add(placement, loggedStudent);
-            students.refresh();
-        }
-        });
+            });
+
+            loadStatistics(loggedStudent);
+
+            Platform.runLater(() -> {
+                setCharts();
+
+                if (students != null) {
+                    int placement = students.getItems().indexOf(loggedStudent);
+                    students.getItems().remove(loggedStudent);
+                    students.getItems().add(placement, loggedStudent);
+                    students.refresh();
+                }
+            });
         });
         return testThread;
     }
-    
-    public void decideMarker()
-    {
-        if (LocalDate.now().getDayOfWeek() != DayOfWeek.SATURDAY && LocalDate.now().getDayOfWeek() != DayOfWeek.SUNDAY)
-        {
-            if (!attendanceTable.getItems().get(attendanceTable.getItems().size() - 1).isAttendance() || 
-                    !attendanceTable.getItems().get(attendanceTable.getItems().size() - 1).getDate().toString().equalsIgnoreCase(LocalDate.now().toString()))
-            {
+
+    public void decideMarker() {
+        if (LocalDate.now().getDayOfWeek() != DayOfWeek.SATURDAY && LocalDate.now().getDayOfWeek() != DayOfWeek.SUNDAY) {
+            if (attendanceTable.getItems().size() == 0) {
                 imageMarker.setImage(absence);
+            } else if (!attendanceTable.getItems().get(attendanceTable.getItems().size() - 1).isAttendance()
+                    || !attendanceTable.getItems().get(attendanceTable.getItems().size() - 1).getDate().toString().equalsIgnoreCase(LocalDate.now().toString())) {
+                imageMarker.setImage(absence);
+            } else {
+                imageMarker.setImage(attend);
             }
-            else
-            {
-            imageMarker.setImage(attend);
-            }
-        }
-        
-        else
-        {
+        } else {
             absentButton.setDisable(true);
             attendButton.setDisable(true);
         }
@@ -320,12 +300,12 @@ public class AttendanceController implements Initializable {
         fxmlLoader.setLocation(AppModel.class.getResource("views/EditView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
-            
+
         EditViewController controller = fxmlLoader.getController();
         controller.setStudent(loggedStudent, attendanceTable, updateStatisticsThread());
-            
+
         stage.setScene(scene);
         stage.show();
     }
-    
+
 }
