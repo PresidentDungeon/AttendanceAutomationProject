@@ -32,6 +32,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -53,6 +54,8 @@ public class LoginViewController implements Initializable {
     private JFXCheckBox rememberMe;
     @FXML
     private JFXProgressBar progressBar;
+    @FXML
+    private Label errorMsg;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -78,11 +81,13 @@ public class LoginViewController implements Initializable {
             String username = usernameField.getText();
             String password = passwordField.getText();
             progressBar.setVisible(true);
+            errorMsg.setVisible(false);
 
             Person personToValidate = appModel.validateUser(username, password);
 
             if (personToValidate == null) {
                 progressBar.setVisible(false);
+                errorMsg.setVisible(true);
 
             } else {
 
