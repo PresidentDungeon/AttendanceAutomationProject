@@ -39,3 +39,7 @@ and open the template in the editor.
 {
         -fx-font-family: 'Oswald', sans-serif;
 }
+
+.jfx-progress-bar > .bar {
+    -fx-background-color: orange;
+}
