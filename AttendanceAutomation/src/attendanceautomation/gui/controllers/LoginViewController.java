@@ -12,6 +12,7 @@ import attendanceautomation.be.Teacher;
 import attendanceautomation.gui.AppModel;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
@@ -50,6 +51,8 @@ public class LoginViewController implements Initializable {
     private JFXPasswordField passwordField;
     @FXML
     private JFXCheckBox rememberMe;
+    @FXML
+    private JFXProgressBar progressBar;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -74,11 +77,12 @@ public class LoginViewController implements Initializable {
 
             String username = usernameField.getText();
             String password = passwordField.getText();
+            progressBar.setVisible(true);
 
             Person personToValidate = appModel.validateUser(username, password);
 
             if (personToValidate == null) {
-                // some kind of error message should show here?
+                progressBar.setVisible(false);
 
             } else {
 
