@@ -10,6 +10,7 @@ import attendanceautomation.be.Roles;
 import attendanceautomation.be.Student;
 import attendanceautomation.be.Teacher;
 import attendanceautomation.gui.AppModel;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXProgressBar;
@@ -17,20 +18,12 @@ import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -56,6 +49,8 @@ public class LoginViewController implements Initializable {
     private JFXProgressBar progressBar;
     @FXML
     private Label errorMsg;
+    @FXML
+    private JFXButton loginButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -72,6 +67,8 @@ public class LoginViewController implements Initializable {
     @FXML
     private void login(MouseEvent event) throws IOException, InterruptedException, ExecutionException {
         loadPerson().start();
+        rememberMe.requestFocus();
+        
     }
 
     private Thread loadPerson() throws InterruptedException, ExecutionException, IOException {
@@ -80,14 +77,17 @@ public class LoginViewController implements Initializable {
 
             String username = usernameField.getText();
             String password = passwordField.getText();
+            loginButton.setDisable(true);
             progressBar.setVisible(true);
             errorMsg.setVisible(false);
+            
 
             Person personToValidate = appModel.validateUser(username, password);
 
             if (personToValidate == null) {
                 progressBar.setVisible(false);
                 errorMsg.setVisible(true);
+                loginButton.setDisable(false);
 
             } else {
 
