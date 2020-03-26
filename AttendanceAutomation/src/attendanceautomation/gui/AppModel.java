@@ -33,12 +33,8 @@ public class AppModel {
         return personManager.validateUser(username, password);
     }
 
-    public List<Student> searchStudent(Teacher teacher, String studentName, Classroom classRoom) {
-        return studentManager.searchStudent(teacher, studentName, classRoom);
-    }
-
-    public ObservableList<Student> searchStudent2(Teacher teacher, String studentName, Classroom classRoom, ObservableList<Student> studentList) {
-        return studentManager.searchStudent2(teacher, studentName, classRoom, studentList);
+    public ObservableList<Student> searchStudent(Teacher teacher, String studentName, Classroom classRoom, ObservableList<Student> studentList) {
+        return studentManager.searchStudent(teacher, studentName, classRoom, studentList);
     }
 
     public void toBeAttending(Student student, Date date) {

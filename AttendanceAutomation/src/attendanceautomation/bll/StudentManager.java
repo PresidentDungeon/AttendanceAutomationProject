@@ -26,11 +26,7 @@ public class StudentManager {
         dalFacade = new DalFacade();
     }
 
-    public List<Student> searchStudent(Teacher teacher, String studentName, Classroom classRoom) {
-        return dalFacade.searchStudent(teacher, studentName, classRoom);
-    }
-
-    public ObservableList<Student> searchStudent2(Teacher teacher, String studentName, Classroom classRoom, ObservableList<Student> studentList) {
+    public ObservableList<Student> searchStudent(Teacher teacher, String studentName, Classroom classRoom, ObservableList<Student> studentList) {
         
         ObservableList<Student> searchStudentList = FXCollections.observableArrayList();
 
