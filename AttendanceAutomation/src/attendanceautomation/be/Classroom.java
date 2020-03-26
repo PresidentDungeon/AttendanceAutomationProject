@@ -50,7 +50,15 @@ public class Classroom {
     public void setId(int id) {
         this.id = id;
     }
-    
-    
-    
+
+    @Override
+    public boolean equals(Object obj) {
+        
+        Classroom classroom = (Classroom) obj;
+
+        if (classroom.getId() == this.getId()) {
+            return true;
+        }
+        return false;
+    }   
 }

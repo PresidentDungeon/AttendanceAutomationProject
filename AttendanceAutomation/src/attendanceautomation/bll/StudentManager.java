@@ -45,6 +45,7 @@ public class StudentManager {
                     for (Classroom c : student.getClassRoom()) {
                         if (c.getId() == classRoom.getId()) {
                             searchStudentList.add(student);
+                            break;
                         }
                     }
                 }
