@@ -7,7 +7,6 @@ package attendanceautomation.utilities;
 
 import attendanceautomation.be.Date;
 import attendanceautomation.be.Student;
-import java.text.DecimalFormat;
 import java.time.LocalDate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

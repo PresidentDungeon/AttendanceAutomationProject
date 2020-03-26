@@ -137,7 +137,7 @@ public class AttendanceViewTeacherController implements Initializable {
         if (studentName.equalsIgnoreCase("") && classroom.getId() == 0) {
             studentTable.setItems(students);
         } else {
-            studentTable.setItems(appModel.searchStudent2(teacher, studentName, classroom, students));
+            studentTable.setItems(appModel.searchStudent(teacher, studentName, classroom, students));
         }
     }
 
