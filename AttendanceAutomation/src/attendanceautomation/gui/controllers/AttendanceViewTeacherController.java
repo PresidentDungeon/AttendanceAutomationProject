@@ -43,7 +43,6 @@ import javafx.stage.Stage;
  */
 public class AttendanceViewTeacherController implements Initializable {
 
-    private Teacher loggedTeacher;
     private ObservableList<Student> students = FXCollections.observableArrayList();
     private DecimalFormat df;
 
@@ -103,7 +102,6 @@ public class AttendanceViewTeacherController implements Initializable {
     }
 
     public void setTeacher(Teacher teacher) {
-        loggedTeacher = teacher;
         teacherName.setText(teacher.getName());
         teacherEmail.setText(teacher.getEmail());
         lastAccess.setText(teacher.getLastAccess().toString());
@@ -125,19 +123,19 @@ public class AttendanceViewTeacherController implements Initializable {
 
     @FXML
     private void classroomSearch(ActionEvent event) {
-        search(loggedTeacher, studentSearch.getText(), comboSort.getSelectionModel().getSelectedItem());
+        search(studentSearch.getText(), comboSort.getSelectionModel().getSelectedItem());
     }
 
     @FXML
     private void studentSearch(KeyEvent event) {
-        search(loggedTeacher, studentSearch.getText(), comboSort.getSelectionModel().getSelectedItem());
+        search(studentSearch.getText(), comboSort.getSelectionModel().getSelectedItem());
     }
 
-    public void search(Teacher teacher, String studentName, Classroom classroom) {
+    public void search(String studentName, Classroom classroom) {
         if (studentName.equalsIgnoreCase("") && classroom.getId() == 0) {
             studentTable.setItems(students);
         } else {
-            studentTable.setItems(appModel.searchStudent(teacher, studentName, classroom, students));
+            studentTable.setItems(appModel.searchStudent(studentName, classroom, students));
         }
     }
 

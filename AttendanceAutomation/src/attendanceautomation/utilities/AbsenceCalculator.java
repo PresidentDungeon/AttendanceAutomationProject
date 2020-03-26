@@ -18,24 +18,34 @@ import javafx.collections.ObservableList;
 public class AbsenceCalculator {
 
     public static double calculateAttendance(Student student) {
+
         double present = 0.00;
         double absent = 0.00;
+        if (student.getDays().size() > 0)
 
-        for (Date d : student.getDays()) {
-            if (d.isAttendance()) {
-                present++;
-            } else {
-                absent++;
+        {
+            for (Date d : student.getDays())
+            {
+                if (d.isAttendance())
+                {
+                    present++;
+                } else
+                {
+                    absent++;
+                }
             }
+            return (absent / (present + absent) * 100);
         }
-        return (absent / (present + absent) * 100);
+        return 0.00;
     }
 
     public static int getDaysAbsence(Student student) {
         int absent = 0;
 
-        for (Date d : student.getDays()) {
-            if (!d.isAttendance()) {
+        for (Date d : student.getDays())
+        {
+            if (!d.isAttendance())
+            {
                 absent++;
             }
         }
@@ -45,8 +55,10 @@ public class AbsenceCalculator {
     public static int getDaysPresent(Student student) {
         int present = 0;
 
-        for (Date d : student.getDays()) {
-            if (d.isAttendance()) {
+        for (Date d : student.getDays())
+        {
+            if (d.isAttendance())
+            {
                 present++;
             }
         }
@@ -60,21 +72,10 @@ public class AbsenceCalculator {
         Date date1 = new Date(LocalDate.parse("2020-03-27"), false, "");
         Date date2 = new Date(LocalDate.parse("2020-03-28"), false, "I am sick");
         Date date3 = new Date(LocalDate.parse("2020-03-29"), false, "I am sick");
-        Date date4 = new Date(LocalDate.parse("2020-03-30"), true, "");
-        Date date5 = new Date(LocalDate.parse("2020-03-30"), true, "");
-        Date date6 = new Date(LocalDate.parse("2020-03-30"), true, "");
-        Date date7 = new Date(LocalDate.parse("2020-03-30"), true, "");
-        Date date8 = new Date(LocalDate.parse("2020-03-30"), true, "");
 
         dates.add(date1);
         dates.add(date2);
         dates.add(date3);
-        dates.add(date4);
-        dates.add(date5);
-        dates.add(date6);
-        dates.add(date7);
-        dates.add(date8);
-
         Student student = new Student("Peter", "easv");
         student.setDays(dates);
 
