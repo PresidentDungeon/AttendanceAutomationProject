@@ -76,7 +76,7 @@ public class StudentDBDAO {
         ObservableList<Date> days = FXCollections.observableArrayList();
 
         try (Connection con = dbs.getConnection()) {
-            String sql = "SELECT * FROM Attending WHERE Attending.persID = ?;";
+            String sql = "SELECT * FROM Attending WHERE Attending.persID = ? ORDER BY date ASC;";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, studentID);
             ResultSet rs = stmt.executeQuery();

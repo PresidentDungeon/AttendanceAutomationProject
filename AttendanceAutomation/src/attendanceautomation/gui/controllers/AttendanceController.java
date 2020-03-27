@@ -123,7 +123,7 @@ public class AttendanceController implements Initializable {
         });
 
         descColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-
+        
     }
 
     public void setStudent(Student student, TableView<Student> students) {
