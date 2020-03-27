@@ -8,9 +8,12 @@ package attendanceautomation.gui.controllers;
 import attendanceautomation.be.Date;
 import attendanceautomation.be.Student;
 import attendanceautomation.gui.AppModel;
+import attendanceautomation.utilities.AbsenceCalculator;
+import attendanceautomation.utilities.DateIndexer;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -56,6 +59,7 @@ public class AttendanceController implements Initializable {
     private BarChart<String, Number> barChart;
     private Image attend = new Image("attendanceautomation/gui/images/correct.png");
     private Image absence = new Image("attendanceautomation/gui/images/quit.png");
+    private DecimalFormat df;
 
     @FXML
     private ComboBox<?> comboSort;
@@ -106,6 +110,8 @@ public class AttendanceController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        df = new DecimalFormat("#.00");
+        
         dateColumn.setCellValueFactory((data) -> {
 
             Date date = data.getValue();
@@ -123,7 +129,7 @@ public class AttendanceController implements Initializable {
         });
 
         descColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-        
+
     }
 
     public void setStudent(Student student, TableView<Student> students) {
@@ -143,28 +149,19 @@ public class AttendanceController implements Initializable {
     }
 
     public void loadStatistics(Student student) {
-        double present = 0;
-        double absent = 0;
+        
+        double absencePercentage = AbsenceCalculator.calculateAttendance(student);
+        int absenceDays = AbsenceCalculator.getDaysAbsence(student);
+        int presenceDays = AbsenceCalculator.getDaysPresent(student);
+        int[] absentDay = DateIndexer.indexAbsenceDays(student);
 
-        int[] absentDay = {0, 0, 0, 0, 0};
-
-        for (Date d : student.getDays()) {
-            if (d.isAttendance()) {
-                present++;
-            } else {
-                absent++;
-                absentDay[d.getDate().getDayOfWeek().getValue() - 1] = absentDay[d.getDate().getDayOfWeek().getValue() - 1] += 1;
-
-            }
-
-        }
-        String absentPercentage = String.format("%.2f", (absent / (present + absent) * 100));
+        String absentPercentage = df.format(absencePercentage) + "%";
 
         //Creates the piechart
         ObservableList<PieChart.Data> pieChartData
                 = FXCollections.observableArrayList(
-                        new PieChart.Data("Present", present),
-                        new PieChart.Data("Absent", absent)
+                        new PieChart.Data("Present", presenceDays),
+                        new PieChart.Data("Absent", absenceDays)
                 );
 
         pieChart = new PieChart(pieChartData);
@@ -175,9 +172,9 @@ public class AttendanceController implements Initializable {
         pieChart.setStartAngle(180);
 
         //sets the absent and present amount labels
-        String lectureLabelText = "Lectures Taken: " + present + "/" + (present + absent);
-        String absentLabelText = "Classes Absent: " + absent + "/" + (present + absent);
-        String percentageLabelText = "Absent Percentage: " + absentPercentage + "%";
+        String lectureLabelText = "Lectures Taken: " + presenceDays + "/" + (presenceDays + absenceDays);
+        String absentLabelText = "Classes Absent: " + absenceDays + "/" + (presenceDays + absenceDays);
+        String percentageLabelText = "Absent Percentage: " + absentPercentage;
 
         //Creates the barchart
         final CategoryAxis xAxis = new CategoryAxis();
@@ -202,6 +199,7 @@ public class AttendanceController implements Initializable {
             absentLabel.setText(absentLabelText);
             percentageLabel.setText(percentageLabelText);
         });
+        
     }
 
     public void setCharts() {
