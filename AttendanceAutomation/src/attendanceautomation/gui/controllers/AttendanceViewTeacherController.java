@@ -35,6 +35,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  * FXML Controller class
@@ -108,8 +109,7 @@ public class AttendanceViewTeacherController implements Initializable {
         comboSort.setItems(teacher.getClassrooms());
         comboSort.getItems().add(0, new Classroom("All classrooms"));
         comboSort.getSelectionModel().select(0);
-        setStudents(teacher);
-
+        setStudents(teacher);      
     }
 
     public void setStudents(Teacher teacher) {

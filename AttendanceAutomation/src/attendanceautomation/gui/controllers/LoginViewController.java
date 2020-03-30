@@ -28,6 +28,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  *
@@ -68,7 +69,7 @@ public class LoginViewController implements Initializable {
     private void login(MouseEvent event) throws IOException, InterruptedException, ExecutionException {
         loadPerson().start();
         rememberMe.requestFocus();
-        
+
     }
 
     private Thread loadPerson() throws InterruptedException, ExecutionException, IOException {
@@ -80,7 +81,6 @@ public class LoginViewController implements Initializable {
             loginButton.setDisable(true);
             progressBar.setVisible(true);
             errorMsg.setVisible(false);
-            
 
             Person personToValidate = appModel.validateUser(username, password);
 
@@ -129,6 +129,19 @@ public class LoginViewController implements Initializable {
                     Stage appStage = (Stage) (rememberMe.getScene().getWindow());
                     appStage.setScene(scene);
                     appStage.show();
+                    
+//                    
+//                    Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+//                    
+//                        System.out.println("Eyy");
+//                    }));
+
+                    
+//                    appStage.setOnCloseRequest((WindowEvent event1) -> {
+//
+//                        System.out.println("eyy");
+//                    });
+
                 });
 
             }

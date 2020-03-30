@@ -26,7 +26,7 @@ import java.sql.Statement;
  *
  * @author ander
  */
-public class StudentDBDAO {
+public class StudentDBDAO implements IStudentDBDAO{
 
     private DBSettings dbs;
 
@@ -38,6 +38,7 @@ public class StudentDBDAO {
         }
     }
 
+    @Override
     public Student getStudentById(int id) {
         Student student = null;
 
@@ -72,6 +73,7 @@ public class StudentDBDAO {
         return student;
     }
 
+    @Override
     public ObservableList<Date> getStudentDays(int studentID) {
         ObservableList<Date> days = FXCollections.observableArrayList();
 
@@ -103,6 +105,7 @@ public class StudentDBDAO {
         return days;
     }
 
+    @Override
     public List<Student> getStudentsInClass(Classroom classroom) {
         List<Student> studentsInClass = new ArrayList<>();
 
@@ -131,13 +134,14 @@ public class StudentDBDAO {
         
     }
     
-    public boolean attendance(Student student, Date date) {
+    @Override
+    public boolean attendance(int studentID, Date date) {
         try (Connection con = dbs.getConnection()) {
             
             String sql = "INSERT INTO Attending (persID, isAttending, description, date) VALUES (?,?,?,?)";
             PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             
-            stmt.setInt(1, student.getId());
+            stmt.setInt(1, studentID);
             stmt.setBoolean(2, date.isAttendance());
             stmt.setString(3, date.getDescription());
             stmt.setString(4, date.getDate().toString());
@@ -152,6 +156,7 @@ public class StudentDBDAO {
         }
     }
     
+    @Override
     public boolean updateAbsence(Date date) {
         try (Connection con = dbs.getConnection()) {
             
@@ -172,7 +177,8 @@ public class StudentDBDAO {
         }
     }
     
-    public Date getDate(Student student) {
+    @Override
+    public Date getDate(int studentID) {
         Date date = null;
         
         try (Connection con = dbs.getConnection()) {
@@ -180,7 +186,7 @@ public class StudentDBDAO {
             String sql = "SELECT * FROM Attending WHERE PersID = ? AND date = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             
-            stmt.setInt(1, student.getId());
+            stmt.setInt(1, studentID);
             stmt.setString(2, LocalDate.now().toString());
        
             ResultSet rs = stmt.executeQuery();
@@ -199,42 +205,6 @@ public class StudentDBDAO {
         } catch (SQLException ex) {
             return date;
         }
-    }
-
-    public ObservableList<Student> searchStudent(String studentName, Classroom classroom) {
-        ObservableList<Student> searchedStudents = FXCollections.observableArrayList();
-
-
-        try (Connection con = dbs.getConnection()) {
-            
-            String sql = "SELECT StudentClass.PersID FROM StudentClass JOIN Person on StudentClass.persID = Person.ID WHERE Person.name LIKE ? AND StudentClass.classID = ?;";
-            PreparedStatement stmt = con.prepareStatement(sql);
-
-            stmt.setString(1, "%" + studentName + "%");
-            stmt.setInt(2, classroom.getId());
-            ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                int studentId = rs.getInt("persID");
-                searchedStudents.add(getStudentById(studentId));
-            }
-
-            return searchedStudents;
-
-        } catch (SQLServerException ex) {
-
-        } catch (SQLException ex) {
-
-        }
-        return searchedStudents;
-
-    }
-
-    public static void main(String[] args) {
-        StudentDBDAO d = new StudentDBDAO();
-     
-        Student s = new Student("Peter", "dadad");
-        s.setId(1);
     }
     
 }

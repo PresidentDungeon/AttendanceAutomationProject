@@ -22,7 +22,7 @@ import attendanceautomation.dal.dbaccess.DBSettings;
  *
  * @author ander
  */
-public class TeacherDBDAO {
+public class TeacherDBDAO implements ITeacherDBDAO{
 
     private DBSettings dbs;
 
@@ -34,7 +34,8 @@ public class TeacherDBDAO {
         }
     }
 
-    public Teacher getTeacherById(int id) {
+    @Override
+    public Teacher getTeacherById(int teacherID) {
 
         Teacher teacher = null;
 
@@ -43,7 +44,7 @@ public class TeacherDBDAO {
             String sql = "SELECT * FROM Person WHERE Person.ID = ?;";
             PreparedStatement stmt = con.prepareStatement(sql);
 
-            stmt.setInt(1, id);
+            stmt.setInt(1, teacherID);
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -53,9 +54,9 @@ public class TeacherDBDAO {
                 LocalDate lastView = LocalDate.parse(rs.getString("lastAccess"));
 
                 teacher = new Teacher(name, email);
-                teacher.setId(id);
+                teacher.setId(teacherID);
                 teacher.setLastAccess(lastView);
-                teacher.setClasses(getTeacherClasses(id));
+                teacher.setClasses(getTeacherClasses(teacherID));
 
             }
 
@@ -71,6 +72,7 @@ public class TeacherDBDAO {
 
     }
     
+    @Override
     public ObservableList<Classroom> getTeacherClasses(int teacherID) {
         
         ObservableList<Classroom> classes = FXCollections.observableArrayList();

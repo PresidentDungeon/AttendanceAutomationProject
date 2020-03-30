@@ -67,7 +67,7 @@ public class EditViewController implements Initializable {
             }
 
             appModel.updateAttendance(selectedDate);
-            activeStudent.setDays(appModel.getStudentDays(activeStudent));
+            activeStudent.setDays(appModel.getStudentDays(activeStudent.getId()));
             dates.getItems().clear();
             dates.getItems().addAll(activeStudent.getDays());
             thread.start();

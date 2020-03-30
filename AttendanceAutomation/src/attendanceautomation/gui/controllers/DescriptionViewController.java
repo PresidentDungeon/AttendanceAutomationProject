@@ -53,8 +53,8 @@ public class DescriptionViewController implements Initializable {
         
                 
         Date date = new Date(LocalDate.now(), false, absenceText.getText());
-        appModel.toBeAttending(activeStudent, date);
-        activeStudent.setDays(appModel.getStudentDays(activeStudent));
+        appModel.toBeAttending(activeStudent.getId(), date);
+        activeStudent.setDays(appModel.getStudentDays(activeStudent.getId()));
         dates.clear();
         dates.addAll(activeStudent.getDays());
         

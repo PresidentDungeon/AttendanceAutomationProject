@@ -112,6 +112,8 @@ public class AttendanceController implements Initializable {
 
         df = new DecimalFormat("#.00");
         
+        
+        
         dateColumn.setCellValueFactory((data) -> {
 
             Date date = data.getValue();
@@ -241,8 +243,8 @@ public class AttendanceController implements Initializable {
     private void toBeAttending(ActionEvent event) {
 
         Date date = new Date(LocalDate.now(), true, "");
-        appModel.toBeAttending(loggedStudent, date);
-        loggedStudent.setDays(appModel.getStudentDays(loggedStudent));
+        appModel.toBeAttending(loggedStudent.getId(), date);
+        loggedStudent.setDays(appModel.getStudentDays(loggedStudent.getId()));
         attendanceTable.setItems(loggedStudent.getDays());
         updateStatisticsThread().start();
     }
@@ -306,4 +308,7 @@ public class AttendanceController implements Initializable {
         stage.show();
     }
 
+    
+    
+    
 }

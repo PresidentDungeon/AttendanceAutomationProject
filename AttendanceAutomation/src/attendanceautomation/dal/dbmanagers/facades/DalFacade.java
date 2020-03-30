@@ -11,11 +11,12 @@ import attendanceautomation.be.Person;
 import attendanceautomation.be.Roles;
 import attendanceautomation.be.Student;
 import attendanceautomation.be.Teacher;
+import attendanceautomation.dal.dbmanagers.dbdao.IPersonDBDAO;
+import attendanceautomation.dal.dbmanagers.dbdao.IStudentDBDAO;
+import attendanceautomation.dal.dbmanagers.dbdao.ITeacherDBDAO;
 import attendanceautomation.dal.dbmanagers.dbdao.PersonDBDAO;
 import attendanceautomation.dal.dbmanagers.dbdao.StudentDBDAO;
 import attendanceautomation.dal.dbmanagers.dbdao.TeacherDBDAO;
-import java.util.List;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
@@ -24,9 +25,9 @@ import javafx.collections.ObservableList;
  */
 public class DalFacade implements IDalFacade {
 
-    private PersonDBDAO personManager = new PersonDBDAO();
-    private StudentDBDAO studentManager = new StudentDBDAO();
-    private TeacherDBDAO teacherManager = new TeacherDBDAO();
+    private IPersonDBDAO personManager = new PersonDBDAO();
+    private IStudentDBDAO studentManager = new StudentDBDAO();
+    private ITeacherDBDAO teacherManager = new TeacherDBDAO();
 
     public Person login(String username, String password) {
         int userId;
@@ -53,27 +54,12 @@ public class DalFacade implements IDalFacade {
     }
 
     @Override
-    public List<Student> searchStudent(Teacher teacher, String studentName, Classroom classRoom) {
-
-        ObservableList<Student> searchedStudents = FXCollections.observableArrayList();
-
-        if (classRoom.getId() == 0) {
-            for (Classroom c : teacher.getClassrooms()) {
-                searchedStudents.addAll(studentManager.searchStudent(studentName, c));
-            }
-        } else {
-            searchedStudents = studentManager.searchStudent(studentName, classRoom);
-        }
-        return searchedStudents;
-    }
-
-    @Override
-    public void toBeAttending(Student student, Date date) {
+    public void toBeAttending(int studentID, Date date) {
         
-        Date d = studentManager.getDate(student);
+        Date d = studentManager.getDate(studentID);
         
         if (d == null) {
-            studentManager.attendance(student, date);
+            studentManager.attendance(studentID, date);
         } else {
             date.setId(d.getId());
             studentManager.updateAbsence(date);
@@ -81,8 +67,8 @@ public class DalFacade implements IDalFacade {
     }
 
     @Override
-    public ObservableList<Date> getStudentDays(Student student) {
-        return studentManager.getStudentDays(student.getId());
+    public ObservableList<Date> getStudentDays(int studentID) {
+        return studentManager.getStudentDays(studentID);
     }
     
     @Override

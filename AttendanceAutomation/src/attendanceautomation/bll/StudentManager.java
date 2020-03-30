@@ -54,14 +54,14 @@ public class StudentManager {
         return searchStudentList;
     }
     
-    public void toBeAttending (Student student, Date date)
+    public void toBeAttending (int studentID, Date date)
     {
-        dalFacade.toBeAttending(student, date);
+        dalFacade.toBeAttending(studentID, date);
     }
     
-     public ObservableList<Date> getStudentDays(Student student)
+     public ObservableList<Date> getStudentDays(int studentID)
     {
-        return dalFacade.getStudentDays(student);
+        return dalFacade.getStudentDays(studentID);
     }
 
      public void updateAttendance(Date date)

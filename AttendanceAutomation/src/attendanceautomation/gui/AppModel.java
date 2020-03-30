@@ -37,13 +37,13 @@ public class AppModel {
         return studentManager.searchStudent(studentName, classRoom, studentList);
     }
 
-    public void toBeAttending(Student student, Date date) {
-        studentManager.toBeAttending(student, date);
+    public void toBeAttending(int studentID, Date date) {
+        studentManager.toBeAttending(studentID, date);
     }
     
-    public ObservableList<Date> getStudentDays(Student student)
+    public ObservableList<Date> getStudentDays(int studentID)
     {
-        return studentManager.getStudentDays(student);
+        return studentManager.getStudentDays(studentID);
     }
     
     public void updateAttendance(Date date)

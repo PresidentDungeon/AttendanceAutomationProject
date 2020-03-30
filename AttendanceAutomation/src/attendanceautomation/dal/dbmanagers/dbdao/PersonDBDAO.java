@@ -18,7 +18,7 @@ import attendanceautomation.dal.dbaccess.DBSettings;
  *
  * @author ander
  */
-public class PersonDBDAO {
+public class PersonDBDAO implements IPersonDBDAO{
 
     private DBSettings dbs;
 
@@ -30,9 +30,10 @@ public class PersonDBDAO {
         }
     }
 
+    @Override
     public boolean isLoginCorrect(String userName, String password) {
-
-        try (Connection con = dbs.getConnection()) {
+        
+        try (Connection con = dbs.getConnection()){ 
             String sql = "SELECT * FROM Logins WHERE username = ? AND password = ?;";
             PreparedStatement stmt = con.prepareStatement(sql);
 
@@ -52,11 +53,12 @@ public class PersonDBDAO {
 
     }
 
+    @Override
     public int getPersonId(String userName, String password) {
 
         int id = 0;
-
-        try (Connection con = dbs.getConnection()) {
+        
+        try  (Connection con = dbs.getConnection()){
             String sql = "SELECT * FROM Logins WHERE username = ? AND password = ?;";
             PreparedStatement stmt = con.prepareStatement(sql);
 
@@ -80,6 +82,7 @@ public class PersonDBDAO {
 
     }
 
+    @Override
     public Roles getRoleById(int id) {
 
         try (Connection con = dbs.getConnection()) {
