@@ -82,7 +82,9 @@ public class DBSettings {
     }
 
     public void closeAllConnections() {
-
+      
+        System.out.println("Closing connections... Current size: " + connections.size() + releasedConnections.size());
+        
         try {
 
             for (Connection connection : connections) {
@@ -95,6 +97,8 @@ public class DBSettings {
 
             connections.clear();
             releasedConnections.clear();
+            
+                    System.out.println("Connections closed Current size: " + connections.size() + releasedConnections.size());
 
         } catch (SQLException ex) {
         }
