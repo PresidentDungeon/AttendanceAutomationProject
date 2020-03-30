@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import attendanceautomation.dal.dbaccess.DBSettings;
+import java.time.LocalDate;
 
 /**
  *
@@ -111,6 +112,29 @@ public class PersonDBDAO implements IPersonDBDAO {
         }
         
         return null;
+    }
+
+    @Override
+    public void updateLastLogin(int personID) {
+        
+         Connection con = null;
+        
+        try {
+            con = DBSettings.getInstance().getConnection();
+            String sql = "UPDATE Person SET lastAccess = ? WHERE ID = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            
+            stmt.setString(1, LocalDate.now().toString());
+            stmt.setInt(2, personID);
+            
+            stmt.execute();
+
+        } catch (SQLServerException ex) {
+            
+        } catch (SQLException ex) {
+        } finally {
+            DBSettings.getInstance().releaseConnection(con);
+        }
     }
     
 }

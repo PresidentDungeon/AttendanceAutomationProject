@@ -35,6 +35,7 @@ public class DalFacade implements IDalFacade {
         if (personManager.isLoginCorrect(username, password)) {
             userId = personManager.getPersonId(username, password);
             Roles role = personManager.getRoleById(userId);
+            personManager.updateLastLogin(userId);
 
             if (role == Roles.STUDENT) {
                 return studentManager.getStudentById(userId);

@@ -61,8 +61,6 @@ public class DBSettings {
      */
     public Connection getConnection() throws SQLServerException {
 
-
-        
         Connection connection = null;
 
         if (releasedConnections.isEmpty()) {

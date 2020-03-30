@@ -16,5 +16,6 @@ public interface IPersonDBDAO {
     public boolean isLoginCorrect(String userName, String password);
     public int getPersonId(String userName, String password);
     public Roles getRoleById(int id);
+    public void updateLastLogin(int personID);
     
 }
