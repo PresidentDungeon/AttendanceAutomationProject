@@ -24,23 +24,15 @@ import attendanceautomation.dal.dbaccess.DBSettings;
  */
 public class TeacherDBDAO implements ITeacherDBDAO{
 
-    private DBSettings dbs;
-
-    public TeacherDBDAO() {
-        try {
-            dbs = new DBSettings();
-        } catch (IOException e) {
-
-        }
-    }
 
     @Override
     public Teacher getTeacherById(int teacherID) {
 
+        Connection con = null;
         Teacher teacher = null;
 
-        try (Connection con = dbs.getConnection()) {
-            
+        try{
+            con = DBSettings.getInstance().getConnection();
             String sql = "SELECT * FROM Person WHERE Person.ID = ?;";
             PreparedStatement stmt = con.prepareStatement(sql);
 
@@ -67,6 +59,9 @@ public class TeacherDBDAO implements ITeacherDBDAO{
         } catch (SQLException ex) {
 
         }
+        finally{
+        DBSettings.getInstance().releaseConnection(con);
+        }
 
         return teacher;
 
@@ -75,9 +70,10 @@ public class TeacherDBDAO implements ITeacherDBDAO{
     @Override
     public ObservableList<Classroom> getTeacherClasses(int teacherID) {
         
+        Connection con = null;
         ObservableList<Classroom> classes = FXCollections.observableArrayList();
-        try (Connection con = dbs.getConnection()) {
-            
+        try{
+            con = DBSettings.getInstance().getConnection();
             String sql = "SELECT * FROM TeacherClass JOIN Class on TeacherClass.classID = Class.ID WHERE TeacherClass.persID = ?;";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, teacherID);
@@ -101,7 +97,9 @@ public class TeacherDBDAO implements ITeacherDBDAO{
         } catch (SQLException ex) {
 
         }
-        
+        finally{
+        DBSettings.getInstance().releaseConnection(con);
+        }
         return classes;
     }
     

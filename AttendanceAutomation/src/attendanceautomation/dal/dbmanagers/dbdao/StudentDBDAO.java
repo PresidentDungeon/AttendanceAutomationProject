@@ -28,21 +28,14 @@ import java.sql.Statement;
  */
 public class StudentDBDAO implements IStudentDBDAO{
 
-    private DBSettings dbs;
-
-    public StudentDBDAO() {
-        try {
-            dbs = new DBSettings();
-        } catch (IOException e) {
-
-        }
-    }
-
     @Override
     public Student getStudentById(int id) {
+        
+        Connection con = null;
         Student student = null;
 
-        try (Connection con = dbs.getConnection()) {
+        try{
+            con = DBSettings.getInstance().getConnection();
             String sql = "SELECT * FROM Person WHERE Person.ID = ?;";
             PreparedStatement stmt = con.prepareStatement(sql);
 
@@ -69,15 +62,21 @@ public class StudentDBDAO implements IStudentDBDAO{
         } catch (SQLException ex) {
 
         }
+        finally{
+        DBSettings.getInstance().releaseConnection(con);
+        }
 
         return student;
     }
 
     @Override
     public ObservableList<Date> getStudentDays(int studentID) {
+        
+        Connection con = null;
         ObservableList<Date> days = FXCollections.observableArrayList();
 
-        try (Connection con = dbs.getConnection()) {
+        try{
+            con = DBSettings.getInstance().getConnection();
             String sql = "SELECT * FROM Attending WHERE Attending.persID = ? ORDER BY date ASC;";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, studentID);
@@ -101,15 +100,21 @@ public class StudentDBDAO implements IStudentDBDAO{
         } catch (SQLException ex) {
 
         }
+        finally{
+           DBSettings.getInstance().releaseConnection(con);
+        }
 
         return days;
     }
 
     @Override
     public List<Student> getStudentsInClass(Classroom classroom) {
+       
+        Connection con = null;
         List<Student> studentsInClass = new ArrayList<>();
 
-        try (Connection con = dbs.getConnection()) {
+        try{
+            con = DBSettings.getInstance().getConnection();
             String sql = "SELECT * FROM StudentClass WHERE classID = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
 
@@ -130,14 +135,19 @@ public class StudentDBDAO implements IStudentDBDAO{
         } catch (SQLException ex) {
 
         }
+        finally{
+        DBSettings.getInstance().releaseConnection(con);
+        }
         return studentsInClass;
         
     }
     
     @Override
     public boolean attendance(int studentID, Date date) {
-        try (Connection con = dbs.getConnection()) {
-            
+        
+        Connection con = null;
+        try{
+            con = DBSettings.getInstance().getConnection();
             String sql = "INSERT INTO Attending (persID, isAttending, description, date) VALUES (?,?,?,?)";
             PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             
@@ -154,12 +164,17 @@ public class StudentDBDAO implements IStudentDBDAO{
         } catch (SQLException ex) {
             return false;
         }
+        finally{
+            DBSettings.getInstance().releaseConnection(con);
+        }
     }
     
     @Override
     public boolean updateAbsence(Date date) {
-        try (Connection con = dbs.getConnection()) {
-            
+        
+        Connection con = null;
+        try{
+            con = DBSettings.getInstance().getConnection();
             String sql = "UPDATE Attending SET isAttending = ?, description = ? WHERE ID = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             
@@ -175,14 +190,19 @@ public class StudentDBDAO implements IStudentDBDAO{
         } catch (SQLException ex) {
             return false;
         }
+        finally{
+        DBSettings.getInstance().releaseConnection(con);
+        }
     }
     
     @Override
     public Date getDate(int studentID) {
+        
+        Connection con = null;
         Date date = null;
         
-        try (Connection con = dbs.getConnection()) {
-            
+        try{
+            con = DBSettings.getInstance().getConnection();
             String sql = "SELECT * FROM Attending WHERE PersID = ? AND date = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             
@@ -204,6 +224,9 @@ public class StudentDBDAO implements IStudentDBDAO{
             return date;
         } catch (SQLException ex) {
             return date;
+        }
+        finally{
+        DBSettings.getInstance().releaseConnection(con);
         }
     }
     

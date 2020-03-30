@@ -10,7 +10,11 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.List;
 import java.util.Properties;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  *
@@ -18,14 +22,17 @@ import java.util.Properties;
  */
 public class DBSettings {
 
+    private static DBSettings instance;
     private SQLServerDataSource dataSource;
+    private List<Connection> connections = new CopyOnWriteArrayList<>();
+    private Deque<Connection> releasedConnections = new ArrayDeque();
 
     /**
      * Sets the user credentials, ip, and port configuration
      *
      * @throws IOException
      */
-    public DBSettings() throws IOException {
+    private DBSettings() throws IOException {
         Properties props = new Properties();
         props.load(new FileReader("DBSettings.txt"));
         dataSource = new SQLServerDataSource();
@@ -35,6 +42,17 @@ public class DBSettings {
         dataSource.setServerName(props.getProperty("server"));
     }
 
+    public static DBSettings getInstance() {
+        if (instance == null) {
+            try {
+                instance = new DBSettings();
+            } catch (IOException e) {
+
+            }
+        }
+        return instance;
+    }
+
     /**
      * establishes a connection to the database
      *
@@ -42,6 +60,52 @@ public class DBSettings {
      * @throws SQLServerException
      */
     public Connection getConnection() throws SQLServerException {
-        return dataSource.getConnection();
+
+
+        
+        Connection connection = null;
+
+        if (releasedConnections.isEmpty()) {
+            connection = dataSource.getConnection();
+            connections.add(connection);
+        } else {
+            connection = releasedConnections.poll();
+            connections.add(connection);
+        }
+        System.out.println("Connections in use: " + connections.size() + "\n");
+        System.out.println("Connections in storage: " + releasedConnections.size() + "\n");
+        
+        return connection;
     }
+
+    public void releaseConnection(Connection connection) {
+        connections.remove(connection);
+        releasedConnections.add(connection);
+        System.out.println("Connections in use: " + connections.size() + "\n");
+        System.out.println("Connections in storage: " + releasedConnections.size() + "\n");
+    }
+
+    public void closeAllConnections() {
+      
+        System.out.println("Closing connections... Current size: " + connections.size() + releasedConnections.size());
+        
+        try {
+
+            for (Connection connection : connections) {
+                connection.close();
+            }
+
+            for (Connection connection : releasedConnections) {
+                connection.close();
+            }
+
+            connections.clear();
+            releasedConnections.clear();
+            
+                    System.out.println("Connections closed Current size: " + connections.size() + releasedConnections.size());
+
+        } catch (SQLException ex) {
+        }
+    }
+
 }

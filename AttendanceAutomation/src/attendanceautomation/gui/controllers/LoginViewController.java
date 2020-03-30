@@ -9,6 +9,7 @@ import attendanceautomation.be.Person;
 import attendanceautomation.be.Roles;
 import attendanceautomation.be.Student;
 import attendanceautomation.be.Teacher;
+import attendanceautomation.dal.dbaccess.DBSettings;
 import attendanceautomation.gui.AppModel;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
@@ -129,19 +130,16 @@ public class LoginViewController implements Initializable {
                     Stage appStage = (Stage) (rememberMe.getScene().getWindow());
                     appStage.setScene(scene);
                     appStage.show();
-                    
-//                    
-//                    Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-//                    
-//                        System.out.println("Eyy");
-//                    }));
 
-                    
+                    Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+
+                        DBSettings.getInstance().closeAllConnections();
+                    }));
+
 //                    appStage.setOnCloseRequest((WindowEvent event1) -> {
 //
 //                        System.out.println("eyy");
 //                    });
-
                 });
 
             }
