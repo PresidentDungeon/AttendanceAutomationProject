@@ -72,8 +72,6 @@ public class DBSettings {
             connection = releasedConnections.poll();
             connections.add(connection);
         }
-        System.out.println("Connections in use: " + connections.size() + "\n");
-        System.out.println("Connections in storage: " + releasedConnections.size() + "\n");
         
         return connection;
     }
@@ -81,14 +79,10 @@ public class DBSettings {
     public void releaseConnection(Connection connection) {
         connections.remove(connection);
         releasedConnections.add(connection);
-        System.out.println("Connections in use: " + connections.size() + "\n");
-        System.out.println("Connections in storage: " + releasedConnections.size() + "\n");
     }
 
     public void closeAllConnections() {
-      
-        System.out.println("Closing connections... Current size: " + connections.size() + releasedConnections.size());
-        
+
         try {
 
             for (Connection connection : connections) {
@@ -101,8 +95,6 @@ public class DBSettings {
 
             connections.clear();
             releasedConnections.clear();
-            
-                    System.out.println("Connections closed Current size: " + connections.size() + releasedConnections.size());
 
         } catch (SQLException ex) {
         }
