@@ -51,16 +51,15 @@ public class AbsenceCalculatorTest {
         ObservableList<Date> dates = FXCollections.observableArrayList();
         Student student = new Student("test", "test@test.test");
         
-        Date date1 = new Date(LocalDate.parse("2020-03-26"), true, "I am sick");
+        Date date1 = new Date(LocalDate.parse("2020-03-26"), true, " ");
         Date date2 = new Date(LocalDate.parse("2020-03-27"), false, "I am sick");
-
         dates.add(date1);
         dates.add(date2);
         student.setDays(dates);
         
         double expResult = 50.0;
         double result = AbsenceCalculator.calculateAttendance(student);
-        assertEquals(expResult, result, 1E-2);
+        assertEquals(expResult, result, 1E-3);
         
         //testing part 2
         
@@ -92,7 +91,7 @@ public class AbsenceCalculatorTest {
         int result = AbsenceCalculator.getDaysAbsence(student);
         assertEquals(expResult, result);
         
-        //Test 2
+        //part 2
         ObservableList<Date> dates = FXCollections.observableArrayList();
         Date date1 = new Date(LocalDate.parse("2020-03-27"), true, "");
         Date date2 = new Date(LocalDate.parse("2020-03-27"), false, "I am sick");
@@ -104,7 +103,7 @@ public class AbsenceCalculatorTest {
         result = AbsenceCalculator.getDaysAbsence(student);
         assertEquals(expResult, result, 1E-2);
         
-        //test 3
+        //part 3
         for (int i = 0; i < 10; i++)
         {
             Date date = new Date(LocalDate.parse("2020-03-27"), false, "I am sick");
@@ -129,7 +128,7 @@ public class AbsenceCalculatorTest {
         int result = AbsenceCalculator.getDaysPresent(student);
         assertEquals(expResult, result);
         
-        //Test 2
+        //part 2
         ObservableList<Date> dates = FXCollections.observableArrayList();
         Date date1 = new Date(LocalDate.parse("2020-03-27"), true, "");
         Date date2 = new Date(LocalDate.parse("2020-03-27"), false, "I am sick");
@@ -141,7 +140,7 @@ public class AbsenceCalculatorTest {
         result = AbsenceCalculator.getDaysPresent(student);
         assertEquals(expResult, result, 1E-2);
         
-        //test 3
+        //part 3
         for (int i = 0; i < 10; i++)
         {
             Date date = new Date(LocalDate.parse("2020-03-27"), true, "");

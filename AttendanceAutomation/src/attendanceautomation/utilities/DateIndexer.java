@@ -23,16 +23,18 @@ public class DateIndexer {
 
         if (student.getDays().size() > 0)
         {
-
             for (Date d : student.getDays())
             {
-                if (d.getDate().getDayOfWeek() == DayOfWeek.SATURDAY || d.getDate().getDayOfWeek() == DayOfWeek.SUNDAY)
+                if (d.getDate().getDayOfWeek() == DayOfWeek.SATURDAY
+                        || d.getDate().getDayOfWeek() == DayOfWeek.SUNDAY)
                 {
-                    throw new IllegalArgumentException("Chills - it's the weekends");
+                    throw new IllegalArgumentException("Chill - it's the weekends");
                 }
                 if (!d.isAttendance())
                 {
-                    absentDay[d.getDate().getDayOfWeek().getValue() - 1] = absentDay[d.getDate().getDayOfWeek().getValue() - 1] += 1;
+                    absentDay[d.getDate().getDayOfWeek().getValue() - 1]
+                            = absentDay[d.getDate().getDayOfWeek().getValue() - 1]
+                            += 1;
                 }
             }
         }

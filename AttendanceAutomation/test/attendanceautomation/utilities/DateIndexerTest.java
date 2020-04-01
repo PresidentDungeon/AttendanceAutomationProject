@@ -70,7 +70,6 @@ public class DateIndexerTest {
         Date date1 = new Date(LocalDate.parse("2020-03-25"), true, "");
         Date date2 = new Date(LocalDate.parse("2020-03-26"), false, "I am sick");
         Date date3 = new Date(LocalDate.parse("2020-03-27"), false, "Fredagsbar");
-
         dates.add(date1);
         dates.add(date2);
         dates.add(date3);
@@ -98,7 +97,6 @@ public class DateIndexerTest {
         Date date2 = new Date(LocalDate.parse("2020-03-26"), false, "I am sick");
         Date date3 = new Date(LocalDate.parse("2020-03-27"), false, "Fredagsbar");
         Date date4 = new Date(LocalDate.parse("2020-03-28"), true, "");
-
         dates.add(date1);
         dates.add(date2);
         dates.add(date3);

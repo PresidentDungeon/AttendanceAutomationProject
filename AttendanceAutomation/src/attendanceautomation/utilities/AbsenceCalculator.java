@@ -21,8 +21,8 @@ public class AbsenceCalculator {
 
         double present = 0.00;
         double absent = 0.00;
+        
         if (student.getDays().size() > 0)
-
         {
             for (Date d : student.getDays())
             {
