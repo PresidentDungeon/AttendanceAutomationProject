@@ -11,8 +11,6 @@ package attendanceautomation.be;
  */
 public enum Roles {
     
-
-    
     STUDENT("student"),TEACHER("teacher");
     
     private String type;

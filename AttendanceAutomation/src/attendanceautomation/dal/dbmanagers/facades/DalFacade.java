@@ -9,7 +9,6 @@ import attendanceautomation.be.Classroom;
 import attendanceautomation.be.Date;
 import attendanceautomation.be.Person;
 import attendanceautomation.be.Roles;
-import attendanceautomation.be.Student;
 import attendanceautomation.be.Teacher;
 import attendanceautomation.dal.dbmanagers.dbdao.IPersonDBDAO;
 import attendanceautomation.dal.dbmanagers.dbdao.IStudentDBDAO;

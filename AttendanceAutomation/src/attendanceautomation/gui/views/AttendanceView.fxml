@@ -126,7 +126,7 @@
             </Label>
          </children>
       </VBox>
-      <JFXButton fx:id="editButton" layoutX="327.0" layoutY="721.0" onAction="#edit" prefHeight="42.0" prefWidth="104.0" stylesheets="@../styles/buttonCss.css" text="Edit" textFill="WHITE" visible="false">
+      <JFXButton fx:id="editButton" layoutX="327.0" layoutY="721.0" onAction="#openEditView" prefHeight="42.0" prefWidth="104.0" stylesheets="@../styles/buttonCss.css" text="Edit" textFill="WHITE" visible="false">
          <font>
             <Font size="19.0" />
          </font>

@@ -69,14 +69,6 @@ public abstract class Person {
         this.role = role;
     }
 
-    public boolean equals(Student obj) {
-        if (obj.getId() == this.getId()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     @Override
     public boolean equals(Object obj) {
 

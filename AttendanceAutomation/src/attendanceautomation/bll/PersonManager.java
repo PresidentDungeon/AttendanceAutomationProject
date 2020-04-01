@@ -6,10 +6,8 @@
 package attendanceautomation.bll;
 
 import attendanceautomation.be.Person;
-import attendanceautomation.be.Student;
-import attendanceautomation.dal.MockStudentManager;
 import attendanceautomation.dal.dbmanagers.facades.DalFacade;
-import java.util.List;
+import attendanceautomation.dal.dbmanagers.facades.IDalFacade;
 
 /**
  *
@@ -17,7 +15,7 @@ import java.util.List;
  */
 public class PersonManager {
 
-    private DalFacade dalFacade;
+    private IDalFacade dalFacade;
 
     public PersonManager() {
         dalFacade = new DalFacade();
@@ -26,7 +24,6 @@ public class PersonManager {
     public Person validateUser(String username, String password)
     {
        return dalFacade.login(username, password);
-
     }
     
 }

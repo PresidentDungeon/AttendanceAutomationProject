@@ -13,7 +13,6 @@ import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,12 +25,12 @@ import javafx.stage.Stage;
  *
  * @author ander
  */
-public class EditViewController implements Initializable {
+public class EditViewController{
 
-    AppModel appModel = new AppModel();
-    Student activeStudent;
-    TableView<Date> dates;
-    Thread thread;
+    private AppModel appModel = new AppModel();
+    private Student activeStudent;
+    private TableView<Date> dates;
+    private Thread thread;
 
     @FXML
     private JFXTextField absenceText;
@@ -43,14 +42,6 @@ public class EditViewController implements Initializable {
     private JFXRadioButton absence;
     @FXML
     private JFXButton cancelButton;
-
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-
-    }
 
     @FXML
     private void handleSaveButton(MouseEvent event) {

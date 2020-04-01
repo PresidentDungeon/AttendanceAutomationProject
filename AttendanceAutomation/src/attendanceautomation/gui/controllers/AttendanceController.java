@@ -31,7 +31,6 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -52,9 +51,9 @@ import javafx.stage.Stage;
  */
 public class AttendanceController implements Initializable {
 
-    AppModel appModel = new AppModel();
-    Student loggedStudent;
-    TableView<Student> students;
+    private AppModel appModel = new AppModel();
+    private Student loggedStudent;
+    private TableView<Student> students;
     private PieChart pieChart;
     private BarChart<String, Number> barChart;
     private Image attend = new Image("attendanceautomation/gui/images/correct.png");
@@ -294,7 +293,7 @@ public class AttendanceController implements Initializable {
     }
 
     @FXML
-    private void edit(ActionEvent event) throws IOException {
+    private void openEditView(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(AppModel.class.getResource("views/EditView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());

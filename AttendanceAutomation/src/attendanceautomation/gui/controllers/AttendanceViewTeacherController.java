@@ -5,7 +5,6 @@
  */
 package attendanceautomation.gui.controllers;
 
-import attendanceautomation.be.Date;
 import attendanceautomation.be.Student;
 import attendanceautomation.be.Teacher;
 import attendanceautomation.be.Classroom;
@@ -14,8 +13,6 @@ import attendanceautomation.utilities.AbsenceCalculator;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -35,7 +32,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 /**
  * FXML Controller class
@@ -44,6 +40,7 @@ import javafx.stage.WindowEvent;
  */
 public class AttendanceViewTeacherController implements Initializable {
 
+    AppModel appModel = new AppModel();
     private ObservableList<Student> students = FXCollections.observableArrayList();
     private DecimalFormat df;
 
@@ -57,8 +54,6 @@ public class AttendanceViewTeacherController implements Initializable {
     private TableColumn<Student, String> studentColumn;
     @FXML
     private TableColumn<Student, String> absentColumn;
-
-    AppModel appModel = new AppModel();
     @FXML
     private Menu logOutMenu;
     @FXML
@@ -76,8 +71,8 @@ public class AttendanceViewTeacherController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-         df = new DecimalFormat("#.00");
-        
+        df = new DecimalFormat("#.00");
+
         studentColumn.setCellValueFactory((data) -> {
             Student student = data.getValue();
             return new SimpleStringProperty(student.getName());
@@ -109,7 +104,7 @@ public class AttendanceViewTeacherController implements Initializable {
         comboSort.setItems(teacher.getClassrooms());
         comboSort.getItems().add(0, new Classroom("All classrooms"));
         comboSort.getSelectionModel().select(0);
-        setStudents(teacher);      
+        setStudents(teacher);
     }
 
     public void setStudents(Teacher teacher) {
@@ -121,6 +116,14 @@ public class AttendanceViewTeacherController implements Initializable {
         }
     }
 
+    public void search(String studentName, Classroom classroom) {
+        if (studentName.equalsIgnoreCase("") && classroom.getId() == 0) {
+            studentTable.setItems(students);
+        } else {
+            studentTable.setItems(appModel.searchStudent(studentName, classroom, students));
+        }
+    }
+
     @FXML
     private void classroomSearch(ActionEvent event) {
         search(studentSearch.getText(), comboSort.getSelectionModel().getSelectedItem());
@@ -129,14 +132,6 @@ public class AttendanceViewTeacherController implements Initializable {
     @FXML
     private void studentSearch(KeyEvent event) {
         search(studentSearch.getText(), comboSort.getSelectionModel().getSelectedItem());
-    }
-
-    public void search(String studentName, Classroom classroom) {
-        if (studentName.equalsIgnoreCase("") && classroom.getId() == 0) {
-            studentTable.setItems(students);
-        } else {
-            studentTable.setItems(appModel.searchStudent(studentName, classroom, students));
-        }
     }
 
     @FXML

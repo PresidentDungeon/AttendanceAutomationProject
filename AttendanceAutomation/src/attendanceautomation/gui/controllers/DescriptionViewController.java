@@ -11,12 +11,9 @@ import attendanceautomation.gui.AppModel;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
-import java.net.URL;
 import java.time.LocalDate;
-import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -25,12 +22,12 @@ import javafx.stage.Stage;
  *
  * @author Peter
  */
-public class DescriptionViewController implements Initializable {
+public class DescriptionViewController{
 
-    AppModel appModel = new AppModel(); 
-    Student activeStudent;
-    ObservableList<Date> dates;
-    Thread thread;
+    private AppModel appModel = new AppModel(); 
+    private Student activeStudent;
+    private ObservableList<Date> dates;
+    private Thread updateThread;
     
     
     @FXML
@@ -40,17 +37,8 @@ public class DescriptionViewController implements Initializable {
     @FXML
     private JFXTextField absenceText;
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-
     @FXML
     private void handleSaveButton(MouseEvent event) throws IOException {
-        
                 
         Date date = new Date(LocalDate.now(), false, absenceText.getText());
         appModel.toBeAttending(activeStudent.getId(), date);
@@ -58,7 +46,7 @@ public class DescriptionViewController implements Initializable {
         dates.clear();
         dates.addAll(activeStudent.getDays());
         
-        thread.start();
+        updateThread.start();
         
         Stage stage = (Stage) saveButton.getScene().getWindow();
         stage.close();
@@ -75,7 +63,7 @@ public class DescriptionViewController implements Initializable {
 
         activeStudent = student;
         this.dates = dates;
-        this.thread = thread;
+        this.updateThread = thread;
     }
     
 }

@@ -8,9 +8,8 @@ package attendanceautomation.bll;
 import attendanceautomation.be.Classroom;
 import attendanceautomation.be.Date;
 import attendanceautomation.be.Student;
-import attendanceautomation.be.Teacher;
 import attendanceautomation.dal.dbmanagers.facades.DalFacade;
-import java.util.List;
+import attendanceautomation.dal.dbmanagers.facades.IDalFacade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -20,7 +19,7 @@ import javafx.collections.ObservableList;
  */
 public class StudentManager {
 
-    private DalFacade dalFacade;
+    private IDalFacade dalFacade;
 
     public StudentManager() {
         dalFacade = new DalFacade();

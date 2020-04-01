@@ -5,12 +5,8 @@
  */
 package attendanceautomation.dal.dbmanagers.facades;
 
-import attendanceautomation.be.Classroom;
 import attendanceautomation.be.Date;
 import attendanceautomation.be.Person;
-import attendanceautomation.be.Student;
-import attendanceautomation.be.Teacher;
-import java.util.List;
 import javafx.collections.ObservableList;
 
 /**
