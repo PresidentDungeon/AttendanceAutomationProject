@@ -73,33 +73,49 @@ public class LoginViewController implements Initializable {
 
     }
 
-    private Thread loadPerson() throws InterruptedException, ExecutionException, IOException {
+    public void showLoading() {
+        loginButton.setDisable(true);
+        progressBar.setVisible(true);
+        errorMsg.setVisible(false);
+    }
+
+    public void hideLoading() {
+        progressBar.setVisible(false);
+        errorMsg.setVisible(true);
+        loginButton.setDisable(false);
+    }
+
+    public void saveLogin() {
+        preferences.put("username", usernameField.getText());
+        preferences.put("password", passwordField.getText());
+        preferences.putBoolean("rememberActivated", true);
+    }
+
+    public void forgetLogin() {
+        preferences.put("username", "");
+        preferences.put("password", "");
+        preferences.putBoolean("rememberActivated", false);
+    }
+
+    public Thread loadPerson() throws InterruptedException, ExecutionException, IOException {
 
         Thread loginThread = new Thread(() -> {
 
             String username = usernameField.getText();
             String password = passwordField.getText();
-            loginButton.setDisable(true);
-            progressBar.setVisible(true);
-            errorMsg.setVisible(false);
+            showLoading();
 
             Person personToValidate = appModel.validateUser(username, password);
 
             if (personToValidate == null) {
-                progressBar.setVisible(false);
-                errorMsg.setVisible(true);
-                loginButton.setDisable(false);
+                hideLoading();
 
             } else {
 
                 if (rememberMe.isSelected()) {
-                    preferences.put("username", usernameField.getText());
-                    preferences.put("password", passwordField.getText());
-                    preferences.putBoolean("rememberActivated", true);
+                    saveLogin();
                 } else {
-                    preferences.put("username", "");
-                    preferences.put("password", "");
-                    preferences.putBoolean("rememberActivated", false);
+                    forgetLogin();
                 }
 
                 Platform.runLater(() -> {

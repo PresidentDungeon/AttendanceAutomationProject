@@ -62,8 +62,6 @@ public class AttendanceController implements Initializable {
     private DecimalFormat df;
 
     @FXML
-    private ComboBox<?> comboSort;
-    @FXML
     private TableView<Date> attendanceTable;
     @FXML
     private TableColumn<Date, String> dateColumn;
@@ -103,6 +101,8 @@ public class AttendanceController implements Initializable {
     private JFXButton attendButton;
     @FXML
     private JFXButton editButton;
+    @FXML
+    private Label lastLogin;
 
     /**
      * Initializes the controller class.
@@ -111,9 +111,7 @@ public class AttendanceController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         df = new DecimalFormat("#.00");
-        
-        
-        
+
         dateColumn.setCellValueFactory((data) -> {
 
             Date date = data.getValue();
@@ -139,6 +137,7 @@ public class AttendanceController implements Initializable {
         attendanceTable.setItems(student.getDays());
         name.setText(student.getName());
         email.setText(student.getEmail());
+        lastLogin.setText(student.getLastAccess().toString());
         loggedStudent = student;
         this.students = students;
         loadStatistics(student);
@@ -151,7 +150,7 @@ public class AttendanceController implements Initializable {
     }
 
     public void loadStatistics(Student student) {
-        
+
         double absencePercentage = AbsenceCalculator.calculateAttendance(student);
         int absenceDays = AbsenceCalculator.getDaysAbsence(student);
         int presenceDays = AbsenceCalculator.getDaysPresent(student);
@@ -201,7 +200,7 @@ public class AttendanceController implements Initializable {
             absentLabel.setText(absentLabelText);
             percentageLabel.setText(percentageLabelText);
         });
-        
+
     }
 
     public void setCharts() {
@@ -308,7 +307,4 @@ public class AttendanceController implements Initializable {
         stage.show();
     }
 
-    
-    
-    
 }
