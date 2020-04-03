@@ -10,7 +10,9 @@ import attendanceautomation.be.Teacher;
 import attendanceautomation.be.Classroom;
 import attendanceautomation.gui.AppModel;
 import attendanceautomation.utilities.AbsenceCalculator;
+import java.awt.Desktop;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ResourceBundle;
@@ -166,4 +168,33 @@ public class AttendanceViewTeacherController implements Initializable {
         }
     }
 
+    /**
+     * Opens Moodle on browser
+     */
+    @FXML
+    private void handleMoodle(ActionEvent event) {
+        {
+        try
+        {
+            Desktop.getDesktop().browse(new URL("https://moodle.easv.dk/login/index.php").toURI());
+        } catch (IOException | URISyntaxException ignored)
+        {
+        }
+      }
+    }
+
+    /**
+     * Opens Outlook on browser
+     */
+    @FXML
+    private void handleOutlook(ActionEvent event) {
+        {
+        try
+        {
+            Desktop.getDesktop().browse(new URL("https://outlook.office.com/mail/inbox").toURI());
+        } catch (IOException | URISyntaxException ignored)
+        {
+        }
+    }
+  }
 }

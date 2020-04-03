@@ -57,12 +57,7 @@
           <Menu mnemonicParsing="false" text="Platform">
             <items>
                   <MenuItem fx:id="MoodleMenu" mnemonicParsing="false" onAction="#goToMoodle" text="Moodle" />
-              <MenuItem mnemonicParsing="false" text="Outlook" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Views (prototype)">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Teacher View" />
+              <MenuItem mnemonicParsing="false" onAction="#goToOutlook" text="Outlook" />
             </items>
           </Menu>
             <Menu fx:id="logOutMenu" mnemonicParsing="false" text="Log out">

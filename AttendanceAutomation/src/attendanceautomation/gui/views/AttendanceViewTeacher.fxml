@@ -55,13 +55,8 @@
          <menus>
             <Menu mnemonicParsing="false" text="Platform">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Moodle" />
-                  <MenuItem mnemonicParsing="false" text="Outlook" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Views (prototype)">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Student View" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleMoodle" text="Moodle" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleOutlook" text="Outlook" />
                </items>
             </Menu>
             <Menu fx:id="logOutMenu" mnemonicParsing="false" onAction="#handleLogOut" text="Log out">
