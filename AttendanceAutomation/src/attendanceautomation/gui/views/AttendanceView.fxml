@@ -96,7 +96,7 @@
             <Image url="@../images/correct.png" />
          </image>
       </ImageView>
-      <HBox fx:id="paneArea1" layoutX="655.0" layoutY="461.0" prefHeight="295.0" prefWidth="497.0" stylesheets="@../styles/ChartPie.css" />
+      <HBox fx:id="paneArea1" layoutX="655.0" layoutY="461.0" prefHeight="295.0" prefWidth="497.0" stylesheets="@../styles/ChartBar.css" />
       <VBox layoutX="911.0" layoutY="63.0" prefHeight="93.0" prefWidth="230.0" spacing="2.0">
          <children>
             <Label fx:id="lectureLabel" text="Taken Lectures:">
