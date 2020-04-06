@@ -99,6 +99,11 @@ public class AttendanceViewTeacherController implements Initializable {
         studentTable.setItems(students);
     }
 
+    /**
+     * This methods runs when the AttendanceViewTeacher FXML is opened when logging in as a teacher. 
+     * The information regarding the teacher is displayed, such as the name and student list of the teacher.
+     * @param teacher The teacher logging in
+     */
     public void setTeacher(Teacher teacher) {
         teacherName.setText(teacher.getName());
         teacherEmail.setText(teacher.getEmail());
@@ -109,6 +114,10 @@ public class AttendanceViewTeacherController implements Initializable {
         setStudents(teacher);
     }
 
+    /**
+     * Inserts the students of every classroom into the students table.
+     * @param teacher the teacher containing the classroom list
+     */
     public void setStudents(Teacher teacher) {
         for (Classroom c : teacher.getClassrooms()) {
 
@@ -118,6 +127,11 @@ public class AttendanceViewTeacherController implements Initializable {
         }
     }
 
+    /**
+     * Searches for students matching the search term.
+     * @param studentName The name of the student being searched for
+     * @param classroom The classroom being searched for
+     */
     public void search(String studentName, Classroom classroom) {
         if (studentName.equalsIgnoreCase("") && classroom.getId() == 0) {
             studentTable.setItems(students);
@@ -126,16 +140,29 @@ public class AttendanceViewTeacherController implements Initializable {
         }
     }
 
+    /**
+     * Event handler for the classroom combobox. Searches for students contained in the specific classroom.
+     * @param event 
+     */
     @FXML
     private void classroomSearch(ActionEvent event) {
         search(studentSearch.getText(), comboSort.getSelectionModel().getSelectedItem());
     }
 
+    /**
+     *Event handler for the student search textfield. Searches for the specific student.
+     * @param event 
+     */
     @FXML
     private void studentSearch(KeyEvent event) {
         search(studentSearch.getText(), comboSort.getSelectionModel().getSelectedItem());
     }
 
+    /**
+     * Event handler for the show statistics button. Loads the studentview of the selected student.
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void openStudentStatisticsView(MouseEvent event) throws IOException {
 
@@ -155,6 +182,10 @@ public class AttendanceViewTeacherController implements Initializable {
         }
     }
 
+    /**
+     * Event handler for the lougout menuitem. Switches the scene of the stage with the login scene.
+     * @param event 
+     */
     @FXML
     private void handleLogOut(ActionEvent event) {
 
@@ -169,8 +200,9 @@ public class AttendanceViewTeacherController implements Initializable {
     }
 
     /**
-     * Opens Moodle on browser
-     */
+    * Event handler for the moodle menuitem. Opens moodle on the browser.
+    * @param event 
+    */
     @FXML
     private void handleMoodle(ActionEvent event) {
         {
@@ -184,8 +216,9 @@ public class AttendanceViewTeacherController implements Initializable {
     }
 
     /**
-     * Opens Outlook on browser
-     */
+    * Event handler for the outlook menuitem. Opens outlook on the browser.
+    * @param event 
+    */
     @FXML
     private void handleOutlook(ActionEvent event) {
         {

@@ -131,6 +131,12 @@ public class AttendanceController implements Initializable {
 
     }
 
+    /**
+     * This methods runs when the AttendanceView FXML is opened. 
+     * The information regarding the student is displayed, such as the name and date list of the student.
+     * @param student the student to be displayed
+     * @param students the list of students contained by the teacher opening the view
+     */
     public void setStudent(Student student, TableView<Student> students) {
 
         attendanceTable.setItems(student.getDays());
@@ -148,6 +154,10 @@ public class AttendanceController implements Initializable {
         }
     }
 
+    /**
+     * Calculates the attendance of the student and inserts the data into graphs.
+     * @param student the student the calculation is based on.
+     */
     public void loadStatistics(Student student) {
 
         double absencePercentage = AbsenceCalculator.calculateAttendance(student);
@@ -202,14 +212,18 @@ public class AttendanceController implements Initializable {
 
     }
 
+    /**
+     * Updates the paneAreas with the calculated charts.
+     */
     public void setCharts() {
         paneArea.getChildren().add(pieChart);
         paneArea1.getChildren().add(barChart);
     }
 
     /**
-     * Opens Moodle on browser
-     */
+    * Event handler for the moodle menuitem. Opens moodle on the browser.
+    * @param event 
+    */
     @FXML
     private void goToMoodle(ActionEvent event) {
         {
@@ -223,8 +237,9 @@ public class AttendanceController implements Initializable {
     }
     
     /**
-     * Opens Outlook on browser
-     */
+    * Event handler for the outlook menuitem. Opens outlook on the browser.
+    * @param event 
+    */
     @FXML
     private void goToOutlook(ActionEvent event) {
         {
@@ -237,6 +252,10 @@ public class AttendanceController implements Initializable {
     }
     }
 
+    /**
+     * Event handler for the lougout menuitem. Switches the scene of the stage with the login scene.
+     * @param event 
+     */
     @FXML
     private void handleLogOut(ActionEvent event) throws Exception {
 
@@ -248,6 +267,11 @@ public class AttendanceController implements Initializable {
 
     }
 
+    /**
+     * Event handler for the absence button. Loads the DescriptionView FXML as a new stage.
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void openDescriptionView(MouseEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -262,6 +286,11 @@ public class AttendanceController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Event handler for the attend button. Adds/updates the date for the current day and updates the student list of dates with the
+     * attendance. Then updates the students statistics by running the thread created with method updateStatisticsThread()
+     * @param event 
+     */
     @FXML
     private void toBeAttending(ActionEvent event) {
 
@@ -272,9 +301,12 @@ public class AttendanceController implements Initializable {
         updateStatisticsThread().start();
     }
 
-    //This runs when updating or creating new dates
+    /**
+     * Creates a new Thread that updates the statistics of the logged in student
+     * @return the update statistics Thread to be executed
+     */
     public Thread updateStatisticsThread() {
-        Thread testThread = new Thread(() -> {
+        Thread updateThread = new Thread(() -> {
 
             Platform.runLater(() -> {
                 paneArea.getChildren().clear();
@@ -297,9 +329,13 @@ public class AttendanceController implements Initializable {
                 }
             });
         });
-        return testThread;
+        return updateThread;
     }
 
+    /**
+     * Determines which image should be displayed for the image marker based on the logged
+     * in students attendance and time of the week.
+     */
     public void decideMarker() {
         if (LocalDate.now().getDayOfWeek() != DayOfWeek.SATURDAY && LocalDate.now().getDayOfWeek() != DayOfWeek.SUNDAY) {
             if (attendanceTable.getItems().size() == 0) {
@@ -317,6 +353,11 @@ public class AttendanceController implements Initializable {
 
     }
 
+    /**
+     * Event handler for the edit button. Loads the EditView FXML as a new stage.
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void openEditView(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
