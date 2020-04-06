@@ -97,7 +97,7 @@
          </image>
       </ImageView>
       <HBox fx:id="paneArea1" layoutX="655.0" layoutY="461.0" prefHeight="295.0" prefWidth="497.0" stylesheets="@../styles/ChartPie.css" />
-      <VBox layoutX="912.0" layoutY="52.0" prefHeight="93.0" prefWidth="230.0" spacing="2.0">
+      <VBox layoutX="911.0" layoutY="63.0" prefHeight="93.0" prefWidth="230.0" spacing="2.0">
          <children>
             <Label fx:id="lectureLabel" text="Taken Lectures:">
                <font>
@@ -110,11 +110,6 @@
                </font>
             </Label>
             <Label fx:id="percentageLabel" text="Absent Percentage Semester:">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="percentageLabel1" layoutX="10.0" layoutY="48.0" text="Absent Percentage Year:">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

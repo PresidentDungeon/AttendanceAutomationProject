@@ -93,8 +93,6 @@ public class AttendanceController implements Initializable {
     @FXML
     private HBox paneArea1;
     @FXML
-    private Label percentageLabel1;
-    @FXML
     private MenuItem handleLogOut;
     @FXML
     private ImageView imageMarker;
