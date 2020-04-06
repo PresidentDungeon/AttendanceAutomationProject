@@ -66,6 +66,14 @@ public class LoginViewController implements Initializable {
 
     }
 
+    /**
+     * Event handler for the login button. Starts the thread returned by the loadPerson method.
+     * 
+     * @param event
+     * @throws IOException
+     * @throws InterruptedException
+     * @throws ExecutionException 
+     */
     @FXML
     private void login(MouseEvent event) throws IOException, InterruptedException, ExecutionException {
         loadPerson().start();
@@ -73,30 +81,50 @@ public class LoginViewController implements Initializable {
 
     }
 
+    /**
+     * Displays loading and disables the login button
+     */
     public void showLoading() {
         loginButton.setDisable(true);
         progressBar.setVisible(true);
         errorMsg.setVisible(false);
     }
 
+    /**
+     * Hides loading and enables the login button
+     */
     public void hideLoading() {
         progressBar.setVisible(false);
         errorMsg.setVisible(true);
         loginButton.setDisable(false);
     }
 
+    /**
+     * Saves the login username and password entered in preferences
+     */
     public void saveLogin() {
         preferences.put("username", usernameField.getText());
         preferences.put("password", passwordField.getText());
         preferences.putBoolean("rememberActivated", true);
     }
 
+    /**
+     * Saves an empty string as the username and password in preferences
+     */
     public void forgetLogin() {
         preferences.put("username", "");
         preferences.put("password", "");
         preferences.putBoolean("rememberActivated", false);
     }
 
+    /**
+     * Creates a new thread that will try to login with the entered username and password. If correct login is entered, the stage will switch
+     * to either the teacher or student view depending on the login information given.
+     * @return Returns the login thread to be executed.
+     * @throws InterruptedException
+     * @throws ExecutionException
+     * @throws IOException 
+     */
     public Thread loadPerson() throws InterruptedException, ExecutionException, IOException {
 
         Thread loginThread = new Thread(() -> {

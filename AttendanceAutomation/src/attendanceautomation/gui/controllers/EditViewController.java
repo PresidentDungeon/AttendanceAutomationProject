@@ -11,11 +11,8 @@ import attendanceautomation.gui.AppModel;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -25,7 +22,7 @@ import javafx.stage.Stage;
  *
  * @author ander
  */
-public class EditViewController{
+public class EditViewController {
 
     private AppModel appModel = new AppModel();
     private Student activeStudent;
@@ -43,12 +40,20 @@ public class EditViewController{
     @FXML
     private JFXButton cancelButton;
 
+    /**
+     * Updates the selected date and the students list of dates with the newly entered information. 
+     * Then updates the students statistics by running the thread sent with the setStudent method.
+     *
+     * @param event
+     */
     @FXML
     private void handleSaveButton(MouseEvent event) {
-        Date selectedDate = dates.getSelectionModel().getSelectedItem();
 
-        if (dates != null) {
 
+        if (dates != null && !dates.getSelectionModel().isEmpty()) {
+
+                    Date selectedDate = dates.getSelectionModel().getSelectedItem();
+            
             if (attend.isSelected()) {
                 selectedDate.setAttendance(true);
                 selectedDate.setDescription("");
@@ -62,20 +67,27 @@ public class EditViewController{
             dates.getItems().clear();
             dates.getItems().addAll(activeStudent.getDays());
             thread.start();
-
-            Stage stage = (Stage) saveButton.getScene().getWindow();
-            stage.close();
-
         }
-
+        Stage stage = (Stage) saveButton.getScene().getWindow();
+        stage.close();
     }
 
+    /**
+     * Event handler for the close button. Closes the EditView without saving.
+     *
+     * @param event
+     */
     @FXML
     private void handleCloseButton(MouseEvent event) {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Select or unselects the absence radiobutton based on what state the attend radiobutton is in.
+     *
+     * @param event
+     */
     @FXML
     private void doAttendance(ActionEvent event) {
 
@@ -87,6 +99,11 @@ public class EditViewController{
 
     }
 
+    /**
+     * Select or unselects the attend radiobutton based on what state the absence radiobutton is in.
+     *
+     * @param event
+     */
     @FXML
     private void doAbsence(ActionEvent event) {
         if (absence.isSelected()) {
@@ -96,6 +113,13 @@ public class EditViewController{
         }
     }
 
+    /**
+     * This methods runs when the EditView FXML is opened by the "edit" button. It takes the active student, 
+     * the students tableview of dates and the update statistics thread and stores as instance variables.
+     * @param student the active student in the AttendanceController
+     * @param dates the tableview of dates active in the AttendanceController
+     * @param thread the Thread returned by method updateStatisticsThread in the AttendanceController
+     */
     public void setStudent(Student student, TableView<Date> dates, Thread thread) {
         activeStudent = student;
         this.dates = dates;
@@ -103,6 +127,10 @@ public class EditViewController{
         autoFill();
     }
 
+    /**
+     * Autofills the textfield and radiobuttons with the information stored in the selected
+     * date object
+     */
     public void autoFill() {
 
         Date selectedDate = dates.getSelectionModel().getSelectedItem();
