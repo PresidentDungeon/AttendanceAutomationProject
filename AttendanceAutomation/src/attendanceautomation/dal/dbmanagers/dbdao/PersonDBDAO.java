@@ -20,6 +20,12 @@ import java.time.LocalDate;
  */
 public class PersonDBDAO implements IPersonDBDAO {
     
+    /**
+     * Returns a boolean based in whether the login information given is valid or not.
+     * @param userName The username of the account
+     * @param password The password of the account
+     * @return boolean value representing whether or not the account is active
+     */
     @Override
     public boolean isLoginCorrect(String userName, String password) {
         
@@ -45,6 +51,12 @@ public class PersonDBDAO implements IPersonDBDAO {
         return false;
     }
     
+    /**
+     * Returns the ID of the person found with the given login information.
+     * @param userName The username of the account
+     * @param password The password of the account
+     * @return ID of the person based on the entered login
+     */
     @Override
     public int getPersonId(String userName, String password) {
         
@@ -78,6 +90,11 @@ public class PersonDBDAO implements IPersonDBDAO {
         
     }
     
+    /**
+     * Returns the role of the person containing a specific ID.
+     * @param id The ID of the person being searched for
+     * @return The role of the person entered
+     */
     @Override
     public Roles getRoleById(int id) {
         
@@ -113,6 +130,10 @@ public class PersonDBDAO implements IPersonDBDAO {
         return null;
     }
 
+    /**
+     * Updates the last login on the person entered.
+     * @param personID The ID of the person logging in.
+     */
     @Override
     public void updateLastLogin(int personID) {
         

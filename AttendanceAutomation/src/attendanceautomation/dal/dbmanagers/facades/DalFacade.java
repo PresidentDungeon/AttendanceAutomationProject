@@ -28,6 +28,13 @@ public class DalFacade implements IDalFacade {
     private IStudentDBDAO studentManager = new StudentDBDAO();
     private ITeacherDBDAO teacherManager = new TeacherDBDAO();
 
+    /**
+     * Returns the person found by the entered username and password.
+     * @param username The username of the person
+     * @param password The password of the person
+     * @return The person found based on the username and password
+     */
+    @Override
     public Person login(String username, String password) {
         int userId;
 
@@ -53,6 +60,11 @@ public class DalFacade implements IDalFacade {
 
     }
 
+    /**
+     * Update or adds the date to the student based on whether or not a date is already saved for the current day.
+     * @param studentID The ID of the student the date should be added or updated to
+     * @param date The date to be added or updated
+     */
     @Override
     public void toBeAttending(int studentID, Date date) {
         
@@ -66,11 +78,20 @@ public class DalFacade implements IDalFacade {
         }
     }
 
+    /**
+     * Returns an observableList of all dates used by the student.
+     * @param studentID The ID of the student being searched for
+     * @return observableList of all the students dates
+     */
     @Override
     public ObservableList<Date> getStudentDays(int studentID) {
         return studentManager.getStudentDays(studentID);
     }
     
+    /**
+     * Updates the specified date in the database.
+     * @param date the date that will update the previous date with the same ID
+     */
     @Override
     public void updateAttendance(Date date)
     {

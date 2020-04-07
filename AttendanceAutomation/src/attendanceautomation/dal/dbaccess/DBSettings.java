@@ -42,6 +42,10 @@ public class DBSettings {
         dataSource.setServerName(props.getProperty("server"));
     }
 
+    /**
+     * Returns the instance of the class if not null. Otherwise creates an instance and returns that.
+     * @return instance of the DBSettings class
+     */
     public static DBSettings getInstance() {
         if (instance == null) {
             try {
@@ -54,8 +58,7 @@ public class DBSettings {
     }
 
     /**
-     * establishes a connection to the database
-     *
+     * Checks the releasedConnections list for a valid connection and returns it. If none is available, creates a new connection and returns that.
      * @return a Connection to the database
      * @throws SQLServerException
      */
@@ -74,11 +77,18 @@ public class DBSettings {
         return connection;
     }
 
+    /**
+     * Releases a connection object back to the releasedConnections pool.
+     * @param connection the connection to be returned
+     */
     public void releaseConnection(Connection connection) {
         connections.remove(connection);
         releasedConnections.add(connection);
     }
 
+    /**
+     * Closes all connection objects in all connection pools.
+     */
     public void closeAllConnections() {
       
         System.out.println("Closing connections... Current size: " + connections.size() + releasedConnections.size());

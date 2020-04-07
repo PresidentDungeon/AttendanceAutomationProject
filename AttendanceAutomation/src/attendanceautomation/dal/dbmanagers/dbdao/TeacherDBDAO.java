@@ -25,6 +25,11 @@ import attendanceautomation.dal.dbaccess.DBSettings;
 public class TeacherDBDAO implements ITeacherDBDAO{
 
 
+    /**
+     * Returns the teacher found based on the ID.
+     * @param teacherID the ID of the teacher being searched for
+     * @return The teacher found
+     */
     @Override
     public Teacher getTeacherById(int teacherID) {
 
@@ -67,6 +72,11 @@ public class TeacherDBDAO implements ITeacherDBDAO{
 
     }
     
+    /**
+     * Returns a list of all classrooms that the teacher teaches in.
+     * @param teacherID The ID of the teacher being searched for.
+     * @return A list of all classrooms that the entered teacher teaches.
+     */
     @Override
     public ObservableList<Classroom> getTeacherClasses(int teacherID) {
         

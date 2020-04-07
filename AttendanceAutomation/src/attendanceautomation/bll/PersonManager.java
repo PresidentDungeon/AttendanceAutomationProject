@@ -21,6 +21,12 @@ public class PersonManager {
         dalFacade = new DalFacade();
     }
 
+    /**
+     * Returns the person found by the entered username and password.
+     * @param username The username of the person
+     * @param password The password of the person
+     * @return The person found based on the username and password
+     */
     public Person validateUser(String username, String password)
     {
        return dalFacade.login(username, password);
