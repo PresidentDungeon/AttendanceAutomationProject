@@ -15,6 +15,12 @@ import java.time.DayOfWeek;
  */
 public class DateIndexer {
 
+    /**
+     * Counts the days a student is absent, and indexes
+     * into the days of the week, not counting weekends.
+     * @param student the active student in the AttendanceController
+     * @return integerArray of counted days
+     */
     public static int[] indexAbsenceDays(Student student) {
         int[] absentDay =
         {

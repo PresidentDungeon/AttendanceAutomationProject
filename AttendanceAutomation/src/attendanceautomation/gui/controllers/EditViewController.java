@@ -41,9 +41,10 @@ public class EditViewController {
     private JFXButton cancelButton;
 
     /**
-     * Updates the selected date and the students list of dates with the newly entered information. 
-     * Then updates the students statistics by running the thread sent with the setStudent method.
-     *
+     * Updates the selected date and the students list
+     * of dates with the newly entered information. 
+     * Then updates the students statistics by running
+     * the thread sent with the setStudent method.
      * @param event
      */
     @FXML
@@ -73,8 +74,8 @@ public class EditViewController {
     }
 
     /**
-     * Event handler for the close button. Closes the EditView without saving.
-     *
+     * Event handler for the close button.
+     * Closes the EditView without saving.
      * @param event
      */
     @FXML
@@ -84,8 +85,8 @@ public class EditViewController {
     }
 
     /**
-     * Select or unselects the absence radiobutton based on what state the attend radiobutton is in.
-     *
+     * Select or unselects the absence radiobutton based on
+     * what state the attend radiobutton is in.
      * @param event
      */
     @FXML
@@ -100,8 +101,8 @@ public class EditViewController {
     }
 
     /**
-     * Select or unselects the attend radiobutton based on what state the absence radiobutton is in.
-     *
+     * Select or unselects the attend radiobutton based on
+     * what state the absence radiobutton is in.
      * @param event
      */
     @FXML
@@ -114,8 +115,9 @@ public class EditViewController {
     }
 
     /**
-     * This methods runs when the EditView FXML is opened by the "edit" button. It takes the active student, 
-     * the students tableview of dates and the update statistics thread and stores as instance variables.
+     * This methods runs when the EditView FXML is opened by the "edit" button.
+     * It takes the active student, the students tableview of dates
+     * and the update statistics thread and stores as instance variables.
      * @param student the active student in the AttendanceController
      * @param dates the tableview of dates active in the AttendanceController
      * @param thread the Thread returned by method updateStatisticsThread in the AttendanceController
@@ -128,8 +130,8 @@ public class EditViewController {
     }
 
     /**
-     * Autofills the textfield and radiobuttons with the information stored in the selected
-     * date object
+     * Autofills the textfield and radiobuttons with
+     * the information stored in the selected date object
      */
     public void autoFill() {
 

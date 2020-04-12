@@ -23,7 +23,7 @@ public interface ITeacherDBDAO {
     public Teacher getTeacherById(int teacherID);
     
     /**
-     * Returns a list of all classrooms that the teacher teaches in.
+     * Returns a list of all classrooms that the teacher teaches.
      * @param teacherID The ID of the teacher being searched for.
      * @return A list of all classrooms that the entered teacher teaches.
      */

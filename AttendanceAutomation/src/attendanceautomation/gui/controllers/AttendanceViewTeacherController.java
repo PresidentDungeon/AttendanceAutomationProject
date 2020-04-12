@@ -101,7 +101,8 @@ public class AttendanceViewTeacherController implements Initializable {
 
     /**
      * This methods runs when the AttendanceViewTeacher FXML is opened when logging in as a teacher. 
-     * The information regarding the teacher is displayed, such as the name and student list of the teacher.
+     * The information regarding the teacher is displayed,
+     * such as the name and student list of the teacher.
      * @param teacher The teacher logging in
      */
     public void setTeacher(Teacher teacher) {
@@ -141,7 +142,8 @@ public class AttendanceViewTeacherController implements Initializable {
     }
 
     /**
-     * Event handler for the classroom combobox. Searches for students contained in the specific classroom.
+     * Event handler for the classroom combobox.
+     * Searches for students contained in the specific classroom.
      * @param event 
      */
     @FXML
@@ -150,7 +152,8 @@ public class AttendanceViewTeacherController implements Initializable {
     }
 
     /**
-     *Event handler for the student search textfield. Searches for the specific student.
+     * Event handler for the student search textfield.
+     * Searches for the specific student.
      * @param event 
      */
     @FXML
@@ -159,7 +162,8 @@ public class AttendanceViewTeacherController implements Initializable {
     }
 
     /**
-     * Event handler for the show statistics button. Loads the studentview of the selected student.
+     * Event handler for the show statistics button.
+     * Loads the studentview of the selected student.
      * @param event
      * @throws IOException 
      */
@@ -183,7 +187,8 @@ public class AttendanceViewTeacherController implements Initializable {
     }
 
     /**
-     * Event handler for the lougout menuitem. Switches the scene of the stage with the login scene.
+     * Event handler for the lougout menuitem.
+     * Switches the scene of the stage with the login scene.
      * @param event 
      */
     @FXML
@@ -200,7 +205,8 @@ public class AttendanceViewTeacherController implements Initializable {
     }
 
     /**
-    * Event handler for the moodle menuitem. Opens moodle on the browser.
+    * Event handler for the moodle menuitem.
+    * Opens moodle on the browser.
     * @param event 
     */
     @FXML
@@ -216,7 +222,8 @@ public class AttendanceViewTeacherController implements Initializable {
     }
 
     /**
-    * Event handler for the outlook menuitem. Opens outlook on the browser.
+    * Event handler for the outlook menuitem.
+    * Opens outlook on the browser.
     * @param event 
     */
     @FXML

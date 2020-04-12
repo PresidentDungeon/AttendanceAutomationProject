@@ -67,8 +67,8 @@ public class LoginViewController implements Initializable {
     }
 
     /**
-     * Event handler for the login button. Starts the thread returned by the loadPerson method.
-     * 
+     * Event handler for the login button.
+     * Starts the thread returned by the loadPerson method.
      * @param event
      * @throws IOException
      * @throws InterruptedException
@@ -118,8 +118,11 @@ public class LoginViewController implements Initializable {
     }
 
     /**
-     * Creates a new thread that will try to login with the entered username and password. If correct login is entered, the stage will switch
-     * to either the teacher or student view depending on the login information given.
+     * Creates a new thread that will try to login
+     * with the entered username and password.
+     * If correct login is entered, the stage will switch
+     * to either the teacher- or student view depending on
+     * the login information given.
      * @return Returns the login thread to be executed.
      * @throws InterruptedException
      * @throws ExecutionException

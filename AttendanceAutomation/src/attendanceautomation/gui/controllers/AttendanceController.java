@@ -133,7 +133,8 @@ public class AttendanceController implements Initializable {
 
     /**
      * This methods runs when the AttendanceView FXML is opened. 
-     * The information regarding the student is displayed, such as the name and date list of the student.
+     * The information regarding the student is displayed,
+     * such as the name and date list of the student.
      * @param student the student to be displayed
      * @param students the list of students contained by the teacher opening the view
      */
@@ -253,7 +254,8 @@ public class AttendanceController implements Initializable {
     }
 
     /**
-     * Event handler for the lougout menuitem. Switches the scene of the stage with the login scene.
+     * Event handler for the lougout menuitem.
+     * Switches the scene of the stage with the login scene.
      * @param event 
      */
     @FXML
@@ -268,7 +270,8 @@ public class AttendanceController implements Initializable {
     }
 
     /**
-     * Event handler for the absence button. Loads the DescriptionView FXML as a new stage.
+     * Event handler for the absence button.
+     * Loads the DescriptionView FXML as a new stage.
      * @param event
      * @throws IOException 
      */
@@ -287,8 +290,11 @@ public class AttendanceController implements Initializable {
     }
 
     /**
-     * Event handler for the attend button. Adds/updates the date for the current day and updates the student list of dates with the
-     * attendance. Then updates the students statistics by running the thread created with method updateStatisticsThread()
+     * Event handler for the attend button.
+     * Adds/updates the date for the current day and updates
+     * the student list of dates with the attendance.
+     * Then updates the students statistics by running the thread
+     * created with method updateStatisticsThread()
      * @param event 
      */
     @FXML
@@ -333,8 +339,8 @@ public class AttendanceController implements Initializable {
     }
 
     /**
-     * Determines which image should be displayed for the image marker based on the logged
-     * in students attendance and time of the week.
+     * Determines which image should be displayed for the image marker
+     * based on the logged in students attendance and time of the week.
      */
     public void decideMarker() {
         if (LocalDate.now().getDayOfWeek() != DayOfWeek.SATURDAY && LocalDate.now().getDayOfWeek() != DayOfWeek.SUNDAY) {

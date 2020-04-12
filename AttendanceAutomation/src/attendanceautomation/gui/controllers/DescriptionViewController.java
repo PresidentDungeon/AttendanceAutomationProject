@@ -37,9 +37,10 @@ public class DescriptionViewController {
     private JFXTextField absenceText;
 
     /**
-     * Adds/updates the date for the current day and updates the student list of dates with the newly entered information. 
-     * Then updates the students statistics by running the thread sent with the setStudent method.
-     *
+     * Adds/updates the date for the current day and updates
+     * the student list of dates with the newly entered information. 
+     * Then it updates the students statistics by running
+     * the thread sent with the setStudent method.
      * @param event
      * @throws IOException
      */
@@ -59,7 +60,8 @@ public class DescriptionViewController {
     }
 
     /**
-     * Event handler for the close button. Closes the EditView without saving.
+     * Event handler for the close button.
+     * Closes the EditView without saving.
      * @param event
      * @throws IOException
      */
@@ -70,8 +72,9 @@ public class DescriptionViewController {
     }
 
     /**
-     * This methods runs when the DescriptionView FXML is opened by the "absence" button. It takes the active student, 
-     * the students list of dates and the update statistics thread and stores as instance variables.
+     * This methods runs when the DescriptionView FXML is opened by the "absence" button.
+     * It takes the active student, the students list of dates
+     * and the update statistics thread and stores as instance variables.
      * @param student the active student in the AttendanceController
      * @param dates the list of dates contained in the active student
      * @param thread the Thread returned by method updateStatisticsThread in the AttendanceController

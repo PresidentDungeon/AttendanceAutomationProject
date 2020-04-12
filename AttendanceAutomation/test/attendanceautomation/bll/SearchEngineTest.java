@@ -52,7 +52,6 @@ public class SearchEngineTest {
         Student student2 = new Student("Lasse", "Lasse@easv.dk");
         Student student3 = new Student("Ole", "Ole@easv.dk");
         Student student4 = new Student("Ella", "Ella@easv.dk");
-        
         student1.setId(1);
         student2.setId(2);
         student3.setId(3);
@@ -61,7 +60,6 @@ public class SearchEngineTest {
         Classroom allClasses = new Classroom("All");
         Classroom classroom1 = new Classroom("CS 2019A");
         Classroom classroom2 = new Classroom("CS 2019B");
-
         allClasses.setId(0);
         classroom1.setId(1);
         classroom2.setId(2);
@@ -70,7 +68,6 @@ public class SearchEngineTest {
         student2.getClassRoom().add(classroom1);
         student3.getClassRoom().add(classroom2);
         student4.getClassRoom().add(classroom2);
-
         students.add(student1);
         students.add(student2);
         students.add(student3);
@@ -86,7 +83,6 @@ public class SearchEngineTest {
         Classroom allClasses = new Classroom("All");
         Classroom classroom1 = new Classroom("CS 2019A");
         Classroom classroom2 = new Classroom("CS 2019B");
-
         allClasses.setId(0);
         classroom1.setId(1);
         classroom2.setId(2);

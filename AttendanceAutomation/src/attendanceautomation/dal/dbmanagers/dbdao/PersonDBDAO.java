@@ -21,7 +21,7 @@ import java.time.LocalDate;
 public class PersonDBDAO implements IPersonDBDAO {
     
     /**
-     * Returns a boolean based in whether the login information given is valid or not.
+     * Returns a boolean based on whether the login information given is valid or not.
      * @param userName The username of the account
      * @param password The password of the account
      * @return boolean value representing whether or not the account is active

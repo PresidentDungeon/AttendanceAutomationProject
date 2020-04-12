@@ -61,7 +61,8 @@ public class DalFacade implements IDalFacade {
     }
 
     /**
-     * Update or adds the date to the student based on whether or not a date is already saved for the current day.
+     * Updates or adds the date to the student based on whether
+     * or not a date is already saved for the current day.
      * @param studentID The ID of the student the date should be added or updated to
      * @param date The date to be added or updated
      */

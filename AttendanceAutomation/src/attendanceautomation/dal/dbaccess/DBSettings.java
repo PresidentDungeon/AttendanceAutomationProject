@@ -43,7 +43,8 @@ public class DBSettings {
     }
 
     /**
-     * Returns the instance of the class if not null. Otherwise creates an instance and returns that.
+     * Returns the instance of the class if not null.
+     * Otherwise creates an instance and returns that.
      * @return instance of the DBSettings class
      */
     public static DBSettings getInstance() {
@@ -58,7 +59,8 @@ public class DBSettings {
     }
 
     /**
-     * Checks the releasedConnections list for a valid connection and returns it. If none is available, creates a new connection and returns that.
+     * Checks the releasedConnections list for a valid connection and returns it.
+     * If none is available, creates a new connection and returns that.
      * @return a Connection to the database
      * @throws SQLServerException
      */

@@ -17,6 +17,11 @@ import javafx.collections.ObservableList;
  */
 public class AbsenceCalculator {
 
+    /**
+     * Calculates the percentage of presence/absence from a student.
+     * @param student the active student in the AttendanceController
+     * @return the calculated percentage of absence
+     */
     public static double calculateAttendance(Student student) {
 
         double present = 0.00;
@@ -39,6 +44,11 @@ public class AbsenceCalculator {
         return 0.00;
     }
 
+    /**
+     * Counts days a student is absent as an integer.
+     * @param student the active student in the AttendanceController
+     * @return integer of counted days absent
+     */
     public static int getDaysAbsence(Student student) {
         int absent = 0;
 
@@ -52,6 +62,11 @@ public class AbsenceCalculator {
         return absent;
     }
 
+    /**
+     * Counts days a student is present as an integer.
+     * @param student the active student in the AttendanceController
+     * @return integer of counted days present
+     */
     public static int getDaysPresent(Student student) {
         int present = 0;
 
@@ -63,24 +78,6 @@ public class AbsenceCalculator {
             }
         }
         return present;
-    }
-
-    public static void main(String[] args) {
-
-        ObservableList<Date> dates = FXCollections.observableArrayList();
-
-        Date date1 = new Date(LocalDate.parse("2020-03-27"), false, "");
-        Date date2 = new Date(LocalDate.parse("2020-03-28"), false, "I am sick");
-        Date date3 = new Date(LocalDate.parse("2020-03-29"), false, "I am sick");
-
-        dates.add(date1);
-        dates.add(date2);
-        dates.add(date3);
-        Student student = new Student("Peter", "easv");
-        student.setDays(dates);
-
-        System.out.println("Attendance is: " + AbsenceCalculator.calculateAttendance(student));
-
     }
 
 }
